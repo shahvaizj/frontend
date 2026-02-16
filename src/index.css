@@ -1,13 +1,105 @@
-body {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Dark Theme */
+  --bg-color: #1a1a1a; /* Dark grey background */
+  --text-color: #f0f0f0;
+  --heading-color: #ffffff;
+  --accent-color: #61dafb;
+  --navbar-bg: #ffffff; /* White navbar in Dark Theme */
+  --navbar-link-color: #333333; /* Dark links in Dark Theme */
+  --navbar-link-hover-bg: #e2e6ea; /* Light hover for dark links */
+  --section-border: rgba(255, 255, 255, 0.1);
+  --card-bg: #2a2a2a; /* Darker grey for sections/cards */
+  --progress-bg: #333;
+  --code-color: #f0f0f0;
+  --code-bg: #2c3e50;
+  --button-bg: #61dafb;
+  --button-text: #2c3e50;
+  --button-hover-bg: #a4eaff;
+}
+
+.App.light {
+  /* Light Theme Overrides */
+  --bg-color: #ffffff;
+  --text-color: #333333; /* Darker text for white bg */
+  --heading-color: #000000; /* Black headings in Light Theme */
+  --accent-color: #007bff; /* A blue for light mode accent */
+  --navbar-bg: #000000; /* Black navbar in Light Theme */
+  --navbar-link-color: #f0f0f0; /* White links in Light Theme */
+  --navbar-link-hover-bg: #34495e; /* Dark hover for light links */
+  --section-border: rgba(0, 0, 0, 0.1);
+  --card-bg: #f8f8f8; /* Off-white for light mode sections/cards */
+  --progress-bg: #e0e0e0;
+  --code-color: #333333;
+  --code-bg: #f0f0f0;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+  --button-hover-bg: #0056b3;
+}
+
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background-color: var(--code-bg);
+  color: var(--code-color);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+section {
+  padding: 60px 20px;
+  margin-bottom: 20px;
+  background-color: transparent;
+  border-bottom: 1px solid var(--section-border); /* Use CSS variable */
+  border-radius: 0px;
+  box-shadow: none;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+h1 {
+  font-size: 3.5em; /* Keep main h1 large */
+  color: var(--heading-color);
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+h2 { /* New rule for main section titles */
+  font-size: 3em;
+  color: var(--heading-color);
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 2em; /* Ensure smaller headings are consistent */
+  color: var(--heading-color);
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.App {
+  width: 100%;
+  text-align: center;
 }

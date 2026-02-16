@@ -1,16 +1,10 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  min-height: 100vh; /* Make App fill viewport height */
+  width: 100%; /* Make App fill viewport width */
+  background-color: var(--bg-color); /* Apply main background color */
+  color: var(--text-color); /* Apply main text color */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
 .App-header {
@@ -35,4 +29,32 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.theme-toggle-fixed {
+  position: fixed;
+  top: 20px; /* Adjust as needed */
+  right: 20px; /* Padding from the right */
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 50%; /* Make it round */
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5em; /* Adjust icon size */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* Ensure it's above other elements */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle-fixed:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.theme-toggle-fixed .material-symbols-outlined {
+  font-size: 1em; /* Adjust icon size within button */
 }

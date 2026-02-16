@@ -1,0 +1,200 @@
+[
+  {
+    "name": "LUDO CRUISE",
+    "genre": "Digital Board Game",
+    "description": "Developed a digital board game, focusing on engaging gameplay and multiplayer functionality. This project involved complex game state management and real-time multiplayer synchronization, optimizing for a smooth user experience across various devices.",
+    "icon": "casino",
+    "tagline": "Engaging Digital Board Game for Multiplayer Fun!",
+    "techTags": ["Unity3D", "C#", "Photon PUN", "Firebase", "UI/UX"],
+    "myRole": "As the Lead Game Developer, I was responsible for the core game logic, network integration, and UI implementation. I managed a small team of junior developers, ensuring timely delivery and adherence to design specifications. Optimized game performance and implemented analytics tracking.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "dQw4w9WgXcQ"
+  },
+  {
+    "name": "LUMBER TYCOON INC",
+    "genre": "Idle Simulation",
+    "description": "Created an idle simulation game involving resource management and strategic growth. Focused on scalable economy systems and intuitive progression mechanics, allowing players to build and expand their lumber empire.",
+    "icon": "forest",
+    "tagline": "Build Your Lumber Empire: A Strategic Idle Simulation!",
+    "techTags": ["Unity3D", "C#", "Scriptable Objects", "Data Persistence", "Mobile Optimization"],
+    "myRole": "My role involved designing and implementing the core idle mechanics, including resource generation, upgrade systems, and player progression. I focused on creating an addictive loop and ensuring long-term player engagement through carefully balanced economics.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "QH2-TGUlwu4"
+  },
+  {
+    "name": "CRAZY TAXI 2 – ANGRY DRIVER",
+    "genre": "Open-World Taxi Driving",
+    "description": "Worked on an open-world taxi driving game with dynamic environments and challenging missions. Focused on realistic vehicle physics and AI for pedestrians and other vehicles, delivering a chaotic and fun driving experience.",
+    "icon": "local_taxi",
+    "tagline": "Chaotic Open-World Taxi Driving with Dynamic Missions!",
+    "techTags": ["Unity3D", "C#", "Physics Engine", "AI", "Open World Streaming"],
+    "myRole": "I contributed to the vehicle physics system, AI behavior for traffic and pedestrians, and the mission scripting framework. I also optimized environment streaming for seamless transitions in the large open-world map.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "yHrx9pA1M-0"
+  },
+  {
+    "name": "SNIPER FURY",
+    "genre": "FPS Sniper Shooting",
+    "description": "Contributed to an FPS sniper shooting game, emphasizing realistic mechanics and intense action. Developed features for bullet ballistics, enemy AI, and a robust weapon upgrade system for an authentic sniper experience.",
+    "icon": "sports_bar",
+    "tagline": "Precision & Action: Realistic FPS Sniper Gameplay!",
+    "techTags": ["Unity3D", "C#", "FPS Mechanics", "Shaders", "Mobile Optimization", "AI"],
+    "myRole": "My primary responsibility was implementing realistic bullet physics, wind simulation, and hit detection for the sniper mechanics. I also developed parts of the enemy AI and integrated weapon customization features.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "gqg3_gN-gXs"
+  },
+  {
+    "name": "MODERN WARFARE SHOOTER",
+    "genre": "FPS Shooting & Action",
+    "description": "Involved in the development of a modern warfare FPS game with diverse combat scenarios. Focused on creating engaging level designs, dynamic cover systems, and balanced weapon loadouts for competitive multiplayer and single-player modes.",
+    "icon": "bomb",
+    "tagline": "Intense Modern Warfare: Diverse Combat Scenarios!",
+    "techTags": ["Unity3D", "C#", "Multiplayer", "Level Design", "VFX"],
+    "myRole": "I worked on various combat systems, including weapon handling, player movement, and implementing environmental interactions. I also contributed to optimizing game assets for performance on target platforms and integrated new features based on player feedback.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "mEGE1x7M_10"
+  },
+  {
+    "name": "ALISHA ACADEMY KIDS LEARNING",
+    "genre": "Educational Kids Learning",
+    "description": "Developed an educational game for kids, focusing on interactive learning and engaging content. The project aimed to make learning fun through mini-games and colorful, intuitive interfaces, covering subjects like math and language.",
+    "icon": "school",
+    "tagline": "Fun & Interactive Learning for Kids: Alisha Academy!",
+    "techTags": ["Unity3D", "C#", "UI/UX", "Educational Games", "Accessibility"],
+    "myRole": "My role was focused on implementing interactive mini-games and educational modules. I worked closely with educators and UI/UX designers to create age-appropriate content and ensure the game was engaging and effective for young learners.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "X_9ha-3rN0E"
+  },
+  {
+    "name": "UNDERGROUND RACING",
+    "genre": "High-Speed Racing & Drifting",
+    "description": "Experience the thrill of underground street racing with high-speed cars and challenging drift mechanics. Customize your ride and dominate the city streets.",
+    "icon": "sports_car",
+    "tagline": "High-Speed Racing & Drifting: Dominate the Streets!",
+    "techTags": ["Unity3D", "C#", "Vehicle Physics", "Multiplayer", "Customization"],
+    "myRole": "Implemented vehicle physics and handling models, ensuring realistic drifting and racing mechanics. Developed the multiplayer synchronization for competitive online play and designed several challenging race tracks.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "nfQCYyK3c6w"
+  },
+  {
+    "name": "ZOMBIE SHOOTER 3D",
+    "genre": "First-Person Shooter",
+    "description": "Survive waves of zombies in an intense 3D first-person shooter. Utilize a variety of weapons and tactics to stay alive and uncover the truth behind the apocalypse.",
+    "icon": "emergency",
+    "tagline": "Intense Zombie Apocalypse: Survive the Hordes!",
+    "techTags": ["Unity3D", "C#", "AI", "VFX", "Audio", "FPS"],
+    "myRole": "Developed the zombie AI behavior, including pathfinding and attack patterns. Designed and implemented weapon systems and visual effects for gore and explosions, enhancing the immersive survival horror experience.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "J1m0k1yD64k"
+  },
+  {
+    "name": "BUS SIMULATOR",
+    "genre": "Bus Driving Simulation",
+    "description": "Become a professional bus driver in a realistic city environment. Master different routes, manage your schedule, and transport passengers safely across various urban landscapes.",
+    "icon": "bus_alert",
+    "tagline": "Realistic Bus Driving Simulation: Master the City Routes!",
+    "techTags": ["Unity3D", "C#", "Vehicle Physics", "Traffic AI", "Open World"],
+    "myRole": "Implemented detailed bus physics and handling, traffic AI systems, and dynamic weather effects. Designed various city routes and optimized the urban environment for smooth performance and realistic visuals.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "g_dJ6m8y_hA"
+  },
+  {
+    "name": "FLAG MASTER",
+    "genre": "Quiz & Trivia",
+    "description": "Test your knowledge of world flags in this engaging quiz and trivia game. Learn about countries, capitals, and their national symbols through challenging levels.",
+    "icon": "flag",
+    "tagline": "Global Knowledge Challenge: Become a Flag Master!",
+    "techTags": ["Unity3D", "C#", "UI/UX", "Quiz Mechanics", "Localization"],
+    "myRole": "Developed the core quiz mechanics, including question generation, answer validation, and scoring systems. Designed an intuitive user interface for a seamless and educational gameplay experience across multiple languages.",
+    "screenshots": ["/images/1.jpg", "https://i.ytimg.com/vi/ZgU03Ww79u8/hqdefault.jpg"],
+    "youtubeVideoId": "ZgU03Ww79u8"
+  },
+  {
+    "name": "FLYWORLD – 2D FLIGHT",
+    "genre": "2D Flight Simulator",
+    "description": "Experience the classic feel of a 2D flight simulator. Navigate through challenging aerial courses, collect power-ups, and compete for high scores in a retro-inspired world.",
+    "icon": "flight_takeoff",
+    "tagline": "Classic 2D Flight Action: Soar Through the Skies!",
+    "techTags": ["Unity3D", "C#", "2D Physics", "Gameplay Programming", "Procedural Generation"],
+    "myRole": "Implemented the 2D flight physics and control system, focusing on a responsive and enjoyable user experience. Designed various level layouts using procedural generation techniques and developed engaging power-ups and enemy AI.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "XQ4jJ4T-eGk"
+  },
+  {
+    "name": "TASBEHAT TILE MATCH",
+    "genre": "Islamic Puzzle Game",
+    "description": "A unique Islamic-themed tile match puzzle game combining cultural elements with classic match-3 gameplay. Relax and learn through visually pleasing puzzles and spiritual verses.",
+    "icon": "extension",
+    "tagline": "Islamic Tile Match: A Relaxing & Engaging Puzzle!",
+    "techTags": ["Unity3D", "C#", "Puzzle Mechanics", "UI/UX", "Localization"],
+    "myRole": "Developed the core tile-matching mechanics and puzzle generation algorithms. Created an intuitive and aesthetically pleasing user interface that integrated Islamic cultural motifs and provided a serene gameplay experience.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "C0DPdy98e4c"
+  },
+  {
+    "name": "Alpha Battle",
+    "genre": "Gladiator Management & Arena Combat",
+    "description": "Manage your gladiators, train them for battle, and lead them to glory in the arena. A strategic management game combined with turn-based combat mechanics.",
+    "icon": "sports_mma",
+    "tagline": "Gladiator Glory: Management Meets Arena Combat!",
+    "techTags": ["Unity3D", "C#", "Turn-Based Combat", "Management Sim", "AI"],
+    "myRole": "Designed and implemented the gladiator management systems, including training, equipment, and recruitment. Developed the turn-based combat system with AI opponents and balanced unit stats for strategic depth.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "M_F8tD9K828"
+  },
+  {
+    "name": "TRUCK SIMULATOR: OFFROAD 4×4",
+    "genre": "Off-Road Truck Simulation",
+    "description": "Conquer challenging off-road terrains with powerful 4x4 trucks. Navigate through mud, rocks, and rivers in a realistic simulation experience.",
+    "icon": "truck",
+    "tagline": "Off-Road Dominance: Conquer Any Terrain!",
+    "techTags": ["Unity3D", "C#", "Vehicle Physics", "Terrain Generation", "Mobile Optimization"],
+    "myRole": "Implemented realistic off-road vehicle physics, including tire friction, suspension, and terrain interaction. Designed challenging maps with various obstacles and optimized the game for mobile devices, ensuring smooth performance in complex environments.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "gA42nN9_M98"
+  },
+  {
+    "name": "FRUIT BLAST SAGA",
+    "genre": "Match-3 Puzzle",
+    "description": "Blast colorful fruits in this addictive match-3 puzzle adventure. Solve challenging puzzles, overcome obstacles, and progress through hundreds of levels.",
+    "icon": "auto_awesome",
+    "tagline": "Sweet Puzzle Fun: Blast Fruits & Clear Levels!",
+    "techTags": ["Unity3D", "C#", "Match-3 Logic", "UI/UX", "Level Design"],
+    "myRole": "Developed the core match-3 game logic, including matching detection, cascading effects, and special power-ups. Designed numerous levels with increasing difficulty and implemented a visually appealing and intuitive user interface.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "s3G9C9yVlG8"
+  },
+  {
+    "name": "RAINING ROCKETS",
+    "genre": "Arcade Survival",
+    "description": "An action-packed arcade survival game where you dodge a barrage of falling rockets. Collect power-ups, upgrade your defenses, and see how long you can survive the explosive chaos.",
+    "icon": "rocket_launch",
+    "tagline": "Explosive Arcade Survival: Dodge the Raining Rockets!",
+    "techTags": ["Unity3D", "C#", "2D Physics", "Gameplay Programming", "Scoring"],
+    "myRole": "Implemented the core gameplay loop, including rocket spawning, player movement, and collision detection. Developed various power-ups and enemy types, and designed a dynamic scoring system to encourage replayability and high scores.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "V_9bN4gY-jI"
+  },
+  {
+    "name": "Genius Gen: Kids AI Learning",
+    "genre": "Educational",
+    "description": "An innovative AI learning app designed for kids, making education interactive and fun. Utilizes AI to adapt to learning styles and provides personalized content for various subjects.",
+    "icon": "auto_stories",
+    "tagline": "AI-Powered Learning: Smart Fun for Genius Kids!",
+    "techTags": ["Unity3D", "C#", "AI Integration", "Educational Content", "Speech Recognition"],
+    "myRole": "Integrated AI features to personalize learning paths and adapt content difficulty based on child's progress. Developed interactive exercises and educational mini-games, ensuring a rich and engaging learning experience.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "d_XqR4EwQ_A"
+  },
+  {
+    "name": "TOP-DOWN RUNNER",
+    "genre": "Top-Down Endless Runner",
+    "description": "A fast-paced top-down endless runner game. Navigate through procedurally generated levels, avoid obstacles, collect coins, and challenge your reflexes for the ultimate high score.",
+    "icon": "directions_run",
+    "tagline": "Endless Thrills: Navigate the Top-Down Runner!",
+    "techTags": ["Unity3D", "C#", "Procedural Generation", "Gameplay Programming", "Optimization"],
+    "myRole": "Developed the core endless runner mechanics, including procedural level generation, player controls, and obstacle placement. Optimized game performance for smooth gameplay and implemented a dynamic difficulty scaling system.",
+    "screenshots": ["/images/1.jpg", "/images/2.jpg"],
+    "youtubeVideoId": "p1I5cO7fJkE"
+  }
+]

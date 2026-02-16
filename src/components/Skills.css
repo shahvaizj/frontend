@@ -1,0 +1,87 @@
+.skills-section {
+  max-width: 1200px; /* Increase max-width for overall section */
+  margin: 0 auto;
+  padding: 40px 20px 60px; /* Add bottom padding to overall vertical space */
+}
+
+.skills-section h2 {
+  text-align: center;
+  margin-bottom: 20px; /* More space below main heading */
+  color: var(--heading-color); /* Use theme-based heading color */
+}
+
+/* --- Uniform Skill Category Banner Styling --- */
+.skill-category-banner {
+  display: flex;
+  flex-direction: column; /* Always column layout */
+  align-items: center;
+  background-color: transparent; /* No background */
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: none; /* No shadow */
+  margin-bottom: 0; /* Remove space between banners */
+  position: relative;
+  overflow: hidden;
+  /* border: 1px solid var(--section-border); Removed border */
+  /* transition: border-color 0.3s ease; Removed border transition */
+}
+
+.skill-category-banner:hover {
+    /* border-color: var(--accent-color); Removed border hover */
+}
+
+.skill-category-banner-title {
+  font-size: 2em; /* Title size for banner */
+  color: var(--heading-color); /* Theme-based heading color */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+}
+
+.skill-category-banner .skill-tags-container {
+  display: flex; /* Ensure tags are in a flex container */
+  flex-wrap: wrap;
+  justify-content: center; /* Center tags */
+  gap: 10px; /* Space between tags */
+  list-style: none; /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.skill-tag {
+  background-color: var(--heading-color); /* Black/white background */
+  color: var(--bg-color); /* White/black text */
+  padding: 8px 15px;
+  border-radius: 20px; /* Rounded corners */
+  font-size: 0.9em;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  cursor: default;
+  font-weight: 500;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px) scale(1.05); /* Subtle lift and scale on hover */
+  background-color: var(--bg-color); /* Invert colors on hover */
+  color: var(--heading-color); /* Invert colors on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Re-add shadow on hover */
+}
+
+@media (min-width: 768px) {
+  /* No specific row layout for banner on larger screens, keep column */
+  .skill-category-banner {
+    padding: 15px 20px; /* Reset padding for consistency */
+  }
+
+  .skill-category-banner-title {
+    font-size: 2em; /* Keep consistent size */
+    text-align: center; /* Keep centered */
+    margin-bottom: 20px;
+  }
+
+  .skill-category-banner .skill-tags-container {
+    justify-content: center; /* Keep centered */
+  }
+}
