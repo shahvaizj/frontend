@@ -4,8 +4,8 @@ import './Navbar.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
   const location = useLocation();
-  const isGaming = location.pathname === '/gaming' || location.pathname === '/';
-  const isEducational = location.pathname === '/educational';
+  const isGaming = location.pathname === '/1' || location.pathname === '/';
+  const isEducational = location.pathname === '/2';
 
   return (
     <nav className="navbar">
@@ -25,16 +25,16 @@ const Navbar = ({ theme, toggleTheme }) => {
         <li className="nav-item portfolio-switch">
           <span className="portfolio-label">View:</span>
           <Link 
-            to="/gaming" 
+            to="/1" 
             className={`nav-link portfolio-link ${isGaming ? 'active' : ''}`}
           >
-            Gaming
+            1
           </Link>
           <Link 
-            to="/educational" 
+            to="/2" 
             className={`nav-link portfolio-link ${isEducational ? 'active' : ''}`}
           >
-            Educational
+            2
           </Link>
         </li>
       </ul>

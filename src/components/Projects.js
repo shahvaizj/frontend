@@ -73,17 +73,21 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
 
       {showOtherProjects && (
         <div className="other-projects-modal">
+          <button className="modal-close-button" onClick={() => setShowOtherProjects(false)}>
+            &times;
+          </button>
           <div className="modal-content">
-            <button className="modal-close-button" onClick={() => setShowOtherProjects(false)}>
-              &times;
-            </button>
             <h3>Other Projects</h3>
-            <div className="projects-grid modal-grid">
+            <div className="other-projects-grid">
               {otherProjects.map((project, index) => (
-                <div key={index} className="project-card">
-                  <h2>{project.name}</h2>
-                  <p className="project-genre">Genre: {project.genre}</p>
-                  <p>{project.description}</p>
+                <div key={index} className="other-project-card">
+                  <h4>{project.name}</h4>
+                  <div className="project-tech-tags">
+                    {project.techTags && project.techTags.slice(0, 5).map((tag, i) => (
+                      <span key={i} className="tech-tag">{tag}</span>
+                    ))}
+                  </div>
+                  <p className="other-project-role">{project.myRole}</p>
                   {project.link && (
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
                       More Info

@@ -45,7 +45,6 @@
       "UI/UX Design"
     ],
     "myRole": "Handled all gameplay mechanics and multiplayer services for the application. Developed and implemented all game modes with complete multiplayer functionalities including real-time chat, game state synchronization, matchmaking, and seamless multiplayer gameplay. Ensured smooth network performance and low latency for an optimal multiplayer experience.",
-    "link": "https://play.google.com/store/apps/details?id=com.LudoCruise&hl=en",
     "screenshots": [
       "/images/Ludo_1.webp"
     ],
@@ -72,7 +71,6 @@
       "Performance Tuning"
     ],
     "myRole": "Developed a complete idle simulation game with focus on engaging gameplay mechanics and mobile optimization. Designed and implemented all AI systems from scratch for intelligent NPC behaviors. Carefully balanced in-game economy to maintain player engagement and fun as the game progresses. Focused heavily on user retention through strategic progression systems and rewarding gameplay loops.",
-    "link": "https://play.google.com/store/apps/details?id=com.Play3Studio.LumberEmpire",
     "screenshots": [
       "/images/LUMBER_1.webp",
       "/images/LUMBER_2.webp"
@@ -94,14 +92,12 @@
       "UI/UX Design",
       "Educational Game Design",
       "Accessibility",
-      "Parental Controls",
       "Child Safety",
       "Progress Tracking",
       "Gamification",
       "Localization"
     ],
-    "myRole": "Designed and implemented interactive educational mini-games with progressive difficulty. Created adaptive learning algorithms that adjust content based on player performance. Collaborated with educational experts to ensure pedagogical effectiveness. Implemented accessibility features high contrast mode, and adjustable difficulty. Built robust parental dashboard and progress reporting system.",
-    "link": "https://play.google.com/store/apps/details?id=com.zsh.home.school",
+    "myRole": "Designed and implemented interactive educational mini-games with progressive difficulty. Created adaptive learning algorithms that adjust content based on player performance. Collaborated with educational experts to ensure pedagogical effectiveness. Implemented accessibility features high contrast mode, and adjustable difficulty. Built robust parental dashboard and progress reporting system.",    
     "screenshots": [
       "/images/ALISHA_1.webp",
       "/images/ALISHA_2.webp",
@@ -157,7 +153,6 @@
       "Vehicle Customization"
     ],
     "myRole": "Led the development of this open-world driving game from concept to launch. Designed and implemented the complete pedestrian and traffic systems using NavMesh AI pathfinding. Created realistic vehicle physics with custom tuning for authentic driving feel. Developed multiple mission types with varying difficulty levels. Collaborated closely with a graphic designer to deliver a polished final product. Utilized pre-built tools and assets to optimize development time while maintaining high quality.",
-    "link": "https://play.google.com/store/apps/details?id=com.zsh.taxi.driver",
     "screenshots": [
       "/images/CT_1.webp",
       "/images/CT_2.webp",
@@ -184,10 +179,9 @@
       "Animation State Machines",
       "Asset Optimization"
     ],
-    "myRole": "Led a team of developers and designers to deliver this project. Closely monitored and executed level design with immersive shooting mechanics and visual effects to maximize player engagement and fun. Additionally handled all NPC match systems and AI behaviors.",
+    "myRole": "Led a team of developers and designers to deliver this AAA-quality modern warfare FPS. Implemented core combat systems including weapon handling, player movement, and environmental interactions. Developed realistic shooting mechanics with recoil patterns, bullet spread, and weapon sway. Created weapon customization system with attachment upgrades and loadout management. Designed and executed immersive level layouts with strategic cover points and combat zones. Handled all NPC and AI behaviors including enemy pathfinding, tactical positioning, and combat AI. Implemented multiplayer networking for competitive and cooperative gameplay modes. Optimized rendering pipeline and game assets for smooth mobile performance.",
     "screenshots": [
-      "/images/Shooter_1.webp",
-      "/images/Shooter_2.webp"
+      "/images/Shooter_1.webp"
     ],
     "youtubeVideoId": "zrcryOEDuRI"
   },
@@ -214,8 +208,8 @@
     ],
     "myRole": "Implemented realistic vehicle physics with custom drift mechanics including handbrake, counter-steering, and tire grip simulation. Developed real-time multiplayer synchronization for competitive racing. Created extensive car customization system with visual and performance upgrades. Designed 20+ race tracks with varying terrain and weather conditions.",
     "screenshots": [
-      "/images/Shooter_1.webp",
-      "/images/Shooter_2.webp"
+      "/images/Racing_1.webp",
+      "/images/Racing_2.webp"
     ],
     "youtubeVideoId": "jUw5B6rFkhw"
   },
@@ -242,10 +236,10 @@
     ],
     "myRole": "Developed zombie AI using state machines and pathfinding for intelligent horde behavior. Created weapon systems including firearms, explosives, and melee with realistic damage models. Implemented VFX for gore, explosions, and environmental effects. Designed wave management system with increasing difficulty and special enemy types.",
     "screenshots": [
-      "/images/Lumber_1.jpg",
-      "/images/Lumber_2.jpg"
+      "/images/Zombie_1.webp",
+      "/images/Zombie_2.webp"
     ],
-    "youtubeVideoId": "J1m0k1yD64k"
+    "youtubeVideoId": "H6qyTSqljMg"
   },
   {
     "name": "BUS SIMULATOR",
@@ -294,14 +288,8 @@
       "Leaderboards",
       "Achievements"
     ],
-    "myRole": "Architected core quiz mechanics including question generation, answer validation, and adaptive difficulty algorithms. Designed intuitive UI with smooth animations and accessibility options. Implemented localization system supporting 30+ languages. Created offline mode with local data persistence and cloud sync capabilities.",
+    "myRole": "Developed this quiz runner game where players run through levels while answering geography questions. Implemented adaptive difficulty algorithms that adjust question complexity based on player performance. Created smooth animations and intuitive UI for seamless gameplay experience. Built localization system supporting 30+ languages for global audience. Implemented offline mode with local data persistence and cloud sync. Designed engaging game mechanics combining running gameplay with educational trivia.",
     "screenshots": [
-      "https://play-lh.googleusercontent.com/jLvUAqnj5j8iICJNpN-u4P6PEnx3Ayht2F3_4GZe1ftpcAQTgfPwCCrf_84avER2P4k=w526-h296-rw",
-      "https://play-lh.googleusercontent.com/ogYxc_EbPEw2sNmROtvJcA9KbiFXigrhn_VqipE0tEk5ytFuG-CBQ3WHyTGzSgSCHg=w526-h296-rw",
-      "https://play-lh.googleusercontent.com/L8oUZBjsJbWW1ra_KG38_uNp-O_iH5vbmlL6S1ZxGAou7-wdFHYcWSRBUCYsQQlihYQ=w526-h296-rw",
-      "https://play-lh.googleusercontent.com/97YitvhvNAlYzsjHwbopKWlkAyynEO3jjprPAtY7cHSrZQAQyDMXttqHvpS-0RwomGaH=w526-h296-rw",
-      "https://play-lh.googleusercontent.com/zj11Q5GvIjHng_FSyEB6TKDjV-_L8I1R1bwc_yv-adxS9549l7P4gTLQ8qfjA78AaPo=w526-h296-rw",
-      "https://play-lh.googleusercontent.com/5xqsLwtbdjX6-3zgml9NkJv-UA82T2c7Mgq35MJNCzs8CYxztm6B2Y5OwS_rUB_TVDM=w526-h296-rw"
     ],
     "youtubeVideoId": "ZgU03Ww79u8"
   },
@@ -323,7 +311,7 @@
       "Game Controller",
       "Input Handling"
     ],
-    "myRole": "Implemented responsive 2D flight physics and control system with smooth analog input. Created procedural level generation system ensuring infinite replayability. Designed engaging enemy AI patterns and boss battle mechanics. Implemented particle systems for explosions, thrusters, and environmental effects.",
+    "myRole": "Implemented realistic 2D flight physics including aircraft handling for takeoff, cruising, and landing mechanics. Created smooth analog control system for responsive piloting experience. Developed procedural level generation for infinite replayability. Designed engaging enemy AI patterns and challenging boss battle mechanics. Implemented particle systems for explosions, thrusters, smoke trails, and environmental effects.",
     "screenshots": [
       "/images/Lumber_1.jpg",
       "/images/Lumber_2.jpg"
@@ -351,7 +339,7 @@
       "Sound Design",
       "Mobile Optimization"
     ],
-    "myRole": "Developed core match-3 tile-matching mechanics with special tiles, combos, and cascade effects. Created algorithm for dynamic puzzle generation with varying difficulty. Designed elegant UI incorporating Islamic geometric patterns and calligraphy. Implemented localization for Arabic, English, and other languages.",
+    "myRole": "Developed unique 2-tile matching puzzle mechanics (matching 2 tiles instead of 3). Created tile-matching system with special tiles, chain combos, and cascade effects. Built algorithm for dynamic puzzle generation with varying difficulty levels. Designed elegant UI incorporating Islamic geometric patterns and calligraphy. Implemented localization for Arabic, English, and other languages.",
     "screenshots": [
       "/images/Lumber_1.jpg",
       "/images/Lumber_2.jpg"
@@ -377,7 +365,7 @@
       "Equipment System",
       "Battle System"
     ],
-    "myRole": "Designed and implemented gladiator management systems including training, equipment, and recruitment. Created turn-based combat system with tactical AI using decision trees. Balanced unit stats and abilities for strategic depth. Implemented hero progression system with skill trees and equipment crafting.",
+    "myRole": "Developed this idle automatic battle game where gladiator battles happen automatically. Implemented gladiator management system including training, upgrades, equipment management, and recruitment. Created automatic battle system where player watches battles unfold and manages their gladiator roster. Designed progression system for upgrading gladiator stats and abilities. Implemented equipment crafting and loadout management for competitive arena battles.",
     "screenshots": [
       "/images/Lumber_1.jpg",
       "/images/Lumber_2.jpg"
@@ -484,7 +472,7 @@
       "Child Safety",
       "Analytics"
     ],
-    "myRole": "Integrated AI features for personalized learning paths and adaptive difficulty. Implemented speech recognition for voice interactions and pronunciation feedback. Created interactive exercises with visual and audio feedback. Designed progress tracking system with detailed analytics for parents and educators.",
+    "myRole": "Developed complete parent-child relationship system where parents create accounts and assign tasks to their children. Built task management system allowing parents to set daily learning activities and track progress. Created comprehensive dashboard for parents to view their child's performance, completed tasks, and learning analytics. Implemented adaptive learning algorithms that personalize content based on child's progress and performance. Designed progress tracking system with detailed analytics and reports presented to parents.",
     "screenshots": [
 	  "/images/Genius_1.webp"
     ],
@@ -539,8 +527,217 @@
     "myRole": "Served as Lead Developer for this educational project targeting US-based schools. Designed and developed interactive mathematical problem-solving features presented in a fun, GUI-based format. Created engaging brain training exercises to enhance cognitive abilities and simplify complex discrete structure problems for younger students.",
     "screenshots": [
       "/images/ST_1.webp",
-      "/images/ST_2.webp"
+      "/images/ST_2.webp",
+	  "/images/ST_3.webp"
     ],
     "youtubeVideoId": "jfOQ0l7XJ48"
+  },
+  {
+    "name": "HUNTING GAME",
+    "category": ["gaming"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "FPS Hunting Simulation",
+    "description": "A first-person hunting simulation game with realistic wildlife, weapon mechanics, and immersive outdoor environments. Features various hunting modes, weapon customization, and tracking AI.",
+    "icon": "sports_bar",
+    "tagline": "FPS Hunting Simulation | Wildlife AI",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "FPS Mechanics",
+      "AI Behavior",
+      "Weapon System",
+      "Environment Design",
+      "Animation",
+      "Mobile Optimization"
+    ],
+    "myRole": "Developed first-person shooting mechanics and weapon handling systems. Created wildlife AI behaviors for realistic animal movements and patterns. Implemented tracking and detection systems for immersive hunting gameplay.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "PARKING SIMULATOR",
+    "category": ["gaming"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "Driving Simulation",
+    "description": "A realistic parking simulation game with multiple vehicle types, challenging parking scenarios, and detailed physics. Features various difficulty levels and vehicle customization.",
+    "icon": "local_parking",
+    "tagline": "Vehicle Physics | Driving Simulation",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "Vehicle Physics",
+      "Physics Simulation",
+      "Level Design",
+      "UI/UX",
+      "Mobile Optimization",
+      "Touch Controls"
+    ],
+    "myRole": "Implemented realistic vehicle physics and handling for parking mechanics. Designed challenging parking scenarios with varying difficulty levels. Created responsive touch controls for mobile gameplay.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "SHIP RIVER CROSSING",
+    "category": ["gaming", "educational"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "Puzzle & Building Game",
+    "description": "A Roblox-style building game where players create ships and navigate rivers to cross to the other side. Features physics-based ship building, water simulation, and challenging river obstacles.",
+    "icon": "sailing",
+    "tagline": "Physics-Based Building | Roblox Game",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "Physics Simulation",
+      "Building System",
+      "Water Physics",
+      "WebGL",
+      "Gameplay Programming",
+      "Level Design"
+    ],
+    "myRole": "Developed physics-based ship building system allowing players to construct vessels from various parts. Implemented water simulation and river current mechanics level design with. Created challenging obstacles and goals.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "TOP DOWN SHOOTER",
+    "category": ["gaming"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "WebGL Shooter",
+    "description": "A fast-paced top-down shooter game built for WebGL with responsive controls and action-packed gameplay. Features multiple weapons, enemy waves, and boss battles.",
+    "icon": "sports_martial_arts",
+    "tagline": "WebGL Shooter | Action Gameplay",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "WebGL",
+      "Top-Down Shooter",
+      "Weapon System",
+      "Enemy AI",
+      "Wave Management",
+      "Performance Optimization"
+    ],
+    "myRole": "Built complete top-down shooter mechanics with various weapon types including pistols, rifles, shotguns, and special weapons. Developed intelligent enemy AI system with pathfinding, tactical positioning, and coordinated group behaviors. Created multiple level designs with increasing difficulty, unique enemy compositions, and environmental hazards. Implemented wave-based progression system with boss battles at the end of each chapter. Optimized for WebGL performance ensuring smooth 60fps gameplay in browser.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "DANCING CUBE",
+    "category": ["gaming", "educational"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "Rhythm & Music Game",
+    "description": "A rhythm-based dancing game where players follow music keypoints to make movements. Each level is designed around different music tracks with synchronized movements and gestures.",
+    "icon": "music_note",
+    "tagline": "Rhythm Game | Music Synchronization",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "Rhythm Game",
+      "Music Sync",
+      "Animation",
+      "Touch Controls",
+      "Level Design",
+      "Audio System"
+    ],
+    "myRole": "Developed rhythm synchronization system that maps player movements to music keypoints. Created dynamic animation system for smooth dance moves. Designed multiple levels based on different music tracks with varying difficulty.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "STORM SURVIVAL",
+    "category": ["gaming"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "Hyper Casual",
+    "description": "A hyper-casual game where players build and upgrade houses to survive approaching storms. Features house customization, storm progression, and survival mechanics.",
+    "icon": "thunderstorm",
+    "tagline": "Hyper Casual | Building & Survival",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "Hyper Casual",
+      "Building System",
+      "Game Economy",
+      "Level Progression",
+      "Mobile Optimization",
+      "UI/UX"
+    ],
+    "myRole": "Designed and implemented house building and upgrade systems. Created storm progression mechanics with increasing difficulty. Implemented game economy for in-game currency and upgrades.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "CASTLE BATTLE",
+    "category": ["gaming"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "2D Strategy & Multiplayer",
+    "description": "A 2D castle building game where 2 players compete (multiplayer or against AI) to build and defend their castles. Features building mechanics, combat system, and last player standing win condition.",
+    "icon": "castle",
+    "tagline": "2D Strategy | Multiplayer & AI",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "2D Game",
+      "Multiplayer",
+      "AI Opponent",
+      "Building System",
+      "Combat System",
+      "Turn-Based"
+    ],
+    "myRole": "Developed comprehensive 2D castle building system where players construct walls, towers, and defensive structures using collected resources. Created strategic combat system with unit deployment, projectile attacks, and siege warfare mechanics. Implemented intelligent AI opponent with multiple difficulty levels that makes tactical decisions. Built real-time multiplayer system allowing 2 players to battle simultaneously. Designed win condition system where last player with surviving castle wins. Implemented unit upgrade tree and special ability system for strategic depth.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "PRE SCHOOL ACADEMY",
+    "category": ["educational"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "Educational App",
+    "description": "A comprehensive pre-school educational app handling academic management from KG to 5th class. Features user authentication, database management, daily tasks, progress tracking, and interactive learning activities.",
+    "icon": "school",
+    "tagline": "Educational Platform | Academic Management",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "User Authentication",
+      "Database",
+      "Cloud Architecture",
+      "Progress Tracking",
+      "Educational Content",
+      "Multi-User"
+    ],
+    "myRole": "Developed complete user authentication and login system with role-based access. Implemented database architecture for managing student data, academic records, and progress tracking. Created daily task system where students complete interactive learning activities. Handled backend integration and data synchronization.",
+    "screenshots": [],
+    "youtubeVideoId": ""
+  },
+  {
+    "name": "SIEMENS CITY BUILDER",
+    "category": ["gaming"],
+    "gamingOrder": null,
+    "educationalOrder": null,
+    "genre": "City Building Simulation",
+    "description": "A SimCity-style city building simulation game created for Dubai Expo in partnership with Siemens. Players design and build their own cities with various buildings, infrastructure, and utilities while learning about sustainable urban development and smart city concepts.",
+    "icon": "location_city",
+    "tagline": "City Building | Dubai Expo Siemens",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "City Building",
+      "Simulation",
+      "Infrastructure",
+      "3D Graphics",
+      "Interactive UI",
+      "Event Deployment",
+      "Touch Controls"
+    ],
+    "myRole": "Developed core city building mechanics allowing users to place and customize various building types. Created simulation systems for utilities, traffic, and resource management. Designed intuitive touch-based interface for interactive exhibit experience at Dubai Expo. Collaborated with Siemens team to integrate sustainable city concepts.",
+    "screenshots": [],
+    "youtubeVideoId": ""
   }
 ]

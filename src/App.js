@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
 
 import Navbar from './components/Navbar'; // Import Navbar
 
@@ -77,16 +78,17 @@ const Portfolio = ({ portfolioType }) => {
       <Skills skills={portfolioData.skills} />
       <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
       <Testimonials testimonials={portfolioData.testimonials} />
+      <Contact contact={portfolioData.contact} />
     </div>
   );
 };
 
 function App() {
   return (
-    <Router basename="/portfolio">
+    <Router basename="/shahvaizj">
       <Routes>
-        <Route path="/gaming" element={<Portfolio portfolioType="gaming" />} />
-        <Route path="/educational" element={<Portfolio portfolioType="educational" />} />
+        <Route path="/1" element={<Portfolio portfolioType="gaming" />} />
+        <Route path="/2" element={<Portfolio portfolioType="educational" />} />
         <Route path="/" element={<Portfolio portfolioType="gaming" />} />
       </Routes>
     </Router>

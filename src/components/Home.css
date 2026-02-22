@@ -110,3 +110,22 @@
 .fun-title-dot.active:hover {
   transform: translateY(-3px) scale(1.6); /* Lift and scale for active dot on hover */
 }
+
+/* Highlighted keywords in bio */
+.highlight-years {
+  color: var(--heading-color);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.highlight-tech {
+  color: var(--heading-color);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.highlight-skills {
+  color: var(--heading-color);
+  font-weight: 600;
+  text-transform: uppercase;
+}
