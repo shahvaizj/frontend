@@ -1,11 +1,28 @@
 import React, { useState } from 'react';
 import './Projects.css';
+import ProjectVisualsCarousel from './ProjectVisualsCarousel'; // Import the new component
 
-const Projects = ({ projects }) => {
+const Projects = ({ projects, portfolioType = 'gaming' }) => {
   const [showOtherProjects, setShowOtherProjects] = useState(false);
 
-  const featuredProjects = projects.slice(0, 6);
-  const otherProjects = projects.slice(6);
+  // Filter projects by category based on portfolioType
+  const filteredProjects = projects.filter(project => 
+    project.category && project.category.includes(portfolioType)
+  );
+
+  // Sort by order field
+  const orderKey = portfolioType === 'gaming' ? 'gamingOrder' : 'educationalOrder';
+  const sortedProjects = [...filteredProjects].sort((a, b) => {
+    const orderA = a[orderKey] || 999;
+    const orderB = b[orderKey] || 999;
+    return orderA - orderB;
+  });
+
+  const featuredProjects = sortedProjects.slice(0, 6);
+  
+  // Get ALL projects that are not in featured (both gaming and educational)
+  const featuredIds = featuredProjects.map(p => p.name);
+  const otherProjects = projects.filter(project => !featuredIds.includes(project.name));
 
   return (
     <section id="projects" className="projects-section">
@@ -26,26 +43,21 @@ const Projects = ({ projects }) => {
               <div className="project-role">
                 <h4>My Role:</h4>
                 <p>{project.myRole}</p>
+                {project.link && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
+                    More Info
+                  </a>
+                )}
               </div>
             </div>
 
-            <div className="project-visuals-slideshow">
-              {project.youtubeVideoId && (
-                <div className="project-video slideshow-item">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${project.youtubeVideoId}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={`${project.name} Gameplay Video`}
-                  ></iframe>
-                </div>
-              )}
-              {project.screenshots && project.screenshots.map((screenshot, i) => (
-                <div key={i} className="project-screenshot-item slideshow-item">
-                  <img src={screenshot} alt={`${project.name} screenshot ${i + 1}`} />
-                </div>
-              ))}
+            {/* Use the new ProjectVisualsCarousel component */}
+            <div className="project-visuals-wrapper"> {/* New wrapper for visuals and thumbnails */}
+              <ProjectVisualsCarousel
+                youtubeVideoIds={project.youtubeVideoIds || (project.youtubeVideoId ? [project.youtubeVideoId] : [])}
+                screenshots={project.screenshots}
+                projectName={project.name}
+              />
             </div>
           </div>
         ))}
@@ -72,6 +84,11 @@ const Projects = ({ projects }) => {
                   <h2>{project.name}</h2>
                   <p className="project-genre">Genre: {project.genre}</p>
                   <p>{project.description}</p>
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
+                      More Info
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

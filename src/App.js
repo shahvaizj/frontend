@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import './App.css'; // Import App.css
 import Home from './components/Home';
@@ -8,7 +9,7 @@ import Testimonials from './components/Testimonials';
 
 import Navbar from './components/Navbar'; // Import Navbar
 
-function App() {
+const Portfolio = ({ portfolioType }) => {
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme ? savedTheme : 'light'; // Default to 'light' if no theme saved
@@ -74,9 +75,21 @@ function App() {
       </button>
       <Home about={portfolioData.about} funTitles={portfolioData.about.funTitles} contactEmail={portfolioData.contact.email} />
       <Skills skills={portfolioData.skills} />
-      <Projects projects={portfolioData.projects} />
+      <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
       <Testimonials testimonials={portfolioData.testimonials} />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Router basename="/portfolio">
+      <Routes>
+        <Route path="/gaming" element={<Portfolio portfolioType="gaming" />} />
+        <Route path="/educational" element={<Portfolio portfolioType="educational" />} />
+        <Route path="/" element={<Portfolio portfolioType="gaming" />} />
+      </Routes>
+    </Router>
   );
 }
 

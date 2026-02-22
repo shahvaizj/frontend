@@ -23,8 +23,8 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease-in-out;
   display: grid;
-  /* Two columns: Left (Header/Tech/Role) | Visuals Slideshow */
-  grid-template-columns: 2fr 1.5fr; /* 2fr for left, 1.5fr for slideshow */
+  /* Two columns: Left (Header/Tech/Role) | Visuals Wrapper */
+  grid-template-columns: 2fr 1.5fr; /* 2fr for left, 1.5fr for visuals */
   gap: 30px; /* Gap between columns */
   align-items: start;
   text-align: left;
@@ -40,6 +40,17 @@
   padding-right: 20px;
   border-right: 1px dashed var(--border-color-medium); /* Separator from slideshow */
 }
+
+.project-visuals-wrapper {
+  /* New wrapper for the carousel and thumbnails */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes main carousel to top, thumbnails to bottom */
+  align-items: center; /* Center content horizontally */
+  padding-left: 30px; /* Maintain separation from left column */
+  height: 100%; /* Take full height of the grid cell */
+}
+
 
 .project-header {
   text-align: left;
@@ -73,9 +84,9 @@
 .tech-tag {
   background-color: var(--heading-color);
   color: var(--bg-color);
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.9em;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 0.75em;
   white-space: nowrap;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
@@ -101,33 +112,98 @@
   line-height: 1.6;
 }
 
-.project-visuals-slideshow {
+.more-info-button {
   display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  scroll-snap-type: x mandatory; /* Snap to items */
-  gap: 20px; /* Gap between slideshow items */
-  padding-bottom: 10px; /* Space for scrollbar */
-  padding-left: 30px; /* Padding to separate from project-left-column */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  align-items: center; /* Center items vertically in the slideshow */
-}
-
-.slideshow-item {
-  flex: 0 0 auto; /* Prevent items from shrinking, let them grow to content */
-  width: 100%; /* Each item takes full width of the scroll area */
-  scroll-snap-align: start; /* Snap to the start of each item */
-}
-
-.project-video {
-  display: block; /* Ensure video is visible */
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  padding: 12px 24px;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  background-color: var(--bg-color-dark);
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #fff, #e0e0e0);
+  color: #1a1a1a;
+  text-decoration: none;
   border-radius: 8px;
-  overflow: hidden;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.more-info-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #e0e0e0, #fff);
+}
+
+.more-info-button::after {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+
+.more-info-button:hover::after {
+  transform: translateX(4px);
+}
+
+/* Light Mode Override */
+.App.light .more-info-button {
+  background: linear-gradient(135deg, #1a1a1a, #444);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.App.light .more-info-button:hover {
+  background: linear-gradient(135deg, #444, #1a1a1a);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.05);
+  background-color: var(--bg-color);
+  color: var(--heading-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* New styles for the ProjectVisualsCarousel component - Main Display */
+.project-visuals-carousel-main {
+  position: relative;
+  max-width: 600px; /* Adjust as needed */
+  width: 100%;
+  margin: 0 auto 15px auto; /* Margin-bottom to separate from thumbnails */
+  overflow: hidden; /* Hide overflowing slides */
+  border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  /* No padding-left as it's within slideshow */
+  flex-grow: 1; /* Allow it to take available space */
+  display: flex;
+  align-items: center; /* Center content vertically if carousel has less height */
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth transition for slides */
+  width: 100%;
+  height: auto; /* Allow height to adjust */
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+}
+
+.project-video,
+.project-screenshot-item {
+  flex: 0 0 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 250px;
+  background-color: var(--bg-color-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .project-video iframe {
@@ -139,53 +215,49 @@
   border: none;
 }
 
-.project-screenshot-item {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* Use same aspect ratio as video for consistency */
-  background-color: var(--bg-color-dark);
+.project-screenshot-item img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  display: flex; /* For centering img if it doesn't fill */
-  justify-content: center;
-  align-items: center;
 }
 
-.project-screenshot-item img {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Thumbnail navigation */
+.project-carousel-thumbnails {
+  display: flex;
+  justify-content: center;
+  margin-top: 0; /* Adjusted, as it's now separated by .project-visuals-carousel-main margin-bottom */
+  gap: 10px; /* Space between thumbnails */
+  flex-wrap: wrap; /* Allow thumbnails to wrap */
+}
+
+.carousel-thumbnail {
+  width: 70px; /* Fixed width for thumbnails */
+  height: 50px; /* Fixed height for thumbnails */
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: transparent; /* Explicitly remove background */
+}
+
+.carousel-thumbnail:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+}
+
+.carousel-thumbnail.active {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-color-light), 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-thumbnail img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensure image is not cropped */
-  border-radius: 8px; /* Match container */
-}
-
-/* Hide scrollbar for webkit browsers */
-.project-visuals-slideshow::-webkit-scrollbar {
-  height: 8px;
-}
-
-.project-visuals-slideshow::-webkit-scrollbar-track {
-  background: var(--bg-color-light);
-  border-radius: 10px;
-}
-
-.project-visuals-slideshow::-webkit-scrollbar-thumb {
-  background: var(--accent-color);
-  border-radius: 10px;
-}
-
-.project-visuals-slideshow::-webkit-scrollbar-thumb:hover {
-  background: var(--button-hover-bg);
-}
-
-.tech-tag:hover {
-  transform: translateY(-2px) scale(1.05);
-  background-color: var(--bg-color);
-  color: var(--heading-color);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  object-fit: cover; /* Cover the thumbnail area */
 }
 
 /* Responsive adjustments for project cards */
@@ -199,7 +271,7 @@
     padding-right: 0;
     border-right: none;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color-light);
+    border-bottom: 1px dashed var(--border-color-medium);
   }
   .project-header {
     margin-bottom: 15px;
@@ -207,26 +279,20 @@
   .project-role {
     margin-top: 15px;
   }
-  .project-visuals-slideshow {
-    padding-left: 0;
+  .project-visuals-wrapper {
+    padding-left: 0; /* No longer needs left padding when stacked */
     padding-top: 20px;
     border-top: 1px dashed var(--border-color-medium);
   }
-  .slideshow-item {
-    max-height: 250px; /* Constraint height when stacked */
+  .project-visuals-carousel-main { /* Renamed class */
+    max-width: 100%; /* Allow carousel to take full width */
   }
-  .project-video {
-    padding-top: 0; /* Remove padding-top when stacked vertically */
-    height: 250px; /* Fixed height for video when stacked */
+  .project-video, .project-screenshot-item {
+    min-height: 200px; /* Adjust height for smaller screens */
   }
-  .project-video iframe {
-    position: static; /* Allow iframe to take normal flow */
-    width: 100%;
-    height: 100%;
-  }
-  .project-screenshot-item {
-    padding-top: 0; /* Remove padding-top when stacked vertically */
-    height: 250px; /* Fixed height for screenshots when stacked */
+  .carousel-thumbnail {
+    width: 60px; /* Adjust thumbnail size */
+    height: 45px;
   }
 }
 
@@ -243,17 +309,18 @@
   .project-left-column {
     text-align: left;
   }
-  .project-role, .project-visuals-slideshow {
+  .project-role {
     text-align: left;
   }
-  .project-visuals-slideshow {
+  .project-visuals-wrapper { /* Renamed class */
     justify-content: flex-start;
   }
-  .slideshow-item {
-    max-height: 200px;
-  }
   .project-video, .project-screenshot-item {
-    height: 200px;
+    min-height: 180px;
+  }
+  .carousel-thumbnail {
+    width: 50px; /* Adjust thumbnail size */
+    height: 35px;
   }
 }
 
@@ -284,10 +351,11 @@
     padding: 4px 8px;
     font-size: 0.8em;
   }
-  .slideshow-item {
-    max-height: 150px;
-  }
   .project-video, .project-screenshot-item {
-    height: 150px;
+    min-height: 150px;
+  }
+  .carousel-thumbnail {
+    width: 40px; /* Adjust thumbnail size */
+    height: 30px;
   }
 }
