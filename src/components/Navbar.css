@@ -1,17 +1,17 @@
 .navbar {
-  background-color: var(--navbar-bg); /* Use CSS variable */
-  padding: 15px 0;
-  position: sticky;
-  top: 0;
-  width: 100%;
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  background-color: var(--navbar-bg);
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 25px;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
-  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: background-color 0.3s ease, width 0.3s ease;
 }
 
 .nav-list {
@@ -19,76 +19,130 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .nav-item {
-  display: inline-block;
+  width: 100%;
+  position: relative;
 }
 
 .nav-link {
-  color: var(--navbar-link-color); /* Use CSS variable */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: var(--navbar-link-color);
   text-decoration: none;
-  font-size: 1.1em;
-  font-weight: bold;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
 }
 
-.nav-link:hover,
-.nav-link:focus {
-  background-color: var(--navbar-link-hover-bg); /* Use CSS variable */
-  color: var(--text-color); /* Use general text color for hover */
+.nav-link .nav-icon {
+  font-size: 22px;
 }
 
-.theme-toggle-button {
-  background-color: var(--button-bg); /* Use CSS variable */
-  color: var(--button-text); /* Use CSS variable */
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.nav-link:hover {
+  background-color: var(--navbar-link-hover-bg);
+  width: 100%;
+  border-radius: 20px;
 }
 
-.theme-toggle-button:hover {
-  background-color: var(--button-hover-bg); /* Use CSS variable */
+.nav-link.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.nav-tooltip {
+  position: absolute;
+  left: 55px;
+  background-color: var(--navbar-bg);
+  color: var(--navbar-link-color);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.nav-link:hover .nav-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.nav-link.active .nav-tooltip {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Mobile Navigation - Bottom Bar */
+.navbar-mobile {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--navbar-bg);
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.mobile-nav-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  color: var(--navbar-link-color);
+  text-decoration: none;
+  font-size: 0.65em;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link .material-symbols-outlined {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+
+.mobile-nav-link .mobile-nav-label {
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.mobile-nav-link.active {
+  color: var(--accent-color);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+  
+  .navbar-mobile {
+    display: flex;
+  }
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-.portfolio-switch {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 10px;
-  padding-left: 15px;
-  border-left: 1px solid var(--border-color-medium);
-}
-
-.portfolio-label {
-  color: var(--navbar-link-color);
-  font-size: 0.9em;
-  font-weight: 500;
-}
-
-.portfolio-link {
-  font-size: 0.9em;
-  padding: 6px 12px;
-  opacity: 0.7;
-}
-
-.portfolio-link.active {
-  opacity: 1;
-  background-color: var(--accent-color);
-  color: var(--bg-color);
-}
-
-.portfolio-link:hover {
-  opacity: 1;
+section {
+  scroll-margin-top: 20px;
 }

@@ -1,44 +1,45 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ theme, toggleTheme }) => {
-  const location = useLocation();
-  const isGaming = location.pathname === '/1' || location.pathname === '/';
-  const isEducational = location.pathname === '/2';
+const Navbar = ({ theme, toggleTheme, currentSection }) => {
+  const navItems = [
+    { id: 'home', label: 'Home', icon: 'home' },
+    { id: 'skills', label: 'Skills', icon: 'psychology' },
+    { id: 'projects', label: 'Projects', icon: 'sports_esports' },
+    { id: 'testimonials', label: 'Testimonials', icon: 'format_quote' },
+    { id: 'contact', label: 'Contact', icon: 'email' },
+  ];
 
   return (
-    <nav className="navbar">
-      <ul className="nav-list">
-        <li className="nav-item">
-          <a href="#home" className="nav-link">Home</a>
-        </li>
-        <li className="nav-item">
-          <a href="#skills" className="nav-link">Skills</a>
-        </li>
-        <li className="nav-item">
-          <a href="#projects" className="nav-link">Projects</a>
-        </li>
-        <li className="nav-item">
-          <a href="#testimonials" className="nav-link">Testimonials</a>
-        </li>
-        <li className="nav-item portfolio-switch">
-          <span className="portfolio-label">View:</span>
-          <Link 
-            to="/1" 
-            className={`nav-link portfolio-link ${isGaming ? 'active' : ''}`}
+    <>
+      <nav className="navbar">
+        <ul className="nav-list">
+          {navItems.map((item) => (
+            <li key={item.id} className="nav-item">
+              <a 
+                href={`#${item.id}`} 
+                className={`nav-link ${currentSection === item.id ? 'active' : ''}`}
+              >
+                <span className="material-symbols-outlined nav-icon">{item.icon}</span>
+                <span className="nav-tooltip">{item.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <nav className="navbar-mobile">
+        {navItems.map((item) => (
+          <a 
+            key={item.id}
+            href={`#${item.id}`} 
+            className={`mobile-nav-link ${currentSection === item.id ? 'active' : ''}`}
           >
-            1
-          </Link>
-          <Link 
-            to="/2" 
-            className={`nav-link portfolio-link ${isEducational ? 'active' : ''}`}
-          >
-            2
-          </Link>
-        </li>
-      </ul>
-    </nav>
+            <span className="material-symbols-outlined">{item.icon}</span>
+            <span className="mobile-nav-label">{item.label}</span>
+          </a>
+        ))}
+      </nav>
+    </>
   );
 };
 

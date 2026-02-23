@@ -1,18 +1,20 @@
 [
   {
     "name": "Body Mirror",
-    "category": ["gaming", "educational"],
+    "category": [
+      "gaming",
+      "educational"
+    ],
     "gamingOrder": 1,
     "educationalOrder": 1,
-    "genre": "AI-Powered Fitness & Health App",
+    "genre": "Sensors Powered Fitness Games App",
     "description": "An innovative health platform that combines advanced AI, neuroscience, and immersive games to track and enhance brain and body health. Features real-time pose estimation, motion-controlled gaming experiences, and comprehensive health tracking powered by cutting-edge technology.",
     "icon": "casino",
     "tagline": "AI & Sensor-Based Game Development | Motion Control Expert",
     "techTags": [
       "Unity3D",
       "C#",
-      "Computer Vision",
-      "TensorFlow Lite",
+      "Brain EEG Sensor",
       "Machine Learning",
       "Pose Estimation",
       "Firebase",
@@ -22,11 +24,18 @@
     "myRole": "Worked as a Game Developer with a UK-based software house, responsible for creating innovative games that use sensor tools to control movement and capture player stats. Collaborated with a multidisciplinary team including web developers, mobile application developers, brain scientists, and designers to achieve optimal game performance. Leveraged sensor technologies to create immersive, motion-controlled gaming experiences with accurate stat tracking.",
     "link": "https://www.myelinz.com/",
     "screenshots": [],
-    "youtubeVideoIds": ["ikzdxLzgPFw", "vCp46EYOPG8", "fOun8jg6LHA"]
+    "youtubeVideoIds": [
+      "ikzdxLzgPFw",
+      "vCp46EYOPG8",
+      "fOun8jg6LHA"
+    ]
   },
   {
     "name": "LUDO CRUISE",
-    "category": ["gaming", "educational"],
+    "category": [
+      "gaming",
+      "educational"
+    ],
     "gamingOrder": 2,
     "educationalOrder": 4,
     "genre": "Multiplayer Online Board Game",
@@ -52,7 +61,10 @@
   },
   {
     "name": "LUMBER TYCOON INC",
-    "category": ["gaming", "educational"],
+    "category": [
+      "gaming",
+      "educational"
+    ],
     "gamingOrder": 3,
     "educationalOrder": null,
     "genre": "Idle & Tycoon Simulation",
@@ -79,7 +91,9 @@
   },
   {
     "name": "ALISHA ACADEMY KIDS LEARNING",
-    "category": ["educational"],
+    "category": [
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": 5,
     "genre": "Educational & Learning Game",
@@ -97,7 +111,7 @@
       "Gamification",
       "Localization"
     ],
-    "myRole": "Designed and implemented interactive educational mini-games with progressive difficulty. Created adaptive learning algorithms that adjust content based on player performance. Collaborated with educational experts to ensure pedagogical effectiveness. Implemented accessibility features high contrast mode, and adjustable difficulty. Built robust parental dashboard and progress reporting system.",    
+    "myRole": "Designed and implemented interactive educational mini-games with progressive difficulty. Created adaptive learning algorithms that adjust content based on player performance. Collaborated with educational experts to ensure pedagogical effectiveness. Implemented accessibility features high contrast mode, and adjustable difficulty. Built robust parental dashboard and progress reporting system.",
     "screenshots": [
       "/images/ALISHA_1.webp",
       "/images/ALISHA_2.webp",
@@ -107,7 +121,9 @@
   },
   {
     "name": "SNIPER FURY",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": 4,
     "educationalOrder": null,
     "genre": "FPS Tactical Sniper",
@@ -135,7 +151,9 @@
   },
   {
     "name": "CRAZY TAXI 2 – ANGRY DRIVER",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Open-World Driving Simulation",
     "description": "An open-world taxi driving game featuring realistic vehicle physics, dynamic traffic AI, mission-based gameplay, and an expansive city environment. Includes vehicle customization, upgrades, and challenging delivery missions across diverse weather conditions.",
     "icon": "local_taxi",
@@ -162,7 +180,9 @@
   },
   {
     "name": "MODERN WARFARE SHOOTER",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "AAA FPS Action",
     "description": "A AAA-quality modern warfare FPS featuring cinematic single-player campaign, competitive multiplayer, cooperative modes, and battle royale. Includes realistic weapon handling, destructible environments, dynamic cover systems, and next-gen graphics optimization.",
     "icon": "bomb",
@@ -187,7 +207,9 @@
   },
   {
     "name": "UNDERGROUND RACING",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": 5,
     "educationalOrder": null,
     "genre": "Street Racing & Drifting",
@@ -215,7 +237,9 @@
   },
   {
     "name": "ZOMBIE SHOOTER 3D",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": 6,
     "educationalOrder": null,
     "genre": "Survival Horror FPS",
@@ -243,7 +267,9 @@
   },
   {
     "name": "BUS SIMULATOR",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Vehicle Simulation",
     "description": "A hyper-realistic bus driving simulator featuring multiple routes, authentic bus physics, traffic AI, dynamic weather, and an expansive open city. Includes career mode, passenger simulations, bus maintenance, and VR support.",
     "icon": "bus_alert",
@@ -269,7 +295,9 @@
   },
   {
     "name": "FLAG MASTER",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": 11,
     "educationalOrder": null,
     "genre": "Quiz & Trivia",
@@ -289,13 +317,14 @@
       "Achievements"
     ],
     "myRole": "Developed this quiz runner game where players run through levels while answering geography questions. Implemented adaptive difficulty algorithms that adjust question complexity based on player performance. Created smooth animations and intuitive UI for seamless gameplay experience. Built localization system supporting 30+ languages for global audience. Implemented offline mode with local data persistence and cloud sync. Designed engaging game mechanics combining running gameplay with educational trivia.",
-    "screenshots": [
-    ],
+    "screenshots": [],
     "youtubeVideoId": "ZgU03Ww79u8"
   },
   {
     "name": "FLYWORLD – 2D FLIGHT",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Classic Arcade Flight",
     "description": "A retro-styled 2D flight simulator with challenging aerial courses, power-ups, enemy formations, and boss battles. Features procedural level generation, high score leaderboards, and satisfying arcade mechanics.",
     "icon": "flight_takeoff",
@@ -320,7 +349,9 @@
   },
   {
     "name": "TASBEHAT TILE MATCH",
-    "category": ["educational"],
+    "category": [
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "Islamic Puzzle Game",
@@ -348,7 +379,9 @@
   },
   {
     "name": "Alpha Battle",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Strategy & Arena Combat",
     "description": "A strategic gladiator management game combining team management, RPG elements, and turn-based arena combat. Features hero progression, equipment crafting, tactical AI, and competitive PvP leagues.",
     "icon": "sports_mma",
@@ -374,7 +407,9 @@
   },
   {
     "name": "TRUCK SIMULATOR: OFFROAD 4×4",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Off-Road Simulation",
     "description": "A realistic off-road truck simulation featuring challenging terrain, mud physics, rock crawling, and extensive vehicle customization. Includes multiplayer convoys, cargo delivery missions, and dynamic weather.",
     "icon": "truck",
@@ -400,7 +435,10 @@
   },
   {
     "name": "FRUIT BLAST SAGA",
-    "category": ["gaming", "educational"],
+    "category": [
+      "gaming",
+      "educational"
+    ],
     "gamingOrder": 16,
     "educationalOrder": 6,
     "genre": "Casual Match-3",
@@ -421,14 +459,16 @@
     ],
     "myRole": "Developed core match-3 logic with matching detection, cascade effects, and special tile combinations. Created power-up systems including bombs, rockets, and color blasters. Designed 500+ levels with increasing difficulty and special objectives. Implemented live events system and daily reward mechanics.",
     "screenshots": [
-	  "/images/Fruit_2.webp",
+      "/images/Fruit_2.webp",
       "/images/Fruit_1.webp"
     ],
     "youtubeVideoId": "qZtPC61g6aE"
   },
   {
     "name": "RAINING ROCKETS",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Arcade Survival",
     "description": "A fast-paced arcade survival game where players dodge falling rockets, collect power-ups, and upgrade defenses. Features endless gameplay, high score chasing, and satisfying destruction physics.",
     "icon": "rocket_launch",
@@ -452,18 +492,19 @@
     "youtubeVideoId": "V_9bN4gY-jI"
   },
   {
-    "name": "Genius Gen: Kids AI Learning",
-    "category": ["educational"],
+    "name": "Genius Gen: Kids Learning",
+    "category": [
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": 2,
-    "genre": "AI-Powered Education",
+    "genre": "Education Kids Platform",
     "description": "An innovative educational app using artificial intelligence to personalize learning for children. Features adaptive content, speech recognition, interactive exercises, progress tracking, and engaging gamification.",
     "icon": "auto_stories",
     "tagline": "AI & Speech Recognition | Educational Game Design",
     "techTags": [
       "Unity3D",
       "C#",
-      "AI",
       "Machine Learning",
       "Speech Recognition",
       "NLP",
@@ -474,13 +515,15 @@
     ],
     "myRole": "Developed complete parent-child relationship system where parents create accounts and assign tasks to their children. Built task management system allowing parents to set daily learning activities and track progress. Created comprehensive dashboard for parents to view their child's performance, completed tasks, and learning analytics. Implemented adaptive learning algorithms that personalize content based on child's progress and performance. Designed progress tracking system with detailed analytics and reports presented to parents.",
     "screenshots": [
-	  "/images/Genius_1.webp"
+      "/images/Genius_1.webp"
     ],
     "youtubeVideoId": "PqzTEa85EYo"
   },
   {
     "name": "TOP-DOWN RUNNER",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "genre": "Endless Runner",
     "description": "A fast-paced top-down endless runner with procedurally generated levels, obstacle avoidance, coin collection, and character upgrades. Features daily challenges, achievements, and responsive touch controls.",
     "icon": "directions_run",
@@ -506,7 +549,9 @@
   },
   {
     "name": "STRING THEORY",
-    "category": ["educational"],
+    "category": [
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": 3,
     "genre": "Educational Math & Brain Training",
@@ -528,13 +573,15 @@
     "screenshots": [
       "/images/ST_1.webp",
       "/images/ST_2.webp",
-	  "/images/ST_3.webp"
+      "/images/ST_3.webp"
     ],
     "youtubeVideoId": "jfOQ0l7XJ48"
   },
   {
     "name": "HUNTING GAME",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "FPS Hunting Simulation",
@@ -557,7 +604,9 @@
   },
   {
     "name": "PARKING SIMULATOR",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "Driving Simulation",
@@ -580,7 +629,10 @@
   },
   {
     "name": "SHIP RIVER CROSSING",
-    "category": ["gaming", "educational"],
+    "category": [
+      "gaming",
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "Puzzle & Building Game",
@@ -603,7 +655,9 @@
   },
   {
     "name": "TOP DOWN SHOOTER",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "WebGL Shooter",
@@ -626,7 +680,10 @@
   },
   {
     "name": "DANCING CUBE",
-    "category": ["gaming", "educational"],
+    "category": [
+      "gaming",
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "Rhythm & Music Game",
@@ -649,7 +706,9 @@
   },
   {
     "name": "STORM SURVIVAL",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "Hyper Casual",
@@ -672,7 +731,9 @@
   },
   {
     "name": "CASTLE BATTLE",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "2D Strategy & Multiplayer",
@@ -695,7 +756,9 @@
   },
   {
     "name": "PRE SCHOOL ACADEMY",
-    "category": ["educational"],
+    "category": [
+      "educational"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "Educational App",
@@ -718,7 +781,9 @@
   },
   {
     "name": "SIEMENS CITY BUILDER",
-    "category": ["gaming"],
+    "category": [
+      "gaming"
+    ],
     "gamingOrder": null,
     "educationalOrder": null,
     "genre": "City Building Simulation",

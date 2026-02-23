@@ -11,18 +11,9 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
   }
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const timeoutRef = useRef(null);
   const playerRefs = useRef({});
 
   const totalVisuals = allVisuals.length;
-
-  const resetTimeout = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
 
   useEffect(() => {
     const tag = document.createElement('script');
@@ -33,44 +24,14 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
     window.onYouTubeIframeAPIReady = () => {
       allVisuals.forEach((visual, index) => {
         if (visual.type === 'youtube' && !playerRefs.current[index]) {
-          playerRefs.current[index] = new window.YT.Player(`youtube-player-${index}`, {
-            events: {
-              onStateChange: (event) => {
-                if (event.data === window.YT.PlayerState.PLAYING) {
-                  setIsVideoPlaying(true);
-                } else if (event.data === window.YT.PlayerState.PAUSED || event.data === window.YT.PlayerState.ENDED) {
-                  setIsVideoPlaying(false);
-                }
-              }
-            }
-          });
+          playerRefs.current[index] = new window.YT.Player(`youtube-player-${index}`, {});
         }
       });
     };
-
-    return () => {
-      resetTimeout();
-    };
   }, []);
-
-  useEffect(() => {
-    resetTimeout();
-    if (totalVisuals > 1 && !isPaused && !isVideoPlaying) {
-      timeoutRef.current = setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % totalVisuals);
-      }, 5000);
-    }
-    return () => {
-      resetTimeout();
-    };
-  }, [currentIndex, totalVisuals, isPaused, isVideoPlaying]);
-
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
-    setIsPaused(false);
   };
 
   if (totalVisuals === 0) {
@@ -79,11 +40,7 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
 
   return (
     <>
-      <div
-        className="project-visuals-carousel-main"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="project-visuals-carousel-main">
         <div className="carousel-content" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {allVisuals.map((visual, index) => (
             <div key={index} className="carousel-item">

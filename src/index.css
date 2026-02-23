@@ -2,12 +2,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Dark Theme */
   --bg-color: #1a1a1a; /* Dark grey background */
   --text-color: #f0f0f0;
   --heading-color: #ffffff;
   --accent-color: #61dafb;
+  --primary-color: #61dafb;
   --navbar-bg: #ffffff; /* White navbar in Dark Theme */
   --navbar-link-color: #333333; /* Dark links in Dark Theme */
   --navbar-link-hover-bg: #e2e6ea; /* Light hover for dark links */
@@ -27,6 +32,7 @@
   --text-color: #333333; /* Darker text for white bg */
   --heading-color: #000000; /* Black headings in Light Theme */
   --accent-color: #007bff; /* A blue for light mode accent */
+  --primary-color: #007bff;
   --navbar-bg: #000000; /* Black navbar in Light Theme */
   --navbar-link-color: #f0f0f0; /* White links in Light Theme */
   --navbar-link-hover-bg: #34495e; /* Dark hover for light links */

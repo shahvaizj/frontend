@@ -2,27 +2,81 @@
   {
     "category": "Game Development",
     "items": [
-      "Unity3D Engine", "C#", "Unity UI", "ShaderLab",
-      "Augmented Reality (AR)", "Virtual Reality (VR)", "Virtual World Development",
-      "Photon Networking", "Multiplayer Development", "Game Design Patterns", "Game Optimization",
-      "Google Firebase", "PlayFab Services"
+      "Unity3D Engine",
+      "C#",
+      "Unity UI",
+      "UXML",
+      "Augmented Reality (AR)",
+      "Virtual Reality (VR)",
+      "Photon Networking",
+      "Multiplayer Development",
+      "Game Design Patterns",
+      "Game Optimization",
+      "Google Firebase",
+      "PlayFab Services",
+      "Cinemachine",
+      "Unity DOTS/ECS",
+      "Unity Addressables",
+      "NavMesh & AI Pathfinding",
+      "Physics Simulation",
+      "Procedural Generation",
+      "Mixed Reality (MR)",
+      "In-App Purchases",
+      "Unity Analytics",
+      "Level Design",
+      "Game Monetization",
+      "Localization & Accessibility"
     ]
   },
   {
     "category": "Team Management",
     "items": [
-      "Jira", "ClickUp", "Sprint Planning", "Agile/Scrum", "Team Leadership"
+      "Jira",
+      "ClickUp",
+      "Sprint Planning",
+      "Agile/Scrum",
+      "Team Leadership",
+      "Trello",
+      "Kanban Methodology",
+      "Roadmap Planning",
+      "Code Review Processes",
+      "Risk Management",
+      "Resource Allocation",
+      "Remote Team Management",
+      "Performance Reviews",
+      "Technical Documentation",
+      "GitFlow Workflow",
+      "Product Backlog Grooming"
     ]
   },
   {
     "category": "Other",
     "items": [
-      "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript",
-      "React.js", "Node.js", "Express.js", "RESTful APIs",
-      "MongoDB", "MySQL", "PostgreSQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "React.js",
+      "Next.js",
+      "Vue.js",
+      "Node.js",
+      "Express.js",
+      "RESTful APIs",
+      "GraphQL",
+      "MongoDB",
+      "MySQL",
+      "n-8-n",
+      "Firebase Firestore",
       "Git",
-      "AWS (EC2, S3)", "Docker",
-      "AI/ML Integration", "Automation Tools"
+      "GitLab CI",
+      "Google Cloud Platform",
+      "Azure",
+      "Docker",
+      "AI/ML Integration",
+      "OpenAI API",
+      "Prompt Engineering",
+      "Automation Tools",
+      "Python"
     ]
   }
 ]

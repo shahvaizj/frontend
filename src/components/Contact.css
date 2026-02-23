@@ -1,8 +1,12 @@
 .contact-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 150px 20px;
   text-align: center;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact-section h2 {
@@ -15,7 +19,102 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 25px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid var(--card-bg);
+  border-radius: 10px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1em;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.submit-btn {
+  padding: 15px 30px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(97, 218, 251, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.success-msg {
+  color: #25D366;
+  font-weight: 600;
+}
+
+.error-msg {
+  color: #ff4444;
+  font-weight: 600;
+}
+
+.contact-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.contact-divider::before,
+.contact-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--text-color);
+  opacity: 0.3;
+}
+
+.contact-divider span {
+  padding: 0 15px;
+  color: var(--text-color);
+  font-size: 0.9em;
 }
 
 .contact-email {
@@ -71,6 +170,16 @@
 
 .whatsapp:hover {
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.linkedin {
+  background-color: #0077B5;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+}
+
+.linkedin:hover {
+  box-shadow: 0 6px 20px rgba(0, 119, 181, 0.6);
 }
 
 @media (max-width: 768px) {

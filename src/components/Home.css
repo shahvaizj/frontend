@@ -11,63 +11,119 @@
 .home-section h1 {
   font-size: 3.5em;
   margin-bottom: 10px;
-  color: var(--heading-color); /* Use theme-based heading color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow effect */
+  color: var(--heading-color);
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.4);
+  animation: nameFloat 0.6s ease-out;
+}
+
+@keyframes nameFloat {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home-section h2 {
   font-size: 2em;
-  color: var(--heading-color); /* Use CSS variable */
+  color: var(--heading-color);
+  animation: titleFade 0.5s ease-in-out;
 }
 
-/* Styles for animated title */
+@keyframes titleFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animated-title-container {
-  height: 2em; /* Set a fixed height to prevent layout shift */
-  overflow: hidden; /* Hide overflowing text during animation */
-  margin-bottom: 20px; /* Consistent margin */
-  display: flex; /* For centering content */
+  height: 2em;
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Keyframe animation for text entry */
-@keyframes fadeInScaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 .animated-title-container h2 {
-  margin: 0; /* Remove default margin from h2 inside container */
-  animation: fadeInScaleUp 0.3s ease-out forwards; /* Apply animation */
+  margin: 0;
 }
 
 .home-section p {
   font-size: 1.2em;
   max-width: 800px;
-  color: var(--text-color); /* Use CSS variable */
-  margin-bottom: 0px; /* Adjust margin */
+  color: var(--text-color);
+}
+
+@keyframes nameFloat {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-section h2 {
+  font-size: 2em;
+  color: var(--heading-color);
+  animation: titleFade 0.5s ease-in-out;
+}
+
+@keyframes titleFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-title-container {
+  height: 2em;
+  overflow: hidden;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animated-title-container h2 {
+  margin: 0;
+}
+
+.home-section p {
+  font-size: 1.2em;
+  max-width: 800px;
+  color: var(--text-color);
 }
 
 .fun-titles-dots {
   display: flex;
   justify-content: center;
-  margin-top: 15px; /* Space between title and dots */
-  margin-bottom: 25px; /* Space before bio */
-  flex-wrap: wrap; /* Allow dots to wrap */
-  gap: 10px; /* Space between dots */
+  margin-top: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .fun-title-dot {
   height: 10px;
   width: 10px;
   margin: 0 5px;
-  background-color: var(--navbar-link-hover-bg); /* Subtle color for dots */
+  background-color: var(--navbar-link-hover-bg);
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
@@ -77,19 +133,19 @@
 .home-contact-email {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the email and icon */
-  margin-top: 60px; /* Add some space above the email */
+  justify-content: center;
+  margin-top: 60px;
   font-size: 1.2em;
-  color: var(--text-color); /* Use text color for email */
+  color: var(--text-color);
 }
 
 .home-contact-email .material-symbols-outlined {
   margin-right: 8px;
-  color: var(--accent-color); /* Use accent color for icon */
+  color: var(--accent-color);
 }
 
 .home-contact-email a {
-  color: var(--text-color); /* Use text color for email link */
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -99,19 +155,18 @@
 }
 
 .fun-title-dot:hover {
-  transform: translateY(-3px) scale(1.4); /* Lift and slightly scale on hover */
-  background-color: var(--accent-color); /* Highlight color on hover */
+  transform: translateY(-3px) scale(1.4);
+  background-color: var(--accent-color);
 }
 
 .fun-title-dot.active {
-  background-color: var(--accent-color); /* Active dot color */
+  background-color: var(--accent-color);
 }
 
 .fun-title-dot.active:hover {
-  transform: translateY(-3px) scale(1.6); /* Lift and scale for active dot on hover */
+  transform: translateY(-3px) scale(1.6);
 }
 
-/* Highlighted keywords in bio */
 .highlight-years {
   color: var(--heading-color);
   font-weight: 700;
