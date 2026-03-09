@@ -17,7 +17,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node scripts/build-frontend.js",
+    "fix-unity-build": "node scripts/fix-unity-build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

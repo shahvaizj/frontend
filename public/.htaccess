@@ -1,5 +1,38 @@
 Options -MultiViews
 RewriteEngine On
+
+<IfModule mod_mime.c>
+  AddEncoding br .br
+  AddEncoding br .unityweb
+  AddType application/javascript .js.br
+  AddType application/wasm .wasm.br
+  AddType application/octet-stream .data.br
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|wasm|data)\.br$">
+    Header set Content-Encoding br
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+
+  <FilesMatch "\.unityweb$">
+    Header set Content-Encoding br
+    Header append Vary Accept-Encoding
+  </FilesMatch>
+
+  <FilesMatch "\.framework\.js\.unityweb$">
+    Header set Content-Type application/javascript
+  </FilesMatch>
+
+  <FilesMatch "\.wasm\.unityweb$">
+    Header set Content-Type application/wasm
+  </FilesMatch>
+
+  <FilesMatch "\.data\.unityweb$">
+    Header set Content-Type application/octet-stream
+  </FilesMatch>
+</IfModule>
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]

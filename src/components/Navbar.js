@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 
-const Navbar = ({ theme, toggleTheme, currentSection }) => {
+const Navbar = ({ currentSection }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'skills', label: 'Skills', icon: 'psychology' },

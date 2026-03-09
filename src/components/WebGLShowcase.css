@@ -1,0 +1,28 @@
+.webgl-showcase-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.webgl-frame-wrap {
+  border: 1px solid var(--card-stroke);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--card-solid);
+  box-shadow: 0 18px 48px rgba(8, 14, 28, 0.25);
+}
+
+.webgl-frame {
+  display: block;
+  width: 100%;
+  height: min(72vh, 760px);
+  min-height: 500px;
+  border: 0;
+  background: #000;
+}
+
+@media (max-width: 768px) {
+  .webgl-frame {
+    height: min(64vh, 520px);
+    min-height: 360px;
+  }
+}

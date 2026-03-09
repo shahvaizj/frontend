@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap');
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -7,105 +9,134 @@ html {
 }
 
 :root {
-  /* Dark Theme */
-  --bg-color: #1a1a1a; /* Dark grey background */
-  --text-color: #f0f0f0;
+  --bg-color: #0b1020;
+  --bg-soft: #121a31;
+  --text-color: #d8e4ff;
   --heading-color: #ffffff;
-  --accent-color: #61dafb;
-  --primary-color: #61dafb;
-  --navbar-bg: #ffffff; /* White navbar in Dark Theme */
-  --navbar-link-color: #333333; /* Dark links in Dark Theme */
-  --navbar-link-hover-bg: #e2e6ea; /* Light hover for dark links */
-  --section-border: rgba(255, 255, 255, 0.1);
-  --card-bg: #2a2a2a; /* Darker grey for sections/cards */
-  --progress-bg: #333;
-  --code-color: #f0f0f0;
-  --code-bg: #2c3e50;
-  --button-bg: #61dafb;
-  --button-text: #2c3e50;
-  --button-hover-bg: #a4eaff;
+  --accent-color: #2dd4bf;
+  --accent-2: #60a5fa;
+  --accent-glow: rgba(45, 212, 191, 0.35);
+  --navbar-bg: rgba(10, 16, 30, 0.7);
+  --navbar-link-color: #c7d7ff;
+  --navbar-link-hover-bg: rgba(96, 165, 250, 0.2);
+  --section-border: rgba(148, 163, 184, 0.2);
+  --card-bg: rgba(14, 22, 42, 0.68);
+  --card-solid: #131c36;
+  --card-stroke: rgba(148, 163, 184, 0.24);
+  --button-bg: linear-gradient(135deg, #2dd4bf, #60a5fa);
+  --button-text: #071320;
+  --button-hover-bg: linear-gradient(135deg, #99f6e4, #93c5fd);
 }
 
 .App.light {
-  /* Light Theme Overrides */
-  --bg-color: #ffffff;
-  --text-color: #333333; /* Darker text for white bg */
-  --heading-color: #000000; /* Black headings in Light Theme */
-  --accent-color: #007bff; /* A blue for light mode accent */
-  --primary-color: #007bff;
-  --navbar-bg: #000000; /* Black navbar in Light Theme */
-  --navbar-link-color: #f0f0f0; /* White links in Light Theme */
-  --navbar-link-hover-bg: #34495e; /* Dark hover for light links */
-  --section-border: rgba(0, 0, 0, 0.1);
-  --card-bg: #f8f8f8; /* Off-white for light mode sections/cards */
-  --progress-bg: #e0e0e0;
-  --code-color: #333333;
-  --code-bg: #f0f0f0;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
-  --button-hover-bg: #0056b3;
+  --bg-color: #f6f8ff;
+  --bg-soft: #edf2ff;
+  --text-color: #20253a;
+  --heading-color: #12182a;
+  --accent-color: #0d9488;
+  --accent-2: #2563eb;
+  --accent-glow: rgba(13, 148, 136, 0.2);
+  --navbar-bg: rgba(255, 255, 255, 0.72);
+  --navbar-link-color: #1f2a44;
+  --navbar-link-hover-bg: rgba(37, 99, 235, 0.12);
+  --section-border: rgba(99, 115, 160, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-solid: #ffffff;
+  --card-stroke: rgba(99, 115, 160, 0.25);
+  --button-bg: linear-gradient(135deg, #14b8a6, #3b82f6);
+  --button-text: #f8fbff;
+  --button-hover-bg: linear-gradient(135deg, #0f766e, #1d4ed8);
 }
 
-html, body {
-  height: 100%;
+html, body, #root {
+  min-height: 100%;
+  height: auto;
   margin: 0;
+  overflow-y: auto;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  background: radial-gradient(circle at 15% 20%, rgba(96, 165, 250, 0.12), transparent 30%),
+    radial-gradient(circle at 85% 0%, rgba(45, 212, 191, 0.14), transparent 35%),
+    var(--bg-color);
+  color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-  background-color: var(--code-bg);
-  color: var(--code-color);
-  padding: 2px 4px;
-  border-radius: 3px;
-}
-
-section {
-  padding: 60px 20px;
-  margin-bottom: 20px;
-  background-color: transparent;
-  border-bottom: 1px solid var(--section-border); /* Use CSS variable */
-  border-radius: 0px;
-  box-shadow: none;
-  transition: background-color 0.3s ease; /* Smooth transition */
-}
-
-h1 {
-  font-size: 3.5em; /* Keep main h1 large */
+h1, h2, h3, h4 {
+  margin: 0;
   color: var(--heading-color);
-  text-align: center;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+  font-family: 'Sora', sans-serif;
+  letter-spacing: -0.02em;
 }
 
-h2 { /* New rule for main section titles */
-  font-size: 3em;
-  color: var(--heading-color);
-  text-align: center;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-h3 {
-  font-size: 2em; /* Ensure smaller headings are consistent */
-  color: var(--heading-color);
-  text-align: center;
-  margin-bottom: 20px;
-  text-transform: uppercase;
+h2 {
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  margin-bottom: 1.4rem;
 }
 
 p {
-  line-height: 1.6;
+  margin: 0;
+  line-height: 1.7;
 }
 
-.App {
-  width: 100%;
-  text-align: center;
+a {
+  color: inherit;
+}
+
+section {
+  position: relative;
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto 1.8rem;
+  padding: clamp(2.2rem, 5vw, 4rem);
+  border: 1px solid var(--section-border);
+  border-radius: 28px;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(96, 165, 250, 0.08), rgba(45, 212, 191, 0.03));
+  pointer-events: none;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.4s; }
+
+.section-heading {
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 768px) {
+  section {
+    width: calc(100% - 1.2rem);
+    border-radius: 20px;
+    padding: 1.5rem 1.1rem;
+    margin-bottom: 1rem;
+  }
 }

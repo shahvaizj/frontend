@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
+import WebGLShowcase from './components/WebGLShowcase';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
+import useScrollReveal from './hooks/useScrollReveal';
 
 function App() {
-  const navigate = useNavigate();
   const location = useLocation();
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -28,10 +29,6 @@ function App() {
   const [currentSection, setCurrentSection] = useState('home');
 
   const portfolioType = location.pathname.includes('/2') ? 'educational' : 'gaming';
-
-  const togglePortfolio = () => {
-    navigate(portfolioType === 'gaming' ? '/2' : '/1');
-  };
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
@@ -100,33 +97,27 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (loading) return <div>Loading portfolio...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  useScrollReveal(loading);
 
-  const PortfolioContent = () => (
+  if (loading) return <div className="loading-state">Loading portfolio...</div>;
+  if (error) return <div className="error-state">Error: {error.message}</div>;
+
+  return (
     <div className={`App ${theme}`}>
-      <Navbar theme={theme} toggleTheme={toggleTheme} currentSection={currentSection} />
+      <Navbar currentSection={currentSection} />
       <button onClick={toggleTheme} className="theme-toggle-fixed">
         <span className="material-symbols-outlined">
           {theme === 'dark' ? 'light_mode' : 'dark_mode'}
         </span>
       </button>
-      <div className="portfolio-toggle" style={{ display: 'none' }}>
-        <button 
-          className={`toggle-btn ${portfolioType === 'gaming' ? 'active' : ''}`}
-          onClick={() => navigate('/1')}
-        >
-          Gaming
-        </button>
-        <button 
-          className={`toggle-btn ${portfolioType === 'educational' ? 'active' : ''}`}
-          onClick={() => navigate('/2')}
-        >
-          Educational
-        </button>
-      </div>
       <main className="main-content">
-        <Home about={portfolioData.about} funTitles={portfolioData.about.funTitles} contactEmail={portfolioData.contact.email} />
+        <Home
+          about={portfolioData.about}
+          funTitles={portfolioData.about?.funTitles}
+          contactEmail={portfolioData.contact?.email}
+          theme={theme}
+        />
+        <WebGLShowcase />
         <Skills skills={portfolioData.skills} />
         <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
         <Testimonials testimonials={portfolioData.testimonials} />
@@ -134,8 +125,6 @@ function App() {
       </main>
     </div>
   );
-
-  return <PortfolioContent />;
 }
 
 export default App;
