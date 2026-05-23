@@ -106,8 +106,7 @@ const SkillCard = ({ name }) => {
   );
 };
 
-const DIRECTIONS = ['left', 'right', 'left'];
-const DURATIONS  = [22, 28, 18];
+const DURATIONS = [25, 32, 20];
 
 const MarqueeRow = ({ items, direction, duration }) => (
   <div className="skill-marquee-row">
@@ -142,14 +141,11 @@ const Skills = ({ skills }) => (
               <h3 style={{ color: meta.color }}>{categoryData.category}</h3>
             </div>
             <div className="skills-marquee-wrap">
-              {rows.map((rowItems, rowIdx) => (
-                <MarqueeRow
-                  key={rowIdx}
-                  items={rowItems}
-                  direction={DIRECTIONS[rowIdx]}
-                  duration={DURATIONS[rowIdx]}
-                />
-              ))}
+              <MarqueeRow
+                items={categoryData.items}
+                direction="left"
+                duration={DURATIONS[i] || 25}
+              />
             </div>
           </div>
         );

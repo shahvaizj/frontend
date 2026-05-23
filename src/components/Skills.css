@@ -98,11 +98,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 40px;
 }
 
 .skill-icon i {
-  font-size: 1.6rem;
+  font-size: 2.2rem;
 }
 
 /* Non-colored devicons (black by default) become white in dark mode */
@@ -111,8 +111,8 @@
 }
 
 .skill-icon-img {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
   object-fit: contain;
 }
 
@@ -127,7 +127,7 @@
 }
 
 .skill-icon .material-symbols-outlined {
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   color: var(--accent-color);
 }
 
