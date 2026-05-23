@@ -85,31 +85,31 @@ export default function BackgroundCanvas({ theme, currentSection }) {
       const G = c[1] | 0;
       const B = c[2] | 0;
 
-      // ── Full background tint (subtle but present everywhere) ──────────────
-      ctx.fillStyle = `rgba(${R},${G},${B},0.04)`;
+      // ── Full background tint ──────────────────────────────────────────────
+      ctx.fillStyle = `rgba(${R},${G},${B},0.02)`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // ── Bold side washes ─────────────────────────────────────────────────
+      // ── Side washes ───────────────────────────────────────────────────────
       const washW = Math.min(480, canvas.width * 0.36);
 
       const leftWash = ctx.createLinearGradient(0, 0, washW, 0);
-      leftWash.addColorStop(0,   `rgba(${R},${G},${B},0.60)`);
-      leftWash.addColorStop(0.5, `rgba(${R},${G},${B},0.22)`);
+      leftWash.addColorStop(0,   `rgba(${R},${G},${B},0.28)`);
+      leftWash.addColorStop(0.5, `rgba(${R},${G},${B},0.09)`);
       leftWash.addColorStop(1,   `rgba(${R},${G},${B},0)`);
       ctx.fillStyle = leftWash;
       ctx.fillRect(0, 0, washW, canvas.height);
 
       const rightWash = ctx.createLinearGradient(canvas.width, 0, canvas.width - washW, 0);
-      rightWash.addColorStop(0,   `rgba(${R},${G},${B},0.60)`);
-      rightWash.addColorStop(0.5, `rgba(${R},${G},${B},0.22)`);
+      rightWash.addColorStop(0,   `rgba(${R},${G},${B},0.28)`);
+      rightWash.addColorStop(0.5, `rgba(${R},${G},${B},0.09)`);
       rightWash.addColorStop(1,   `rgba(${R},${G},${B},0)`);
       ctx.fillStyle = rightWash;
       ctx.fillRect(canvas.width - washW, 0, washW, canvas.height);
 
-      // ── Top & bottom corner glows ────────────────────────────────────────
+      // ── Corner glows ──────────────────────────────────────────────────────
       const cornerGlow = (x, y) => {
         const g = ctx.createRadialGradient(x, y, 0, x, y, canvas.width * 0.45);
-        g.addColorStop(0, `rgba(${R},${G},${B},0.18)`);
+        g.addColorStop(0, `rgba(${R},${G},${B},0.08)`);
         g.addColorStop(1, `rgba(${R},${G},${B},0)`);
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
