@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Projects.css';
+
+const AUTO_ADVANCE_MS = 5000;
 
 const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) => {
   const allVisuals = [];
@@ -14,41 +16,60 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalVisuals = allVisuals.length;
+  const pausedRef = useRef(false);
+  const timerRef = useRef(null);
+
+  const goNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % totalVisuals);
+  }, [totalVisuals]);
+
+  const goPrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + totalVisuals) % totalVisuals);
+  }, [totalVisuals]);
+
+  const goToSlide = useCallback((index) => setCurrentIndex(index), []);
 
   useEffect(() => {
-    if (totalVisuals < 2) {
-      return undefined;
-    }
+    if (totalVisuals < 2) return undefined;
 
-    const activeVisual = allVisuals[currentIndex];
-    if (activeVisual?.type === 'youtube') {
-      return undefined;
-    }
+    const schedule = () => {
+      timerRef.current = setTimeout(() => {
+        if (!pausedRef.current) goNext();
+        schedule();
+      }, AUTO_ADVANCE_MS);
+    };
 
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % totalVisuals);
-    }, 5500);
+    schedule();
+    return () => clearTimeout(timerRef.current);
+  }, [totalVisuals, goNext]);
 
-    return () => clearInterval(timer);
-  }, [totalVisuals, currentIndex, allVisuals]);
+  const handleUserNav = useCallback((fn) => {
+    clearTimeout(timerRef.current);
+    fn();
+  }, []);
 
-  if (totalVisuals === 0) {
-    return null;
-  }
-
-  const goToSlide = (index) => setCurrentIndex(index);
-  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + totalVisuals) % totalVisuals);
-  const goNext = () => setCurrentIndex((prev) => (prev + 1) % totalVisuals);
+  if (totalVisuals === 0) return null;
 
   return (
-    <>
+    <div
+      onMouseEnter={() => { pausedRef.current = true; }}
+      onMouseLeave={() => { pausedRef.current = false; }}
+    >
       <div className="project-visuals-carousel-main">
         {totalVisuals > 1 && (
           <>
-            <button className="project-carousel-arrow left" onClick={goPrev} aria-label="Previous visual">
+            <button
+              className="project-carousel-arrow left"
+              onClick={() => handleUserNav(goPrev)}
+              aria-label="Previous visual"
+            >
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
-            <button className="project-carousel-arrow right" onClick={goNext} aria-label="Next visual">
+            <button
+              className="project-carousel-arrow right"
+              onClick={() => handleUserNav(goNext)}
+              aria-label="Next visual"
+            >
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </>
@@ -84,7 +105,7 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
               type="button"
               key={index}
               className={`carousel-thumbnail ${currentIndex === index ? 'active' : ''}`}
-              onClick={() => goToSlide(index)}
+              onClick={() => handleUserNav(() => goToSlide(index))}
             >
               {visual.type === 'youtube' ? (
                 <img src={`https://img.youtube.com/vi/${visual.id}/default.jpg`} alt={`Thumbnail for ${projectName} video`} />
@@ -98,7 +119,7 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
