@@ -248,63 +248,40 @@
 
 .engine-icon-badge {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0.65rem 0.55rem 0.5rem;
-  min-width: 62px;
-  border-radius: 16px;
-  background: rgba(8, 14, 28, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .engine-icon-badge img,
 .engine-icon-badge i {
-  width: 30px;
-  height: 30px;
-  font-size: 1.9rem;
+  width: 42px;
+  height: 42px;
+  font-size: 2.6rem;
   display: block;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
 }
 
-/* Invert plain (black) icons in dark mode so they show on dark badge bg */
 .App.dark .engine-icon-badge i:not([class*="colored"]) {
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
 }
-/* Unity (img) is black SVG — invert to white in dark mode */
 .App.dark .engine-icon-badge img {
-  filter: brightness(0) invert(1);
-}
-
-.engine-icon-label {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  color: rgba(255, 255, 255, 0.75);
+  filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
 }
 
 /* Individual positions & glows */
 .unity-badge {
   top: 10%;
   right: 5%;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 16px rgba(45,212,191,0.35);
   animation: floatBadge1 5.2s ease-in-out infinite;
 }
 
 .unreal-badge {
   top: 42%;
   left: 2%;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 16px rgba(96,165,250,0.35);
   animation: floatBadge2 6.4s ease-in-out infinite;
 }
 
 .godot-badge {
   bottom: 20%;
   right: 3%;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.45), 0 0 16px rgba(168,85,247,0.35);
   animation: floatBadge3 4.8s ease-in-out infinite;
 }
 
