@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import useScrollReveal from './hooks/useScrollReveal';
 import InDevTrailer from './components/InDevTrailer';
+import BackgroundCanvas from './components/BackgroundCanvas';
 
 function App() {
   const location = useLocation();
@@ -105,6 +106,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
+      <BackgroundCanvas theme={theme} />
       <Navbar currentSection={currentSection} />
       <button onClick={toggleTheme} className="theme-toggle-fixed">
         <span className="material-symbols-outlined">
