@@ -4,8 +4,8 @@ import './Navbar.css';
 const Navbar = ({ currentSection }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: 'home' },
-    { id: 'skills', label: 'Skills', icon: 'psychology' },
     { id: 'projects', label: 'Projects', icon: 'sports_esports' },
+    { id: 'skills', label: 'Skills', icon: 'psychology' },
     { id: 'testimonials', label: 'Testimonials', icon: 'format_quote' },
     { id: 'contact', label: 'Contact', icon: 'email' },
   ];
