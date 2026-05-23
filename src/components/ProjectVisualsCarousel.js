@@ -108,7 +108,12 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
               onClick={() => handleUserNav(() => goToSlide(index))}
             >
               {visual.type === 'youtube' ? (
-                <img src={`https://img.youtube.com/vi/${visual.id}/default.jpg`} alt={`Thumbnail for ${projectName} video`} />
+                <span className="carousel-thumbnail-video">
+                  <img src={`https://img.youtube.com/vi/${visual.id}/default.jpg`} alt={`Thumbnail for ${projectName} video`} />
+                  <span className="carousel-thumbnail-play" aria-hidden="true">
+                    <span className="material-symbols-outlined">play_arrow</span>
+                  </span>
+                </span>
               ) : (
                 <img
                   src={`${process.env.PUBLIC_URL}/${visual.url}`}
