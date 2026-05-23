@@ -28,47 +28,26 @@
   font-size: 1.4rem;
 }
 
-/* Marquee container — clip overflow and fade edges */
-.skills-marquee-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
+/* Marquee row — clip overflow and fade edges */
 .skill-marquee-row {
   overflow: hidden;
   width: 100%;
+  cursor: grab;
+  user-select: none;
   -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
   mask-image:         linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
 
-.skill-marquee-row:hover .skill-marquee-track {
-  animation-play-state: paused;
+.skill-marquee-row.dragging {
+  cursor: grabbing;
 }
 
 .skill-marquee-track {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.75rem;
   width: max-content;
-  padding: 0.25rem 0;
-}
-
-.marquee-left {
-  animation: marqueeLeft linear infinite;
-}
-
-.marquee-right {
-  animation: marqueeRight linear infinite;
-}
-
-@keyframes marqueeLeft {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-@keyframes marqueeRight {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  padding: 0.3rem 0;
+  will-change: transform;
 }
 
 /* Skill card */
@@ -77,14 +56,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.45rem;
-  padding: 0.8rem 0.75rem 0.65rem;
-  min-width: 84px;
+  gap: 0.5rem;
+  padding: 1rem 0.85rem 0.8rem;
+  min-width: 100px;
   background: var(--card-solid);
   border: 1px solid var(--card-stroke);
   border-radius: 14px;
   text-align: center;
-  cursor: default;
+  cursor: inherit;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   flex-shrink: 0;
 }
@@ -98,25 +77,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 48px;
 }
 
 .skill-icon i {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
 }
 
-/* Non-colored devicons (black by default) become white in dark mode */
+/* Non-colored devicons (black) become white in dark mode */
 .App.dark .skill-icon i:not([class*="colored"]) {
   filter: brightness(0) invert(1);
 }
 
 .skill-icon-img {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2.8rem;
+  height: 2.8rem;
   object-fit: contain;
 }
 
-/* White img icons in dark mode get a black outline for definition */
+/* Unity (white img) gets a black outline in dark mode */
 .App.dark .skill-icon-img {
   filter:
     brightness(0) invert(1)
@@ -127,12 +106,12 @@
 }
 
 .skill-icon .material-symbols-outlined {
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   color: var(--accent-color);
 }
 
 .skill-name {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-color);
   line-height: 1.35;

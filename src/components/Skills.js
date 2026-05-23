@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import './Skills.css';
 
 const SKILL_ICONS = {
@@ -82,12 +82,7 @@ const CATEGORY_META = {
   'Other':            { icon: 'code',             color: '#a78bfa' },
 };
 
-// Distribute items round-robin across N rows so rows are evenly mixed
-const splitIntoRows = (items, numRows = 3) => {
-  const rows = Array.from({ length: numRows }, () => []);
-  items.forEach((item, i) => rows[i % numRows].push(item));
-  return rows;
-};
+const SPEEDS = [0.35, 0.28, 0.4];
 
 const SkillCard = ({ name }) => {
   const icon = SKILL_ICONS[name] || { type: 'material', name: 'star' };
@@ -106,21 +101,81 @@ const SkillCard = ({ name }) => {
   );
 };
 
-const DURATIONS = [25, 32, 20];
+const MarqueeRow = ({ items, speed = 0.35 }) => {
+  const rowRef    = useRef(null);
+  const trackRef  = useRef(null);
+  const posRef    = useRef(0);
+  const rafRef    = useRef(null);
+  const halfRef   = useRef(0);
+  const dragging  = useRef(false);
+  const dragX     = useRef(0);
+  const dragPos   = useRef(0);
 
-const MarqueeRow = ({ items, direction, duration }) => (
-  <div className="skill-marquee-row">
+  const normalize = useCallback((p) => {
+    const half = halfRef.current;
+    if (!half) return p;
+    p = p % half;
+    if (p > 0) p -= half;
+    return p;
+  }, []);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const tick = () => {
+      if (!halfRef.current) halfRef.current = track.scrollWidth / 2;
+      if (!dragging.current) {
+        posRef.current = normalize(posRef.current - speed);
+        track.style.transform = `translateX(${posRef.current}px)`;
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [speed, normalize]);
+
+  const startDrag = useCallback((clientX) => {
+    dragging.current = true;
+    dragX.current    = clientX;
+    dragPos.current  = posRef.current;
+    if (rowRef.current) rowRef.current.classList.add('dragging');
+  }, []);
+
+  const moveDrag = useCallback((clientX) => {
+    if (!dragging.current) return;
+    const delta  = clientX - dragX.current;
+    const newPos = normalize(dragPos.current + delta);
+    posRef.current = newPos;
+    if (trackRef.current) trackRef.current.style.transform = `translateX(${newPos}px)`;
+  }, [normalize]);
+
+  const endDrag = useCallback(() => {
+    dragging.current = false;
+    if (rowRef.current) rowRef.current.classList.remove('dragging');
+  }, []);
+
+  return (
     <div
-      className={`skill-marquee-track marquee-${direction}`}
-      style={{ animationDuration: `${duration}s` }}
+      ref={rowRef}
+      className="skill-marquee-row"
+      onMouseDown={(e) => { startDrag(e.clientX); e.preventDefault(); }}
+      onMouseMove={(e) => moveDrag(e.clientX)}
+      onMouseUp={endDrag}
+      onMouseLeave={endDrag}
+      onTouchStart={(e) => startDrag(e.touches[0].clientX)}
+      onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
+      onTouchEnd={endDrag}
     >
-      {/* Duplicate the list so the loop is seamless */}
-      {[...items, ...items].map((name, i) => (
-        <SkillCard key={i} name={name} />
-      ))}
+      <div ref={trackRef} className="skill-marquee-track">
+        {[...items, ...items].map((name, i) => (
+          <SkillCard key={i} name={name} />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Skills = ({ skills }) => (
   <section id="skills" className="skills-section reveal">
@@ -128,7 +183,6 @@ const Skills = ({ skills }) => (
     <div className="skills-categories">
       {skills.map((categoryData, i) => {
         const meta = CATEGORY_META[categoryData.category] || { icon: 'star', color: 'var(--accent-color)' };
-        const rows = splitIntoRows(categoryData.items);
         return (
           <div key={i} className={`skills-category reveal reveal-delay-${i + 1}`}>
             <div className="skills-category-header">
@@ -140,13 +194,7 @@ const Skills = ({ skills }) => (
               </span>
               <h3 style={{ color: meta.color }}>{categoryData.category}</h3>
             </div>
-            <div className="skills-marquee-wrap">
-              <MarqueeRow
-                items={categoryData.items}
-                direction="left"
-                duration={DURATIONS[i] || 25}
-              />
-            </div>
+            <MarqueeRow items={categoryData.items} speed={SPEEDS[i] ?? 0.35} />
           </div>
         );
       })}
