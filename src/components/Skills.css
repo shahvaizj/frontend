@@ -59,15 +59,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
+  height: 30px;
 }
 
 .skill-icon i {
-  font-size: 2rem;
+  font-size: 1.6rem;
+}
+
+/* Non-colored devicons (e.g. Unity, Next.js, Express) are black by default —
+   invert them in dark mode so they're visible */
+.App.dark .skill-icon i:not([class*="colored"]) {
+  filter: brightness(0) invert(1);
 }
 
 .skill-icon .material-symbols-outlined {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: var(--accent-color);
 }
 
