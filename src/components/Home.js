@@ -2,11 +2,6 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import ParticleBackground from './ParticleBackground';
 import './Home.css';
 
-const HeroVisualCard = ({ src, alt, className }) => (
-  <div className={`hero-visual-card ${className}`}>
-    <img src={src} alt={alt} loading="lazy" />
-  </div>
-);
 
 const Home = ({ about, funTitles, contactEmail, theme }) => {
   const aboutData = about || {};
@@ -63,8 +58,10 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
   const highlightKeywords = (text) => {
     const keywords = [
       { text: '9+ years', className: 'highlight-years' },
-      { text: 'Senior Unity Game Developer', className: 'highlight-years' },
+      { text: 'Senior Game Developer', className: 'highlight-years' },
       { text: 'Unity3D', className: 'highlight-tech' },
+      { text: 'Unreal Engine', className: 'highlight-tech' },
+      { text: 'Godot', className: 'highlight-tech' },
       { text: 'multiplayer', className: 'highlight-tech' },
       { text: 'real-time', className: 'highlight-tech' },
       { text: 'cross-platform', className: 'highlight-skills' },
@@ -128,9 +125,12 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
         </div>
 
         <div className="hero-visuals reveal reveal-delay-2">
-          <HeroVisualCard src={`${process.env.PUBLIC_URL}/images/Zombie_1.webp`} alt="Zombie project preview" className="card-a" />
-          <HeroVisualCard src={`${process.env.PUBLIC_URL}/images/Racing_1.webp`} alt="Racing project preview" className="card-b" />
-          <HeroVisualCard src={`${process.env.PUBLIC_URL}/images/Shooter_1.webp`} alt="Shooter project preview" className="card-c" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/character.png`}
+            alt="Character"
+            className="hero-character-img"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>

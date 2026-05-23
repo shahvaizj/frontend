@@ -387,7 +387,7 @@
     "icon": "sports_mma",
     "tagline": "Turn-Based Combat & Strategy | RPG Systems",
     "techTags": [
-      "Unity3D",
+      "Unreal Engine",
       "C#",
       "Turn-Based Combat",
       "Strategy",
@@ -589,7 +589,7 @@
     "icon": "sports_bar",
     "tagline": "FPS Hunting Simulation | Wildlife AI",
     "techTags": [
-      "Unity3D",
+      "Unreal Engine",
       "C#",
       "FPS Mechanics",
       "AI Behavior",

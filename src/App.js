@@ -10,6 +10,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import useScrollReveal from './hooks/useScrollReveal';
+import InDevTrailer from './components/InDevTrailer';
 
 function App() {
   const location = useLocation();
@@ -118,6 +119,7 @@ function App() {
           theme={theme}
         />
         <WebGLShowcase />
+        <InDevTrailer />
         <Skills skills={portfolioData.skills} />
         <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
         <Testimonials testimonials={portfolioData.testimonials} />
