@@ -69,7 +69,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'skills', 'projects', 'testimonials', 'contact'];
+      const sections = ['home', 'projects', 'skills', 'testimonials', 'contact'];
       const scrollPosition = window.scrollY + 300;
       let foundSection = null;
 
@@ -120,8 +120,8 @@ function App() {
         />
         <WebGLShowcase />
         <InDevTrailer />
-        <Skills skills={portfolioData.skills} />
         <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
+        <Skills skills={portfolioData.skills} />
         <Testimonials testimonials={portfolioData.testimonials} />
         <Contact contact={portfolioData.contact} />
       </main>

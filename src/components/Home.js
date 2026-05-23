@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import ParticleBackground from './ParticleBackground';
 import './Home.css';
 
+const BUBBLE_MESSAGE = "Hey, Player 1! Welcome to my world. Feel free to explore!";
 
 const Home = ({ about, funTitles, contactEmail, theme }) => {
   const aboutData = about || {};
@@ -12,6 +13,14 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const isHovering = useRef(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [showBubble, setShowBubble] = useState(false);
+
+  const sectionRef = useRef(null);
+  const visualsRef = useRef(null);
+  const imgRef = useRef(null);
+  const pinnedRef = useRef(false);
+  const scrollProgressRef = useRef(0);
+  const isActiveRef = useRef(false);
 
   useEffect(() => {
     const blink = setInterval(() => setCursorVisible((v) => !v), 520);
@@ -24,21 +33,15 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
 
     if (!isDeleting && displayText === currentTitle) {
       timeout = setTimeout(() => {
-        if (!isHovering.current) {
-          setIsDeleting(true);
-        }
+        if (!isHovering.current) setIsDeleting(true);
       }, 2200);
     } else if (isDeleting && displayText === '') {
       setIsDeleting(false);
       setCurrentIndex((prev) => (prev + 1) % allTitles.length);
     } else if (isDeleting) {
-      timeout = setTimeout(() => {
-        setDisplayText(currentTitle.substring(0, displayText.length - 1));
-      }, 26);
+      timeout = setTimeout(() => setDisplayText(currentTitle.substring(0, displayText.length - 1)), 26);
     } else {
-      timeout = setTimeout(() => {
-        setDisplayText(currentTitle.substring(0, displayText.length + 1));
-      }, 52);
+      timeout = setTimeout(() => setDisplayText(currentTitle.substring(0, displayText.length + 1)), 52);
     }
 
     return () => clearTimeout(timeout);
@@ -54,6 +57,66 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
   const handleDotMouseLeave = useCallback(() => {
     isHovering.current = false;
   }, []);
+
+  const applyFilter = useCallback(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    const p = scrollProgressRef.current;
+    const active = isActiveRef.current;
+    const split = (p * 8).toFixed(1);
+    const splitA = (p * 0.85).toFixed(2);
+    const glowA = (0.5 + p * 0.4).toFixed(2);
+    const filters = [];
+    if (active) {
+      filters.push('sepia(0.6)', 'saturate(6)', 'hue-rotate(295deg)', 'brightness(1.12)');
+    }
+    filters.push(
+      `drop-shadow(${split}px 0 0 rgba(255,40,40,${splitA}))`,
+      `drop-shadow(-${split}px 0 0 rgba(0,220,220,${splitA}))`,
+      `drop-shadow(0 0 ${active ? 30 : 18}px rgba(${active ? '200,40,40' : '45,212,191'},${active ? 0.8 : glowA}))`,
+      'drop-shadow(0 28px 44px rgba(2,8,20,0.55))',
+    );
+    img.style.filter = filters.join(' ');
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const visuals = visualsRef.current;
+    if (!section || !visuals) return;
+
+    const onScroll = () => {
+      const { top, height } = section.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, -top / height));
+      scrollProgressRef.current = p;
+      visuals.style.transform = `translateY(${-(p * 90).toFixed(1)}px) rotate(${(p * 1.8).toFixed(2)}deg)`;
+      applyFilter();
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [applyFilter]);
+
+  const handleCharEnter = useCallback(() => {
+    isActiveRef.current = true;
+    setShowBubble(true);
+    applyFilter();
+  }, [applyFilter]);
+
+  const handleCharLeave = useCallback(() => {
+    if (!pinnedRef.current) {
+      isActiveRef.current = false;
+      setShowBubble(false);
+      applyFilter();
+    }
+  }, [applyFilter]);
+
+  const handleCharClick = useCallback(() => {
+    pinnedRef.current = !pinnedRef.current;
+    isActiveRef.current = pinnedRef.current;
+    setShowBubble(pinnedRef.current);
+    applyFilter();
+  }, [applyFilter]);
 
   const highlightKeywords = (text) => {
     const keywords = [
@@ -71,15 +134,14 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
     let result = text;
     keywords.forEach(({ text: keyword, className }) => {
       const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const regex = new RegExp(`(${escapedKeyword})`, 'gi');
-      result = result.replace(regex, `<span class="${className}">$1</span>`);
+      result = result.replace(new RegExp(`(${escapedKeyword})`, 'gi'), `<span class="${className}">$1</span>`);
     });
 
     return result;
   };
 
   return (
-    <section id="home" className="home-section">
+    <section id="home" className="home-section" ref={sectionRef}>
       <div className="home-gradient-bg"></div>
       <ParticleBackground theme={theme} />
       <div className="home-content">
@@ -109,7 +171,7 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
           <p
             className="home-bio"
             dangerouslySetInnerHTML={{
-              __html: highlightKeywords(aboutData.bio || 'Senior Unity Game Developer building polished interactive experiences.'),
+              __html: highlightKeywords(aboutData.bio || 'Senior Game Developer building polished interactive experiences.'),
             }}
           ></p>
 
@@ -124,12 +186,21 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
           </div>
         </div>
 
-        <div className="hero-visuals reveal reveal-delay-2">
+        <div className="hero-visuals reveal reveal-delay-2" ref={visualsRef}>
+          {showBubble && (
+            <div className="character-bubble">
+              <span>{BUBBLE_MESSAGE}</span>
+            </div>
+          )}
           <img
+            ref={imgRef}
             src={`${process.env.PUBLIC_URL}/images/character.png`}
             alt="Character"
             className="hero-character-img"
             loading="lazy"
+            onMouseEnter={handleCharEnter}
+            onMouseLeave={handleCharLeave}
+            onClick={handleCharClick}
           />
         </div>
       </div>
