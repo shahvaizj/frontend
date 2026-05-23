@@ -28,31 +28,70 @@
   font-size: 1.4rem;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-  gap: 0.7rem;
+/* Marquee container — clip overflow and fade edges */
+.skills-marquee-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
+.skill-marquee-row {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image:         linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+.skill-marquee-row:hover .skill-marquee-track {
+  animation-play-state: paused;
+}
+
+.skill-marquee-track {
+  display: flex;
+  gap: 0.6rem;
+  width: max-content;
+  padding: 0.25rem 0;
+}
+
+.marquee-left {
+  animation: marqueeLeft linear infinite;
+}
+
+.marquee-right {
+  animation: marqueeRight linear infinite;
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Skill card */
 .skill-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 0.45rem;
-  padding: 0.9rem 0.4rem 0.75rem;
+  padding: 0.8rem 0.75rem 0.65rem;
+  min-width: 84px;
   background: var(--card-solid);
   border: 1px solid var(--card-stroke);
   border-radius: 14px;
   text-align: center;
   cursor: default;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
 }
 
 .skill-card:hover {
-  transform: translateY(-5px);
   border-color: var(--accent-color);
-  box-shadow: 0 10px 24px var(--accent-glow);
+  box-shadow: 0 6px 20px var(--accent-glow);
 }
 
 .skill-icon {
@@ -66,8 +105,7 @@
   font-size: 1.6rem;
 }
 
-/* Non-colored devicons (e.g. Unity, Next.js, Express) are black by default —
-   invert them in dark mode so they're visible */
+/* Non-colored devicons (black by default) become white in dark mode */
 .App.dark .skill-icon i:not([class*="colored"]) {
   filter: brightness(0) invert(1);
 }
@@ -78,6 +116,7 @@
   object-fit: contain;
 }
 
+/* White img icons in dark mode get a black outline for definition */
 .App.dark .skill-icon-img {
   filter:
     brightness(0) invert(1)
@@ -97,7 +136,7 @@
   font-weight: 600;
   color: var(--text-color);
   line-height: 1.35;
-  word-break: break-word;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -107,9 +146,5 @@
 
   .skills-category-header {
     justify-content: center;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
   }
 }
