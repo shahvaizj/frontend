@@ -2,50 +2,47 @@ import { useEffect, useRef } from 'react';
 
 const CONNECT_DIST = 140;
 const BASE_SPEED   = 0.32;
-const COLOR_LERP   = 0.025;
+const COLOR_LERP   = 0.04;
 
+// Vivid, clearly distinct hues per section
 const SECTION_COLORS = {
   dark: {
-    home:         [45,  212, 191],   // teal
-    projects:     [99,  102, 241],   // indigo
-    skills:       [168,  85, 247],   // purple
-    testimonials: [251, 146,  60],   // amber
-    contact:      [52,  211, 153],   // emerald
+    home:         [45,  212, 191],   // cyan-teal
+    projects:     [139,  92, 246],   // violet
+    skills:       [236,  72, 153],   // hot pink
+    testimonials: [245, 158,  11],   // amber-gold
+    contact:      [34,  197,  94],   // bright green
   },
   light: {
     home:         [13,  148, 136],
-    projects:     [67,   56, 202],
-    skills:       [126,  34, 206],
-    testimonials: [217,  70,   0],
-    contact:      [4,   120,  87],
+    projects:     [109,  40, 217],
+    skills:       [190,  24, 107],
+    testimonials: [180,  83,   9],
+    contact:      [5,   150,  69],
   },
 };
 
 export default function BackgroundCanvas({ theme, currentSection }) {
   const canvasRef = useRef(null);
-  // Refs so the running RAF loop can read latest values without restarting
   const targetRef = useRef([45, 212, 191]);
   const colorRef  = useRef([45, 212, 191]);
 
-  // Update target whenever section or theme changes
   useEffect(() => {
     const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
     targetRef.current = [...(map[currentSection] ?? map.home)];
   }, [currentSection, theme]);
 
-  // Canvas loop — only restarts on theme change
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx    = canvas.getContext('2d');
     const mouse  = { x: -9999, y: -9999 };
     let raf;
 
-    // Snap to correct starting color for this theme
     const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
     colorRef.current  = [...(map[currentSection] ?? map.home)];
     targetRef.current = [...colorRef.current];
 
-    const COUNT = window.innerWidth < 768 ? 45 : 75;
+    const COUNT = window.innerWidth < 768 ? 45 : 80;
 
     const resize = () => {
       canvas.width  = window.innerWidth;
@@ -78,13 +75,37 @@ export default function BackgroundCanvas({ theme, currentSection }) {
     const tick = (now) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // ── Lerp color toward target ─────────────────────────────────────────
+      // ── Lerp color ───────────────────────────────────────────────────────
       const c = colorRef.current;
       const t = targetRef.current;
       c[0] += (t[0] - c[0]) * COLOR_LERP;
       c[1] += (t[1] - c[1]) * COLOR_LERP;
       c[2] += (t[2] - c[2]) * COLOR_LERP;
-      const [aR, aG, aB] = c;
+      const R = c[0] | 0;
+      const G = c[1] | 0;
+      const B = c[2] | 0;
+
+      // ── Edge wash — the big visible shift on the sides ───────────────────
+      const washW = Math.min(340, canvas.width * 0.28);
+
+      const leftWash = ctx.createLinearGradient(0, 0, washW, 0);
+      leftWash.addColorStop(0, `rgba(${R},${G},${B},0.18)`);
+      leftWash.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      ctx.fillStyle = leftWash;
+      ctx.fillRect(0, 0, washW, canvas.height);
+
+      const rightWash = ctx.createLinearGradient(canvas.width, 0, canvas.width - washW, 0);
+      rightWash.addColorStop(0, `rgba(${R},${G},${B},0.18)`);
+      rightWash.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      ctx.fillStyle = rightWash;
+      ctx.fillRect(canvas.width - washW, 0, washW, canvas.height);
+
+      // Subtle top-center glow
+      const topGlow = ctx.createRadialGradient(canvas.width / 2, 0, 0, canvas.width / 2, 0, canvas.width * 0.55);
+      topGlow.addColorStop(0, `rgba(${R},${G},${B},0.07)`);
+      topGlow.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      ctx.fillStyle = topGlow;
+      ctx.fillRect(0, 0, canvas.width, canvas.height * 0.4);
 
       // ── Pulse trigger ─────────────────────────────────────────────────────
       if (now > nextPulse) {
@@ -92,7 +113,7 @@ export default function BackgroundCanvas({ theme, currentSection }) {
         nextPulse = now + 2000 + Math.random() * 2000;
       }
 
-      // ── Update & draw particles ──────────────────────────────────────────
+      // ── Particles ────────────────────────────────────────────────────────
       for (const p of particles) {
         p.phase += 0.018;
 
@@ -119,18 +140,18 @@ export default function BackgroundCanvas({ theme, currentSection }) {
         if (p.pulse > 0) p.pulse = Math.max(0, p.pulse - 0.022);
 
         const flicker = 0.5 + 0.5 * Math.sin(p.phase);
-        const alpha   = Math.min(0.28 + flicker * 0.42 + p.pulse * 0.55, 1);
+        const alpha   = Math.min(0.4 + flicker * 0.45 + p.pulse * 0.55, 1);
         const radius  = p.r + flicker * 0.4 + p.pulse * 4;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, Math.max(0.5, radius), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${aR|0},${aG|0},${aB|0},${alpha})`;
+        ctx.fillStyle = `rgba(${R},${G},${B},${alpha})`;
         ctx.fill();
 
         if (p.pulse > 0.05) {
           const g = ctx.createRadialGradient(p.x, p.y, radius, p.x, p.y, radius + 18);
-          g.addColorStop(0, `rgba(${aR|0},${aG|0},${aB|0},${p.pulse * 0.5})`);
-          g.addColorStop(1, `rgba(${aR|0},${aG|0},${aB|0},0)`);
+          g.addColorStop(0, `rgba(${R},${G},${B},${p.pulse * 0.55})`);
+          g.addColorStop(1, `rgba(${R},${G},${B},0)`);
           ctx.beginPath();
           ctx.arc(p.x, p.y, radius + 18, 0, Math.PI * 2);
           ctx.fillStyle = g;
@@ -151,8 +172,8 @@ export default function BackgroundCanvas({ theme, currentSection }) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${aR|0},${aG|0},${aB|0},${Math.min(fade * 0.13 + boost, 0.65)})`;
-            ctx.lineWidth   = 0.7 + boost * 2;
+            ctx.strokeStyle = `rgba(${R},${G},${B},${Math.min(fade * 0.22 + boost, 0.75)})`;
+            ctx.lineWidth   = 0.8 + boost * 2;
             ctx.stroke();
           }
         }
