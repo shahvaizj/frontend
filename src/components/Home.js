@@ -205,22 +205,16 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
             </div>
           </div>
 
-          <div className="character-float-group">
-            <div className="character-eye-sparks">
-              <div className="eye-spark eye-spark-left" />
-              <div className="eye-spark eye-spark-right" />
-            </div>
-            <img
-              ref={imgRef}
-              src={`${process.env.PUBLIC_URL}/images/character.png`}
-              alt="Character"
-              className="hero-character-img"
-              loading="lazy"
-              onMouseEnter={handleCharEnter}
-              onMouseLeave={handleCharLeave}
-              onClick={handleCharClick}
-            />
-          </div>
+          <img
+            ref={imgRef}
+            src={`${process.env.PUBLIC_URL}/images/character.png`}
+            alt="Character"
+            className="hero-character-img"
+            loading="lazy"
+            onMouseEnter={handleCharEnter}
+            onMouseLeave={handleCharLeave}
+            onClick={handleCharClick}
+          />
         </div>
       </div>
     </section>
