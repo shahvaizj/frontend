@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './Projects.css';
 import ProjectVisualsCarousel from './ProjectVisualsCarousel';
@@ -95,57 +95,6 @@ const highlightKeywords = (text) => {
 const Projects = ({ projects, portfolioType = 'gaming' }) => {
   const [showOtherProjects, setShowOtherProjects] = useState(false);
 
-  const rowRef   = useRef(null);
-  const trackRef = useRef(null);
-  const posRef   = useRef(0);
-  const rafRef   = useRef(null);
-  const halfRef  = useRef(0);
-  const dragging = useRef(false);
-  const dragX    = useRef(0);
-  const dragPos  = useRef(0);
-
-  const normalize = useCallback((p) => {
-    const half = halfRef.current;
-    if (!half) return p;
-    p = p % half;
-    if (p > 0) p -= half;
-    return p;
-  }, []);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const tick = () => {
-      if (!halfRef.current) halfRef.current = track.scrollWidth / 2;
-      if (!dragging.current) {
-        posRef.current = normalize(posRef.current - 0.45);
-        track.style.transform = `translateX(${posRef.current}px)`;
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [normalize]);
-
-  const startDrag = useCallback((clientX) => {
-    dragging.current = true;
-    dragX.current    = clientX;
-    dragPos.current  = posRef.current;
-    rowRef.current?.classList.add('dragging');
-  }, []);
-
-  const moveDrag = useCallback((clientX) => {
-    if (!dragging.current) return;
-    const newPos = normalize(dragPos.current + (clientX - dragX.current));
-    posRef.current = newPos;
-    if (trackRef.current) trackRef.current.style.transform = `translateX(${newPos}px)`;
-  }, [normalize]);
-
-  const endDrag = useCallback(() => {
-    dragging.current = false;
-    rowRef.current?.classList.remove('dragging');
-  }, []);
-
   // Filter projects by category based on portfolioType
   const filteredProjects = projects.filter(project => 
     project.category && project.category.includes(portfolioType)
@@ -222,54 +171,40 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
   return (
     <section id="projects" className="projects-section reveal">
       <h2>Featured Projects</h2>
-      <div
-        ref={rowRef}
-        className="projects-marquee-row"
-        onMouseDown={(e) => {
-          if (e.target.closest('.project-visuals-wrapper') || e.target.closest('button') || e.target.closest('a') || e.target.closest('iframe')) return;
-          startDrag(e.clientX);
-          e.preventDefault();
-        }}
-        onMouseMove={(e) => moveDrag(e.clientX)}
-        onMouseUp={endDrag}
-        onMouseLeave={endDrag}
-        onTouchStart={(e) => startDrag(e.touches[0].clientX)}
-        onTouchMove={(e) => moveDrag(e.touches[0].clientX)}
-        onTouchEnd={endDrag}
-      >
-        <div ref={trackRef} className="projects-marquee-track">
-          {[...featuredProjects, ...featuredProjects].map((project, index) => (
-            <div key={index} className="project-card">
-              <div className="project-left-column">
-                <div className="project-header">
-                  <h3 className="project-name">{project.name}</h3>
-                  <p className="project-genre">{project.genre}</p>
-                  <div className="project-tech-tags">
-                    {project.techTags && project.techTags.map((tag, i) => (
-                      <span key={i} className="tech-tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="project-role">
-                  <h4>My Role:</h4>
-                  <p>{highlightKeywords(project.myRole)}</p>
-                  {project.link && (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
-                      More Info
-                    </a>
-                  )}
+      <div className="projects-grid">
+        {featuredProjects.map((project, index) => (
+          <div key={index} className="project-card">
+            <div className="project-left-column">
+              <div className="project-header">
+                <h3 className="project-name">{project.name}</h3>
+                <p className="project-genre">{project.genre}</p>
+                <div className="project-tech-tags">
+                  {project.techTags && project.techTags.map((tag, i) => (
+                    <span key={i} className="tech-tag">{tag}</span>
+                  ))}
                 </div>
               </div>
-              <div className="project-visuals-wrapper">
-                <ProjectVisualsCarousel
-                  youtubeVideoIds={project.youtubeVideoIds || (project.youtubeVideoId ? [project.youtubeVideoId] : [])}
-                  screenshots={project.screenshots}
-                  projectName={project.name}
-                />
+              <div className="project-role">
+                <h4>My Role:</h4>
+                <p>{highlightKeywords(project.myRole)}</p>
+                {project.link && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
+                    More Info
+                  </a>
+                )}
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Use the new ProjectVisualsCarousel component */}
+            <div className="project-visuals-wrapper"> {/* New wrapper for visuals and thumbnails */}
+              <ProjectVisualsCarousel
+                youtubeVideoIds={project.youtubeVideoIds || (project.youtubeVideoId ? [project.youtubeVideoId] : [])}
+                screenshots={project.screenshots}
+                projectName={project.name}
+              />
+            </div>
+          </div>
+        ))}
       </div>
 
       {otherProjects.length > 0 && (
