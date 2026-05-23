@@ -106,7 +106,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <BackgroundCanvas theme={theme} />
+      <BackgroundCanvas theme={theme} currentSection={currentSection} />
       <Navbar currentSection={currentSection} />
       <button onClick={toggleTheme} className="theme-toggle-fixed">
         <span className="material-symbols-outlined">
