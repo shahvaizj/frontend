@@ -4,28 +4,28 @@ const CONNECT_DIST = 140;
 const BASE_SPEED   = 0.32;
 const COLOR_LERP   = 0.04;
 
-// Vivid, clearly distinct hues per section
+// High-saturation, maximum-contrast hues — each section should look clearly different
 const SECTION_COLORS = {
   dark: {
-    home:         [45,  212, 191],   // cyan-teal
-    projects:     [139,  92, 246],   // violet
-    skills:       [236,  72, 153],   // hot pink
-    testimonials: [245, 158,  11],   // amber-gold
-    contact:      [34,  197,  94],   // bright green
+    home:         [0,   255, 220],   // bright cyan
+    projects:     [160,  40, 255],   // vivid purple
+    skills:       [255,  40, 140],   // hot pink
+    testimonials: [255, 200,   0],   // bright gold
+    contact:      [0,   220,  90],   // vivid green
   },
   light: {
-    home:         [13,  148, 136],
-    projects:     [109,  40, 217],
-    skills:       [190,  24, 107],
-    testimonials: [180,  83,   9],
-    contact:      [5,   150,  69],
+    home:         [0,   180, 160],
+    projects:     [110,  20, 200],
+    skills:       [210,  10, 100],
+    testimonials: [200, 130,   0],
+    contact:      [0,   160,  70],
   },
 };
 
 export default function BackgroundCanvas({ theme, currentSection }) {
   const canvasRef = useRef(null);
-  const targetRef = useRef([45, 212, 191]);
-  const colorRef  = useRef([45, 212, 191]);
+  const targetRef = useRef([0, 255, 220]);
+  const colorRef  = useRef([0, 255, 220]);
 
   useEffect(() => {
     const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
@@ -64,7 +64,7 @@ export default function BackgroundCanvas({ theme, currentSection }) {
         y:     Math.random() * window.innerHeight,
         vx:    Math.cos(angle) * speed,
         vy:    Math.sin(angle) * speed,
-        r:     1 + Math.random() * 1.6,
+        r:     1.2 + Math.random() * 2,
         phase: Math.random() * Math.PI * 2,
         pulse: 0,
       };
@@ -85,27 +85,37 @@ export default function BackgroundCanvas({ theme, currentSection }) {
       const G = c[1] | 0;
       const B = c[2] | 0;
 
-      // ── Edge wash — the big visible shift on the sides ───────────────────
-      const washW = Math.min(340, canvas.width * 0.28);
+      // ── Full background tint (subtle but present everywhere) ──────────────
+      ctx.fillStyle = `rgba(${R},${G},${B},0.04)`;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // ── Bold side washes ─────────────────────────────────────────────────
+      const washW = Math.min(480, canvas.width * 0.36);
 
       const leftWash = ctx.createLinearGradient(0, 0, washW, 0);
-      leftWash.addColorStop(0, `rgba(${R},${G},${B},0.18)`);
-      leftWash.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      leftWash.addColorStop(0,   `rgba(${R},${G},${B},0.60)`);
+      leftWash.addColorStop(0.5, `rgba(${R},${G},${B},0.22)`);
+      leftWash.addColorStop(1,   `rgba(${R},${G},${B},0)`);
       ctx.fillStyle = leftWash;
       ctx.fillRect(0, 0, washW, canvas.height);
 
       const rightWash = ctx.createLinearGradient(canvas.width, 0, canvas.width - washW, 0);
-      rightWash.addColorStop(0, `rgba(${R},${G},${B},0.18)`);
-      rightWash.addColorStop(1, `rgba(${R},${G},${B},0)`);
+      rightWash.addColorStop(0,   `rgba(${R},${G},${B},0.60)`);
+      rightWash.addColorStop(0.5, `rgba(${R},${G},${B},0.22)`);
+      rightWash.addColorStop(1,   `rgba(${R},${G},${B},0)`);
       ctx.fillStyle = rightWash;
       ctx.fillRect(canvas.width - washW, 0, washW, canvas.height);
 
-      // Subtle top-center glow
-      const topGlow = ctx.createRadialGradient(canvas.width / 2, 0, 0, canvas.width / 2, 0, canvas.width * 0.55);
-      topGlow.addColorStop(0, `rgba(${R},${G},${B},0.07)`);
-      topGlow.addColorStop(1, `rgba(${R},${G},${B},0)`);
-      ctx.fillStyle = topGlow;
-      ctx.fillRect(0, 0, canvas.width, canvas.height * 0.4);
+      // ── Top & bottom corner glows ────────────────────────────────────────
+      const cornerGlow = (x, y) => {
+        const g = ctx.createRadialGradient(x, y, 0, x, y, canvas.width * 0.45);
+        g.addColorStop(0, `rgba(${R},${G},${B},0.18)`);
+        g.addColorStop(1, `rgba(${R},${G},${B},0)`);
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      };
+      cornerGlow(0, 0);
+      cornerGlow(canvas.width, canvas.height);
 
       // ── Pulse trigger ─────────────────────────────────────────────────────
       if (now > nextPulse) {
@@ -140,8 +150,8 @@ export default function BackgroundCanvas({ theme, currentSection }) {
         if (p.pulse > 0) p.pulse = Math.max(0, p.pulse - 0.022);
 
         const flicker = 0.5 + 0.5 * Math.sin(p.phase);
-        const alpha   = Math.min(0.4 + flicker * 0.45 + p.pulse * 0.55, 1);
-        const radius  = p.r + flicker * 0.4 + p.pulse * 4;
+        const alpha   = Math.min(0.5 + flicker * 0.45 + p.pulse * 0.55, 1);
+        const radius  = p.r + flicker * 0.5 + p.pulse * 5;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, Math.max(0.5, radius), 0, Math.PI * 2);
@@ -149,11 +159,11 @@ export default function BackgroundCanvas({ theme, currentSection }) {
         ctx.fill();
 
         if (p.pulse > 0.05) {
-          const g = ctx.createRadialGradient(p.x, p.y, radius, p.x, p.y, radius + 18);
-          g.addColorStop(0, `rgba(${R},${G},${B},${p.pulse * 0.55})`);
+          const g = ctx.createRadialGradient(p.x, p.y, radius, p.x, p.y, radius + 22);
+          g.addColorStop(0, `rgba(${R},${G},${B},${p.pulse * 0.6})`);
           g.addColorStop(1, `rgba(${R},${G},${B},0)`);
           ctx.beginPath();
-          ctx.arc(p.x, p.y, radius + 18, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, radius + 22, 0, Math.PI * 2);
           ctx.fillStyle = g;
           ctx.fill();
         }
@@ -172,7 +182,7 @@ export default function BackgroundCanvas({ theme, currentSection }) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${R},${G},${B},${Math.min(fade * 0.22 + boost, 0.75)})`;
+            ctx.strokeStyle = `rgba(${R},${G},${B},${Math.min(fade * 0.3 + boost, 0.85)})`;
             ctx.lineWidth   = 0.8 + boost * 2;
             ctx.stroke();
           }
