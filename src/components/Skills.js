@@ -3,7 +3,7 @@ import './Skills.css';
 
 const SKILL_ICONS = {
   // — Game Development —
-  'Unity3D Engine':              { type: 'devicon', cls: 'devicon-unity-original colored' },
+  'Unity3D Engine':              { type: 'devicon', cls: 'devicon-unity-original' },
   'Unreal Engine':               { type: 'devicon', cls: 'devicon-unrealengine-original' },
   'Godot Engine':                { type: 'devicon', cls: 'devicon-godot-plain colored' },
   'C#':                          { type: 'devicon', cls: 'devicon-csharp-plain colored' },
