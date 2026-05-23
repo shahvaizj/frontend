@@ -1,0 +1,74 @@
+[
+  {
+    "area": "Cross-functional Engineering Leadership",
+    "icon": "groups",
+    "evidence": "Managed 2 external teams (7 engineers + 2 QA each); coordinated with internal teams across multiple concurrent features.",
+    "target": "Leads enterprise-wide engineering teams across distributed global studios"
+  },
+  {
+    "area": "Live-Ops Systems at Scale",
+    "icon": "trending_up",
+    "evidence": "Delivered 8–10 globally released live-ops features (Daily Challenges, Collections, Loot Train, etc.) generating $350K–$1M/day.",
+    "target": "Oversee live systems generating millions in daily revenue with high-availability requirements"
+  },
+  {
+    "area": "Unity3D & AAA Game Development",
+    "icon": "sports_esports",
+    "evidence": "12+ years Unity3D & C# expertise; migrated legacy systems, built gameplay state machines, real-money games.",
+    "target": "Architect high-performance Unity engine solutions aligned to commercial strategy"
+  },
+  {
+    "area": "Cloud Infrastructure & CI/CD",
+    "icon": "cloud",
+    "evidence": "Optimized Unity Addressables for mobile; improved CI/CD pipelines, reduced build times at Zynga.",
+    "target": "Oversee cloud infrastructure security and enterprise application lifecycle"
+  },
+  {
+    "area": "Incident Management & Production Reliability",
+    "icon": "monitor_heart",
+    "evidence": "Primary on-call engineer at SciPlay; 4 years on-call at Zynga for live production systems.",
+    "target": "Accountable for uptime and reliability of revenue-generating live platforms"
+  },
+  {
+    "area": "Vendor & External Team Governance",
+    "icon": "handshake",
+    "evidence": "Managed external contractor teams; standardized PR reviews, improving velocity and release reliability.",
+    "target": "Manage multimillion-dollar vendor relationships and third-party integrations"
+  },
+  {
+    "area": "Change Control & Workflow Standardization",
+    "icon": "account_tree",
+    "evidence": "Led company-wide Git workflow adoption, eliminating code forks during a legal dispute; reduced merge costs.",
+    "target": "Implement disciplined change control across enterprise-wide application lifecycles"
+  },
+  {
+    "area": "Technical Roadmap & Product Alignment",
+    "icon": "route",
+    "evidence": "Translated multi-domain requirements (gameplay, live-ops, tools) into deliverable features at Zynga and SciPlay.",
+    "target": "Translate multi-domain technical requirements into actionable product roadmaps"
+  },
+  {
+    "area": "Hiring, Performance & Talent Development",
+    "icon": "person_add",
+    "evidence": "Conducted hiring, technical interviews, and performance reviews across managed teams.",
+    "target": "Build and develop high-performing senior engineering organizations"
+  },
+  {
+    "area": "Platform Compliance & Security",
+    "icon": "lock",
+    "evidence": "Added encryption to log drives for casino regulatory compliance at Eclipse Gaming.",
+    "target": "Oversee enterprise security and regulatory governance for gaming platforms"
+  },
+  {
+    "area": "Multi-Platform Game Development",
+    "icon": "devices",
+    "evidence": "Shipped on mobile (iOS/Android), PS4, PC; prototyped Oculus Rift VR and HoloLens AR.",
+    "target": "Coordinate technical requirements across diverse platforms and devices"
+  },
+  {
+    "area": "Internal Tooling & Developer Productivity",
+    "icon": "build",
+    "evidence": "Created multiple internal tools for feature setup at Zynga; migrated Java tools to WPF at Eclipse.",
+    "target": "Drive developer productivity through internal systems and tooling strategy"
+  }
+]

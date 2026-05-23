@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
+import Competencies from './components/Competencies';
 import Navbar from './components/Navbar';
 import useScrollReveal from './hooks/useScrollReveal';
 import BackgroundCanvas from './components/BackgroundCanvas';
@@ -21,6 +22,7 @@ function App() {
     about: null,
     skills: null,
     projects: null,
+    competencies: null,
     testimonials: null,
     contact: null,
   });
@@ -41,10 +43,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [about, skills, projects, testimonials, contact] = await Promise.all([
+        const [about, skills, projects, competencies, testimonials, contact] = await Promise.all([
           axios.get(process.env.PUBLIC_URL + '/about.json'),
           axios.get(process.env.PUBLIC_URL + '/skills.json'),
           axios.get(process.env.PUBLIC_URL + '/projects.json'),
+          axios.get(process.env.PUBLIC_URL + '/competencies.json'),
           axios.get(process.env.PUBLIC_URL + '/testimonials.json'),
           axios.get(process.env.PUBLIC_URL + '/contact.json'),
         ]);
@@ -53,6 +56,7 @@ function App() {
           about: about.data,
           skills: skills.data,
           projects: projects.data,
+          competencies: competencies.data,
           testimonials: testimonials.data,
           contact: contact.data,
         });
@@ -120,6 +124,7 @@ function App() {
         />
         <Skills skills={portfolioData.skills} />
         <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
+        <Competencies competencies={portfolioData.competencies} />
         <Testimonials testimonials={portfolioData.testimonials} />
         <Contact contact={portfolioData.contact} />
       </main>
