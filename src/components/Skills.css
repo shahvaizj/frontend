@@ -72,6 +72,16 @@
   filter: brightness(0) invert(1);
 }
 
+.skill-icon-img {
+  width: 1.6rem;
+  height: 1.6rem;
+  object-fit: contain;
+}
+
+.App.dark .skill-icon-img {
+  filter: brightness(0) invert(1);
+}
+
 .skill-icon .material-symbols-outlined {
   font-size: 1.6rem;
   color: var(--accent-color);

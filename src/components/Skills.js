@@ -3,7 +3,7 @@ import './Skills.css';
 
 const SKILL_ICONS = {
   // — Game Development —
-  'Unity3D Engine':              { type: 'devicon', cls: 'devicon-unity-original' },
+  'Unity3D Engine':              { type: 'img', url: 'https://cdn.simpleicons.org/unity' },
   'Unreal Engine':               { type: 'devicon', cls: 'devicon-unrealengine-original' },
   'Godot Engine':                { type: 'devicon', cls: 'devicon-godot-plain colored' },
   'C#':                          { type: 'devicon', cls: 'devicon-csharp-plain colored' },
@@ -89,6 +89,8 @@ const SkillCard = ({ name }) => {
       <div className="skill-icon">
         {icon.type === 'devicon'
           ? <i className={icon.cls} />
+          : icon.type === 'img'
+          ? <img src={icon.url} alt={name} className="skill-icon-img" />
           : <span className="material-symbols-outlined">{icon.name}</span>
         }
       </div>
