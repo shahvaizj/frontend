@@ -50,6 +50,11 @@
   will-change: transform;
 }
 
+/* Give cards a non-white background in light mode so white/light icons are visible */
+.App.light .skill-card {
+  background: #eef2ff;
+}
+
 /* Skill card */
 .skill-card {
   display: flex;
