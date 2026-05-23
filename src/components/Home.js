@@ -192,6 +192,22 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
               <span>{BUBBLE_MESSAGE}</span>
             </div>
           )}
+
+          <div className="floating-engine-icons">
+            <div className="engine-icon-badge unity-badge">
+              <img src="https://cdn.simpleicons.org/unity" alt="Unity3D" />
+              <span className="engine-icon-label">Unity3D</span>
+            </div>
+            <div className="engine-icon-badge unreal-badge">
+              <i className="devicon-unrealengine-original"></i>
+              <span className="engine-icon-label">Unreal</span>
+            </div>
+            <div className="engine-icon-badge godot-badge">
+              <i className="devicon-godot-plain colored"></i>
+              <span className="engine-icon-label">Godot</span>
+            </div>
+          </div>
+
           <img
             ref={imgRef}
             src={`${process.env.PUBLIC_URL}/images/character.png`}
