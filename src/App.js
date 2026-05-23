@@ -3,14 +3,12 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
-import WebGLShowcase from './components/WebGLShowcase';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import useScrollReveal from './hooks/useScrollReveal';
-import InDevTrailer from './components/InDevTrailer';
 import BackgroundCanvas from './components/BackgroundCanvas';
 
 function App() {
@@ -120,10 +118,8 @@ function App() {
           contactEmail={portfolioData.contact?.email}
           theme={theme}
         />
-        <WebGLShowcase />
-        <InDevTrailer />
-        <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
         <Skills skills={portfolioData.skills} />
+        <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
         <Testimonials testimonials={portfolioData.testimonials} />
         <Contact contact={portfolioData.contact} />
       </main>

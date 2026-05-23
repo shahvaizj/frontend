@@ -12,21 +12,6 @@ const Navbar = ({ currentSection }) => {
 
   return (
     <>
-      <nav className="navbar">
-        <ul className="nav-list">
-          {navItems.map((item) => (
-            <li key={item.id} className="nav-item">
-              <a 
-                href={`#${item.id}`} 
-                className={`nav-link ${currentSection === item.id ? 'active' : ''}`}
-              >
-                <span className="material-symbols-outlined nav-icon">{item.icon}</span>
-                <span className="nav-tooltip">{item.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
       <nav className="navbar-mobile">
         {navItems.map((item) => (
           <a 

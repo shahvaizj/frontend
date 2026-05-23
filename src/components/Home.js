@@ -68,13 +68,13 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
     const glowA = (0.5 + p * 0.4).toFixed(2);
     const filters = [];
     if (active) {
-      filters.push('sepia(0.6)', 'saturate(6)', 'hue-rotate(295deg)', 'brightness(1.12)');
+      filters.push('sepia(1)', 'saturate(8)', 'hue-rotate(190deg)', 'brightness(1.2)');
     }
     filters.push(
-      `drop-shadow(${split}px 0 0 rgba(255,40,40,${splitA}))`,
-      `drop-shadow(-${split}px 0 0 rgba(0,220,220,${splitA}))`,
-      `drop-shadow(0 0 ${active ? 30 : 18}px rgba(${active ? '200,40,40' : '45,212,191'},${active ? 0.8 : glowA}))`,
-      'drop-shadow(0 28px 44px rgba(2,8,20,0.55))',
+      `drop-shadow(${split}px 0 0 rgba(0,80,255,${splitA}))`,
+      `drop-shadow(-${split}px 0 0 rgba(0,220,255,${splitA}))`,
+      `drop-shadow(0 0 ${active ? 36 : 18}px rgba(${active ? '0,150,255' : '0,245,255'},${active ? 0.9 : glowA}))`,
+      'drop-shadow(0 28px 44px rgba(0,0,10,0.6))',
     );
     img.style.filter = filters.join(' ');
   }, []);
@@ -197,17 +197,11 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
             <div className="engine-icon-badge unity-badge">
               <img src="https://cdn.simpleicons.org/unity" alt="Unity3D" />
             </div>
-            <div className="engine-icon-badge unreal-badge">
-              <i className="devicon-unrealengine-original"></i>
-            </div>
-            <div className="engine-icon-badge godot-badge">
-              <i className="devicon-godot-plain colored"></i>
-            </div>
           </div>
 
           <img
             ref={imgRef}
-            src={`${process.env.PUBLIC_URL}/images/character.png`}
+            src={`${process.env.PUBLIC_URL}/images/Character_z.png`}
             alt="Character"
             className="hero-character-img"
             loading="lazy"

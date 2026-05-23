@@ -1,20 +1,20 @@
 {
-  "name": "Muhammad Shahvaiz Jahangeer",
-  "title": "Game Developer",
-  "experience": "9 years of professional game development experience",
-  "bio": "Senior Game Developer with 9+ years of experience designing and architecting high-performance, multiplayer, and real-time game systems. Specialized in Unity3D, with expertise in scalable gameplay architecture and cross-platform deployment, and a proven track record of leading teams and shipping polished titles across multiple genres.",
-  "location": "Lahore, Pakistan",
-  "phone": "+92 331 5590448",
-  "email": "shahvaiz.jahangeer@gmail.com",
-  "linkedin": "https://www.linkedin.com/in/shahvaiz-jahangeer/",
-  "github": "https://github.com/shahvaiz-jahangeer",
+  "name": "Muhammad Zain Jahangir",
+  "title": "Senior Technical Leader",
+  "experience": "12+ years of AAA game engineering experience",
+  "bio": "Results-driven <strong>engineering leader</strong> with <strong>12+ years</strong> architecting and shipping <strong>AAA gaming systems</strong> at global scale. Proven track record managing <strong>$1M–$5M budgets</strong>, leading cross-functional teams of <strong>15+ engineers</strong>, and owning live platforms generating <strong>$350K–$1M in daily revenue</strong>. Equal parts strategic executive and hands-on technical authority — translating complex multi-domain requirements into actionable roadmaps while maintaining engineering excellence. Delivered <strong>10+ globally released live-ops features</strong> for titles at <strong>Zynga</strong> and <strong>SciPlay</strong>. <strong>AWS</strong> and <strong>Unity</strong> certified.",
+  "location": "Chicago, IL",
+  "phone": "(312) 989-0259",
+  "email": "mzainjahangir@hotmail.com",
+  "linkedin": "https://www.linkedin.com/in/zain-jahangir",
+  "github": "",
   "funTitles": [
-    "Unity Sorcerer & Gameplay Architect",
-    "9-Year Veteran of the Frame Rate Wars",
-    "Master of Rigidbodies & Questionable Physics",
-    "Multiplayer Whisperer & Lag Slayer",
-    "Professionally Shipping Bugs as Features",
-    "Chief Reality Distortion Officer",
-    "Architecting & Delivering Polished Experiences"
+    "12-Year Veteran of AAA Live-Ops Warfare",
+    "Engineering Leader Who Shipped $350K–$1M Daily",
+    "The Architect Your CI/CD Pipeline Was Missing",
+    "Turning Technical Authority into Business Impact",
+    "Where AAA Engineering Meets Executive Strategy",
+    "Wrangler of 14+ Engineers Across Time Zones",
+    "Building Revenue Platforms, Not Just Features"
   ]
 }

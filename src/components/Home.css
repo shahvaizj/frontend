@@ -10,9 +10,9 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(circle at 12% 25%, rgba(96, 165, 250, 0.22), transparent 34%),
-    radial-gradient(circle at 85% 10%, rgba(45, 212, 191, 0.24), transparent 37%),
-    radial-gradient(circle at 66% 88%, rgba(56, 189, 248, 0.2), transparent 30%);
+    radial-gradient(circle at 12% 25%, rgba(0, 245, 255, 0.15), transparent 34%),
+    radial-gradient(circle at 85% 10%, rgba(204, 0, 255, 0.12), transparent 37%),
+    radial-gradient(circle at 66% 88%, rgba(0, 245, 255, 0.08), transparent 30%);
   animation: driftBg 12s ease-in-out infinite;
 }
 
@@ -155,7 +155,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 55%, rgba(45, 212, 191, 0.26) 0%, rgba(96, 165, 250, 0.13) 45%, transparent 70%);
+  background: radial-gradient(ellipse at 50% 55%, rgba(0, 245, 255, 0.22) 0%, rgba(204, 0, 255, 0.1) 45%, transparent 70%);
   animation: auraPulse 4s ease-in-out infinite;
   pointer-events: none;
 }
@@ -169,7 +169,7 @@
   transform: translateX(-50%);
   width: 52%;
   height: 16px;
-  background: radial-gradient(ellipse, rgba(45, 212, 191, 0.7) 0%, rgba(96, 165, 250, 0.28) 50%, transparent 75%);
+  background: radial-gradient(ellipse, rgba(0, 245, 255, 0.55) 0%, rgba(204, 0, 255, 0.2) 50%, transparent 75%);
   border-radius: 50%;
   filter: blur(5px);
   animation: ringGlow 3s ease-in-out infinite;
@@ -219,8 +219,8 @@
   object-fit: contain;
   animation: floatCharacter 6s ease-in-out infinite;
   filter:
-    drop-shadow(0 0 18px rgba(45, 212, 191, 0.5))
-    drop-shadow(0 28px 44px rgba(2, 8, 20, 0.55));
+    drop-shadow(0 0 18px rgba(0, 245, 255, 0.5))
+    drop-shadow(0 28px 44px rgba(0, 0, 0, 0.6));
 }
 
 @keyframes floatCharacter {
@@ -252,80 +252,32 @@
 
 .engine-icon-badge img,
 .engine-icon-badge i {
-  width: 52px;
-  height: 52px;
-  font-size: 3.2rem;
+  width: 104px;
+  height: 104px;
+  font-size: 6.4rem;
   display: block;
 }
 
-.App.dark .engine-icon-badge i:not([class*="colored"]) {
-  filter: brightness(0) invert(1);
-}
-.App.dark .engine-icon-badge img {
-  filter: brightness(0) invert(1);
-}
 
-/* Individual positions */
+/* Unity badge — bottom right, professional slow pulse */
 .unity-badge {
-  top: 8%;
-  right: 4%;
-  animation: floatUnity 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  bottom: 6%;
+  right: 3%;
+  top: auto;
+  animation: unityPulse 5s ease-in-out infinite;
 }
 
-.unreal-badge {
-  top: 38%;
-  left: 1%;
-  animation: floatUnreal 7.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-.godot-badge {
-  bottom: 18%;
-  right: 2%;
-  animation: floatGodot 4.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-/* Unity — smooth wide oval, teal glow peak */
-@keyframes floatUnity {
-  0%   { transform: translate(0px,   0px) scale(1)    rotate(-4deg);
-         filter: drop-shadow(0 6px 16px rgba(45,212,191,0.25)); }
-  25%  { transform: translate(10px, -24px) scale(1.14) rotate(3deg);
-         filter: drop-shadow(0 0 28px rgba(45,212,191,0.7)) drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
-  50%  { transform: translate(0px,  -36px) scale(1.18) rotate(-2deg);
-         filter: drop-shadow(0 0 36px rgba(45,212,191,0.9)) drop-shadow(0 10px 24px rgba(0,0,0,0.4)); }
-  75%  { transform: translate(-8px, -20px) scale(1.1)  rotate(5deg);
-         filter: drop-shadow(0 0 24px rgba(45,212,191,0.6)) drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
-  100% { transform: translate(0px,   0px) scale(1)    rotate(-4deg);
-         filter: drop-shadow(0 6px 16px rgba(45,212,191,0.25)); }
-}
-
-/* Unreal — slow dramatic rise, blue glow */
-@keyframes floatUnreal {
-  0%   { transform: translate(0px,   0px) scale(1)    rotate(2deg);
-         filter: drop-shadow(0 6px 16px rgba(96,165,250,0.25)); }
-  20%  { transform: translate(6px,  -18px) scale(1.08) rotate(-2deg);
-         filter: drop-shadow(0 0 22px rgba(96,165,250,0.55)); }
-  50%  { transform: translate(-10px, -40px) scale(1.22) rotate(-5deg);
-         filter: drop-shadow(0 0 40px rgba(96,165,250,0.95)) drop-shadow(0 12px 28px rgba(0,0,0,0.45)); }
-  80%  { transform: translate(5px,  -16px) scale(1.06) rotate(3deg);
-         filter: drop-shadow(0 0 18px rgba(96,165,250,0.45)); }
-  100% { transform: translate(0px,   0px) scale(1)    rotate(2deg);
-         filter: drop-shadow(0 6px 16px rgba(96,165,250,0.25)); }
-}
-
-/* Godot — bouncy, playful, purple glow */
-@keyframes floatGodot {
-  0%   { transform: translate(0px,   0px) scale(1)    rotate(3deg);
-         filter: drop-shadow(0 6px 16px rgba(168,85,247,0.3)); }
-  18%  { transform: translate(-8px, -28px) scale(1.16) rotate(-4deg);
-         filter: drop-shadow(0 0 32px rgba(168,85,247,0.85)) drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
-  36%  { transform: translate(6px,  -16px) scale(1.06) rotate(6deg);
-         filter: drop-shadow(0 0 18px rgba(168,85,247,0.5)); }
-  55%  { transform: translate(-4px, -34px) scale(1.2)  rotate(-3deg);
-         filter: drop-shadow(0 0 38px rgba(168,85,247,1))    drop-shadow(0 10px 24px rgba(0,0,0,0.45)); }
-  75%  { transform: translate(8px,  -10px) scale(1.04) rotate(5deg);
-         filter: drop-shadow(0 0 12px rgba(168,85,247,0.35)); }
-  100% { transform: translate(0px,   0px) scale(1)    rotate(3deg);
-         filter: drop-shadow(0 6px 16px rgba(168,85,247,0.3)); }
+@keyframes unityPulse {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    filter: drop-shadow(0 0 8px rgba(0,245,255,0.2)) brightness(0) invert(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-6px) scale(1.06);
+    filter: drop-shadow(0 0 22px rgba(0,245,255,0.65)) drop-shadow(0 0 8px rgba(0,245,255,0.3)) brightness(0) invert(1);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1024px) {

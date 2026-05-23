@@ -44,15 +44,10 @@
 
 .skill-marquee-track {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   width: max-content;
-  padding: 0.3rem 0;
+  padding: 0.4rem 0;
   will-change: transform;
-}
-
-/* Give cards a non-white background in light mode so white/light icons are visible */
-.App.light .skill-card {
-  background: #eef2ff;
 }
 
 /* Skill card */
@@ -61,62 +56,64 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.5rem;
-  padding: 1rem 0.85rem 0.8rem;
-  min-width: 100px;
+  gap: 0.75rem;
+  padding: 1.6rem 1.3rem 1.4rem;
+  min-width: 155px;
   background: var(--card-solid);
   border: 1px solid var(--card-stroke);
-  border-radius: 14px;
+  border-radius: 12px;
   text-align: center;
   cursor: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   flex-shrink: 0;
 }
 
 .skill-card:hover {
   border-color: var(--accent-color);
-  box-shadow: 0 6px 20px var(--accent-glow);
+  box-shadow:
+    0 0 10px var(--accent-glow),
+    0 0 30px rgba(0, 245, 255, 0.12),
+    inset 0 0 10px rgba(0, 245, 255, 0.04);
+  transform: translateY(-3px);
 }
 
 .skill-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  height: 72px;
 }
 
 .skill-icon i {
-  font-size: 2.8rem;
+  font-size: 4rem;
 }
 
-/* Non-colored devicons (black) become white in dark mode */
-.App.dark .skill-icon i:not([class*="colored"]) {
+/* Non-colored devicons (black/white) — always invert on dark neon bg */
+.skill-icon i:not([class*="colored"]) {
   filter: brightness(0) invert(1);
 }
 
 .skill-icon-img {
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 4rem;
+  height: 4rem;
   object-fit: contain;
 }
 
-/* Unity (white img) gets a black outline in dark mode */
-.App.dark .skill-icon-img {
+/* Unity (white img) — invert and add neon glow */
+.skill-icon-img {
   filter:
     brightness(0) invert(1)
-    drop-shadow( 1px  0   0 #000)
-    drop-shadow(-1px  0   0 #000)
-    drop-shadow( 0    1px 0 #000)
-    drop-shadow( 0   -1px 0 #000);
+    drop-shadow(0 0 6px rgba(0, 245, 255, 0.6));
 }
 
 .skill-icon .material-symbols-outlined {
-  font-size: 2.8rem;
+  font-size: 4rem;
   color: var(--accent-color);
+  filter: drop-shadow(0 0 6px var(--accent-glow));
 }
 
 .skill-name {
-  font-size: 0.72rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-color);
   line-height: 1.35;

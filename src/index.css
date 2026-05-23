@@ -9,43 +9,45 @@ html {
 }
 
 :root {
-  --bg-color: #0b1020;
-  --bg-soft: #121a31;
-  --text-color: #d8e4ff;
+  --bg-color: #04040a;
+  --bg-soft: #07070f;
+  --text-color: #b8c4ff;
   --heading-color: #ffffff;
-  --accent-color: #2dd4bf;
-  --accent-2: #60a5fa;
-  --accent-glow: rgba(45, 212, 191, 0.35);
-  --navbar-bg: rgba(10, 16, 30, 0.7);
-  --navbar-link-color: #c7d7ff;
-  --navbar-link-hover-bg: rgba(96, 165, 250, 0.2);
-  --section-border: rgba(148, 163, 184, 0.2);
-  --card-bg: rgba(14, 22, 42, 0.68);
-  --card-solid: #131c36;
-  --card-stroke: rgba(148, 163, 184, 0.24);
-  --button-bg: linear-gradient(135deg, #2dd4bf, #60a5fa);
-  --button-text: #071320;
-  --button-hover-bg: linear-gradient(135deg, #99f6e4, #93c5fd);
+  --accent-color: #00f5ff;
+  --accent-2: #cc00ff;
+  --accent-3: #00ff88;
+  --accent-glow: rgba(0, 245, 255, 0.5);
+  --navbar-bg: rgba(4, 4, 10, 0.88);
+  --navbar-link-color: #a0b0ff;
+  --navbar-link-hover-bg: rgba(0, 245, 255, 0.1);
+  --section-border: rgba(0, 245, 255, 0.08);
+  --card-bg: rgba(5, 5, 18, 0.9);
+  --card-solid: #080818;
+  --card-stroke: rgba(0, 245, 255, 0.15);
+  --button-bg: linear-gradient(135deg, #00f5ff, #cc00ff);
+  --button-text: #04040a;
+  --button-hover-bg: linear-gradient(135deg, #cc00ff, #ff2d78);
 }
 
 .App.light {
-  --bg-color: #f6f8ff;
-  --bg-soft: #edf2ff;
-  --text-color: #20253a;
-  --heading-color: #12182a;
-  --accent-color: #0d9488;
-  --accent-2: #2563eb;
-  --accent-glow: rgba(13, 148, 136, 0.2);
-  --navbar-bg: rgba(255, 255, 255, 0.72);
-  --navbar-link-color: #1f2a44;
-  --navbar-link-hover-bg: rgba(37, 99, 235, 0.12);
-  --section-border: rgba(99, 115, 160, 0.2);
-  --card-bg: rgba(255, 255, 255, 0.75);
-  --card-solid: #ffffff;
-  --card-stroke: rgba(99, 115, 160, 0.25);
-  --button-bg: linear-gradient(135deg, #14b8a6, #3b82f6);
-  --button-text: #f8fbff;
-  --button-hover-bg: linear-gradient(135deg, #0f766e, #1d4ed8);
+  --bg-color: #06060e;
+  --bg-soft: #0a0a16;
+  --text-color: #c8d4ff;
+  --heading-color: #ffffff;
+  --accent-color: #00e5f0;
+  --accent-2: #bb00ff;
+  --accent-3: #00ee80;
+  --accent-glow: rgba(0, 229, 240, 0.45);
+  --navbar-bg: rgba(6, 6, 14, 0.9);
+  --navbar-link-color: #b0beff;
+  --navbar-link-hover-bg: rgba(0, 229, 240, 0.1);
+  --section-border: rgba(0, 229, 240, 0.1);
+  --card-bg: rgba(8, 8, 22, 0.92);
+  --card-solid: #0a0a1c;
+  --card-stroke: rgba(0, 229, 240, 0.18);
+  --button-bg: linear-gradient(135deg, #00e5f0, #bb00ff);
+  --button-text: #04040a;
+  --button-hover-bg: linear-gradient(135deg, #bb00ff, #ff2d78);
 }
 
 html, body, #root {
@@ -57,8 +59,8 @@ html, body, #root {
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: radial-gradient(circle at 15% 20%, rgba(96, 165, 250, 0.12), transparent 30%),
-    radial-gradient(circle at 85% 0%, rgba(45, 212, 191, 0.14), transparent 35%),
+  background: radial-gradient(circle at 15% 20%, rgba(0, 245, 255, 0.05), transparent 30%),
+    radial-gradient(circle at 85% 0%, rgba(204, 0, 255, 0.05), transparent 35%),
     var(--bg-color);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
@@ -89,22 +91,26 @@ a {
 
 section {
   position: relative;
-  width: min(1200px, calc(100% - 2rem));
-  margin: 0 auto 1.8rem;
-  padding: clamp(2.2rem, 5vw, 4rem);
-  border: 1px solid var(--section-border);
-  border-radius: 28px;
-  background: var(--card-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  width: 100%;
+  margin: 0;
+  padding: clamp(3.5rem, 7vw, 5.5rem) clamp(2rem, 8vw, 8rem);
+  border: none;
+  border-radius: 0;
+  background: rgba(4, 4, 10, 0.78);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   overflow: hidden;
 }
 
 section::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(130deg, rgba(96, 165, 250, 0.08), rgba(45, 212, 191, 0.03));
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent-color) 25%, var(--accent-2) 75%, transparent 100%);
+  opacity: 0.45;
   pointer-events: none;
 }
 
@@ -130,13 +136,14 @@ section::before {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  filter: drop-shadow(0 0 16px var(--accent-glow));
 }
 
 @media (max-width: 768px) {
   section {
-    width: calc(100% - 1.2rem);
-    border-radius: 20px;
-    padding: 1.5rem 1.1rem;
-    margin-bottom: 1rem;
+    width: 100%;
+    border-radius: 0;
+    padding: 2.5rem 1.2rem;
+    margin-bottom: 0;
   }
 }
