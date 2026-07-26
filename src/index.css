@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -9,43 +9,53 @@ html {
 }
 
 :root {
-  --bg-color: #0b1020;
-  --bg-soft: #121a31;
-  --text-color: #d8e4ff;
-  --heading-color: #ffffff;
-  --accent-color: #2dd4bf;
-  --accent-2: #60a5fa;
-  --accent-glow: rgba(45, 212, 191, 0.35);
-  --navbar-bg: rgba(10, 16, 30, 0.7);
-  --navbar-link-color: #c7d7ff;
-  --navbar-link-hover-bg: rgba(96, 165, 250, 0.2);
-  --section-border: rgba(148, 163, 184, 0.2);
-  --card-bg: rgba(14, 22, 42, 0.68);
-  --card-solid: #131c36;
-  --card-stroke: rgba(148, 163, 184, 0.24);
-  --button-bg: linear-gradient(135deg, #2dd4bf, #60a5fa);
-  --button-text: #071320;
-  --button-hover-bg: linear-gradient(135deg, #99f6e4, #93c5fd);
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Menlo, Consolas, monospace;
+  --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Dark = ink (default) */
+  --bg-color: #000000;
+  --bg-soft: #0b0b0b;
+  --text-color: #b8b8b8;
+  --heading-color: #f2f2f2;
+  --muted: #7d7d7d;
+  --accent-color: #f2f2f2;
+  --accent-2: #7d7d7d;
+  --accent-glow: rgba(242, 242, 242, 0.12);
+  --hairline: rgba(242, 242, 242, 0.16);
+  --navbar-bg: rgba(0, 0, 0, 0.85);
+  --navbar-link-color: #b8b8b8;
+  --navbar-link-hover-bg: rgba(242, 242, 242, 0.1);
+  --section-border: var(--hairline);
+  --card-bg: transparent;
+  --card-solid: #0b0b0b;
+  --card-stroke: var(--hairline);
+  --button-bg: #f2f2f2;
+  --button-text: #000000;
+  --button-hover-bg: #ffffff;
 }
 
 .App.light {
-  --bg-color: #f6f8ff;
-  --bg-soft: #edf2ff;
-  --text-color: #20253a;
-  --heading-color: #12182a;
-  --accent-color: #0d9488;
-  --accent-2: #2563eb;
-  --accent-glow: rgba(13, 148, 136, 0.2);
-  --navbar-bg: rgba(255, 255, 255, 0.72);
-  --navbar-link-color: #1f2a44;
-  --navbar-link-hover-bg: rgba(37, 99, 235, 0.12);
-  --section-border: rgba(99, 115, 160, 0.2);
-  --card-bg: rgba(255, 255, 255, 0.75);
+  /* Light = paper */
+  --bg-color: #f2f0ea;
+  --bg-soft: #eae7df;
+  --text-color: #3a3a37;
+  --heading-color: #0a0a0a;
+  --muted: #8a877f;
+  --accent-color: #0a0a0a;
+  --accent-2: #8a877f;
+  --accent-glow: rgba(10, 10, 10, 0.08);
+  --hairline: rgba(10, 10, 10, 0.18);
+  --navbar-bg: rgba(242, 240, 234, 0.9);
+  --navbar-link-color: #3a3a37;
+  --navbar-link-hover-bg: rgba(10, 10, 10, 0.06);
+  --section-border: var(--hairline);
+  --card-bg: transparent;
   --card-solid: #ffffff;
-  --card-stroke: rgba(99, 115, 160, 0.25);
-  --button-bg: linear-gradient(135deg, #14b8a6, #3b82f6);
-  --button-text: #f8fbff;
-  --button-hover-bg: linear-gradient(135deg, #0f766e, #1d4ed8);
+  --card-stroke: rgba(10, 10, 10, 0.18);
+  --button-bg: #0a0a0a;
+  --button-text: #f2f0ea;
+  --button-hover-bg: #262626;
 }
 
 html, body, #root {
@@ -56,26 +66,34 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
-  background: radial-gradient(circle at 15% 20%, rgba(96, 165, 250, 0.12), transparent 30%),
-    radial-gradient(circle at 85% 0%, rgba(45, 212, 191, 0.14), transparent 35%),
-    var(--bg-color);
+  font-family: var(--font-main);
+  background: var(--bg-color);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
+body.light { background: #f2f0ea; }
+body.dark { background: #000000; }
+
 h1, h2, h3, h4 {
   margin: 0;
   color: var(--heading-color);
-  font-family: 'Sora', sans-serif;
+  font-family: var(--font-display);
+  font-weight: 500;
   letter-spacing: -0.02em;
 }
 
+h1, h2 {
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
 h2 {
-  font-size: clamp(2rem, 4.4vw, 3.2rem);
-  margin-bottom: 1.4rem;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  margin-bottom: 2rem;
 }
 
 p {
@@ -83,29 +101,45 @@ p {
   line-height: 1.7;
 }
 
-a {
-  color: inherit;
+a { color: inherit; }
+
+/* Small wide-tracked monospace label, editorial style */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
+
+/* Editorial numbered sections with hairline dividers */
+.main-content { counter-reset: sec; }
 
 section {
   position: relative;
-  width: min(1200px, calc(100% - 2rem));
-  margin: 0 auto 1.8rem;
-  padding: clamp(2.2rem, 5vw, 4rem);
-  border: 1px solid var(--section-border);
-  border-radius: 28px;
-  background: var(--card-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  overflow: hidden;
+  width: min(1500px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  border: none;
+  background: none;
 }
 
-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(130deg, rgba(96, 165, 250, 0.08), rgba(45, 212, 191, 0.03));
-  pointer-events: none;
+section:not(#home) {
+  counter-increment: sec;
+  border-top: 1px solid var(--hairline);
+}
+
+section > h2::before,
+.section-heading::before {
+  content: counter(sec, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
 }
 
 .reveal {
@@ -126,17 +160,16 @@ section::before {
 .reveal-delay-5 { transition-delay: 0.4s; }
 
 .section-heading {
-  background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--heading-color);
 }
 
 @media (max-width: 768px) {
   section {
-    width: calc(100% - 1.2rem);
-    border-radius: 20px;
-    padding: 1.5rem 1.1rem;
-    margin-bottom: 1rem;
+    width: calc(100% - 2rem);
+    padding: 2.6rem 0;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 9vw, 3rem);
   }
 }

@@ -1,31 +1,30 @@
 import { useEffect, useRef } from 'react';
 
-const CONNECT_DIST = 140;
-const BASE_SPEED   = 0.32;
-const COLOR_LERP   = 0.04;
-
-// High-saturation, maximum-contrast hues — each section should look clearly different
+// Softer, calmer hues than the old network — the whole scene slowly tints
+// toward the section you're viewing.
 const SECTION_COLORS = {
   dark: {
-    home:         [0,   255, 220],   // bright cyan
-    projects:     [160,  40, 255],   // vivid purple
-    skills:       [255,  40, 140],   // hot pink
-    testimonials: [255, 200,   0],   // bright gold
-    contact:      [0,   220,  90],   // vivid green
+    home:         [56,  189, 248],   // sky
+    projects:     [129, 140, 248],   // indigo
+    skills:       [236,  72, 153],   // pink
+    testimonials: [251, 191,  36],   // amber
+    contact:      [52,  211, 153],   // emerald
   },
   light: {
-    home:         [0,   180, 160],
-    projects:     [110,  20, 200],
-    skills:       [210,  10, 100],
-    testimonials: [200, 130,   0],
-    contact:      [0,   160,  70],
+    home:         [14,  165, 233],
+    projects:     [99,  102, 241],
+    skills:       [219,  39, 119],
+    testimonials: [217, 119,   6],
+    contact:      [16,  185, 129],
   },
 };
 
+const COLOR_LERP = 0.03;
+
 export default function BackgroundCanvas({ theme, currentSection }) {
   const canvasRef = useRef(null);
-  const targetRef = useRef([0, 255, 220]);
-  const colorRef  = useRef([0, 255, 220]);
+  const targetRef = useRef([56, 189, 248]);
+  const colorRef  = useRef([56, 189, 248]);
 
   useEffect(() => {
     const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
@@ -35,14 +34,22 @@ export default function BackgroundCanvas({ theme, currentSection }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx    = canvas.getContext('2d');
-    const mouse  = { x: -9999, y: -9999 };
     let raf;
 
     const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
     colorRef.current  = [...(map[currentSection] ?? map.home)];
     targetRef.current = [...colorRef.current];
 
-    const COUNT = window.innerWidth < 768 ? 45 : 80;
+    const alphaMax = theme === 'light' ? 0.10 : 0.16;
+
+    // A few large, slow, heavily-feathered clouds. Positions are seeded as
+    // viewport fractions, then tracked in pixels so they drift and bounce.
+    const blobs = [
+      { x: 0.22, y: 0.28, vx:  0.10, vy:  0.07, r: 0.55, a: 1.0 },
+      { x: 0.80, y: 0.20, vx: -0.09, vy:  0.10, r: 0.50, a: 0.8 },
+      { x: 0.72, y: 0.80, vx:  0.08, vy: -0.09, r: 0.62, a: 0.9 },
+      { x: 0.30, y: 0.76, vx: -0.11, vy: -0.06, r: 0.46, a: 0.7 },
+    ].map((b) => ({ ...b, x: b.x * window.innerWidth, y: b.y * window.innerHeight }));
 
     const resize = () => {
       canvas.width  = window.innerWidth;
@@ -51,31 +58,20 @@ export default function BackgroundCanvas({ theme, currentSection }) {
     resize();
     window.addEventListener('resize', resize);
 
-    const onMove  = (e) => { mouse.x = e.clientX; mouse.y = e.clientY; };
-    const onLeave = ()  => { mouse.x = -9999; mouse.y = -9999; };
+    // Gentle mouse parallax for a touch of depth.
+    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    const onMove = (e) => {
+      mouse.tx = e.clientX / window.innerWidth  - 0.5;
+      mouse.ty = e.clientY / window.innerHeight - 0.5;
+    };
     window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseleave', onLeave);
 
-    const particles = Array.from({ length: COUNT }, () => {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = BASE_SPEED * (0.5 + Math.random());
-      return {
-        x:     Math.random() * window.innerWidth,
-        y:     Math.random() * window.innerHeight,
-        vx:    Math.cos(angle) * speed,
-        vy:    Math.sin(angle) * speed,
-        r:     1.2 + Math.random() * 2,
-        phase: Math.random() * Math.PI * 2,
-        pulse: 0,
-      };
-    });
+    const tick = () => {
+      const W = canvas.width;
+      const H = canvas.height;
+      const minD = Math.min(W, H);
+      ctx.clearRect(0, 0, W, H);
 
-    let nextPulse = performance.now() + 1800 + Math.random() * 2200;
-
-    const tick = (now) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // ── Lerp color ───────────────────────────────────────────────────────
       const c = colorRef.current;
       const t = targetRef.current;
       c[0] += (t[0] - c[0]) * COLOR_LERP;
@@ -85,108 +81,26 @@ export default function BackgroundCanvas({ theme, currentSection }) {
       const G = c[1] | 0;
       const B = c[2] | 0;
 
-      // ── Full background tint ──────────────────────────────────────────────
-      ctx.fillStyle = `rgba(${R},${G},${B},0.02)`;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      mouse.x += (mouse.tx - mouse.x) * 0.05;
+      mouse.y += (mouse.ty - mouse.y) * 0.05;
+      const px = mouse.x * 40;
+      const py = mouse.y * 40;
 
-      // ── Side washes ───────────────────────────────────────────────────────
-      const washW = Math.min(480, canvas.width * 0.36);
+      for (const b of blobs) {
+        b.x += b.vx;
+        b.y += b.vy;
+        if (b.x < 0 || b.x > W) b.vx *= -1;
+        if (b.y < 0 || b.y > H) b.vy *= -1;
 
-      const leftWash = ctx.createLinearGradient(0, 0, washW, 0);
-      leftWash.addColorStop(0,   `rgba(${R},${G},${B},0.28)`);
-      leftWash.addColorStop(0.5, `rgba(${R},${G},${B},0.09)`);
-      leftWash.addColorStop(1,   `rgba(${R},${G},${B},0)`);
-      ctx.fillStyle = leftWash;
-      ctx.fillRect(0, 0, washW, canvas.height);
-
-      const rightWash = ctx.createLinearGradient(canvas.width, 0, canvas.width - washW, 0);
-      rightWash.addColorStop(0,   `rgba(${R},${G},${B},0.28)`);
-      rightWash.addColorStop(0.5, `rgba(${R},${G},${B},0.09)`);
-      rightWash.addColorStop(1,   `rgba(${R},${G},${B},0)`);
-      ctx.fillStyle = rightWash;
-      ctx.fillRect(canvas.width - washW, 0, washW, canvas.height);
-
-      // ── Corner glows ──────────────────────────────────────────────────────
-      const cornerGlow = (x, y) => {
-        const g = ctx.createRadialGradient(x, y, 0, x, y, canvas.width * 0.45);
-        g.addColorStop(0, `rgba(${R},${G},${B},0.08)`);
-        g.addColorStop(1, `rgba(${R},${G},${B},0)`);
+        const rad = b.r * minD;
+        const gx = b.x + px;
+        const gy = b.y + py;
+        const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, rad);
+        g.addColorStop(0,   `rgba(${R},${G},${B},${alphaMax * b.a})`);
+        g.addColorStop(0.6, `rgba(${R},${G},${B},${alphaMax * b.a * 0.35})`);
+        g.addColorStop(1,   `rgba(${R},${G},${B},0)`);
         ctx.fillStyle = g;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      };
-      cornerGlow(0, 0);
-      cornerGlow(canvas.width, canvas.height);
-
-      // ── Pulse trigger ─────────────────────────────────────────────────────
-      if (now > nextPulse) {
-        particles[Math.floor(Math.random() * COUNT)].pulse = 1;
-        nextPulse = now + 2000 + Math.random() * 2000;
-      }
-
-      // ── Particles ────────────────────────────────────────────────────────
-      for (const p of particles) {
-        p.phase += 0.018;
-
-        const mdx = mouse.x - p.x;
-        const mdy = mouse.y - p.y;
-        const md2 = mdx * mdx + mdy * mdy;
-        if (md2 < 200 * 200 && md2 > 1) {
-          const md = Math.sqrt(md2);
-          p.vx += (mdx / md) * 0.015;
-          p.vy += (mdy / md) * 0.015;
-        }
-
-        const spd = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
-        if (spd > 1.2) { p.vx *= 0.95; p.vy *= 0.95; }
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if      (p.x < -10)                p.x = canvas.width  + 10;
-        else if (p.x > canvas.width  + 10) p.x = -10;
-        if      (p.y < -10)                p.y = canvas.height + 10;
-        else if (p.y > canvas.height + 10) p.y = -10;
-
-        if (p.pulse > 0) p.pulse = Math.max(0, p.pulse - 0.022);
-
-        const flicker = 0.5 + 0.5 * Math.sin(p.phase);
-        const alpha   = Math.min(0.5 + flicker * 0.45 + p.pulse * 0.55, 1);
-        const radius  = p.r + flicker * 0.5 + p.pulse * 5;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, Math.max(0.5, radius), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${R},${G},${B},${alpha})`;
-        ctx.fill();
-
-        if (p.pulse > 0.05) {
-          const g = ctx.createRadialGradient(p.x, p.y, radius, p.x, p.y, radius + 22);
-          g.addColorStop(0, `rgba(${R},${G},${B},${p.pulse * 0.6})`);
-          g.addColorStop(1, `rgba(${R},${G},${B},0)`);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, radius + 22, 0, Math.PI * 2);
-          ctx.fillStyle = g;
-          ctx.fill();
-        }
-      }
-
-      // ── Connections ──────────────────────────────────────────────────────
-      for (let i = 0; i < COUNT; i++) {
-        for (let j = i + 1; j < COUNT; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < CONNECT_DIST * CONNECT_DIST) {
-            const d     = Math.sqrt(d2);
-            const fade  = 1 - d / CONNECT_DIST;
-            const boost = (particles[i].pulse + particles[j].pulse) * 0.35;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${R},${G},${B},${Math.min(fade * 0.3 + boost, 0.85)})`;
-            ctx.lineWidth   = 0.8 + boost * 2;
-            ctx.stroke();
-          }
-        }
+        ctx.fillRect(0, 0, W, H);
       }
 
       raf = requestAnimationFrame(tick);
@@ -198,7 +112,6 @@ export default function BackgroundCanvas({ theme, currentSection }) {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('mouseleave', onLeave);
     };
   }, [theme]); // eslint-disable-line react-hooks/exhaustive-deps
 

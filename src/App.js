@@ -11,13 +11,12 @@ import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import useScrollReveal from './hooks/useScrollReveal';
 import InDevTrailer from './components/InDevTrailer';
-import BackgroundCanvas from './components/BackgroundCanvas';
 
 function App() {
   const location = useLocation();
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme : 'light';
+    return savedTheme ? savedTheme : 'dark';
   });
   const [portfolioData, setPortfolioData] = useState({
     about: null,
@@ -38,6 +37,8 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
+    document.body.classList.toggle('light', theme === 'light');
+    document.body.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   useEffect(() => {
@@ -106,7 +107,6 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <BackgroundCanvas theme={theme} currentSection={currentSection} />
       <Navbar currentSection={currentSection} />
       <button onClick={toggleTheme} className="theme-toggle-fixed">
         <span className="material-symbols-outlined">

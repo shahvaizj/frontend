@@ -31,12 +31,55 @@
     ]
   },
   {
+    "name": "YOU MAY NEVER LEAVE",
+    "category": [
+      "gaming"
+    ],
+    "gamingOrder": 2,
+    "educationalOrder": null,
+    "genre": "Psychological Horror Puzzle Adventure",
+    "description": "A psychological horror puzzle adventure built around atmospheric exploration, story-driven progression, environmental puzzles, and unsettling dynamic events. The game combines immersive horror mechanics with carefully designed puzzle sequences, checkpoints, player interactions, and narrative encounters.",
+    "icon": "psychology",
+    "tagline": "Psychological Horror & Puzzle Adventure | Solo Development",
+    "techTags": [
+      "Unity3D",
+      "C#",
+      "Steam",
+      "Story Driven",
+      "Puzzle Design",
+      "Level Design",
+      "AI Systems",
+      "UI/UX Design"
+    ],
+    "myRole": "Created and developed the entire game from concept to release. Designed and implemented all gameplay systems, environmental puzzles, narrative progression, and horror mechanics. Developed immersive puzzle sequences, dynamic events, checkpoint systems, and player interaction mechanics. Built atmospheric environments, scripted story-driven encounters, and optimized performance to ensure a smooth and engaging experience. Managed game design, programming, level design, UI/UX, audio implementation, and overall production of the project.",
+    "screenshots": [
+      "/images/YT_1.jpg",
+      "/images/YT_2.jpg",
+      "/images/YT_3.jpg"
+    ],
+    "youtubeVideoId": "3IGaeBu36OA",
+    "links": [
+      {
+        "label": "Itch.io",
+        "url": "https://shahvaizj.itch.io/you-may-never-leave"
+      },
+      {
+        "label": "Android",
+        "url": "https://play.google.com/store/apps/details?id=com.play3.youmayneverleave"
+      },
+      {
+        "label": "iOS",
+        "url": "https://apps.apple.com/ca/app/you-may-never-leave-play3/id6771959085"
+      }
+    ]
+  },
+  {
     "name": "LUDO CRUISE",
     "category": [
       "gaming",
       "educational"
     ],
-    "gamingOrder": 2,
+    "gamingOrder": 3,
     "educationalOrder": 4,
     "genre": "Multiplayer Online Board Game",
     "description": "A commercially successful multiplayer Ludo game with real-time online connectivity, multiple game modes, in-app purchases, and ads integration. Features cross-platform multiplayer, competitive rankings, seasonal events, and social features including chat and friend lists.",
@@ -65,7 +108,7 @@
       "gaming",
       "educational"
     ],
-    "gamingOrder": 3,
+    "gamingOrder": 4,
     "educationalOrder": null,
     "genre": "Idle & Tycoon Simulation",
     "description": "A hyper-casual idle simulation game with millions of downloads featuring incremental gameplay, unlockable upgrades, resource management, and offline progression. Built with scalable architecture supporting dynamic events, seasonal content, and live operations.",
@@ -124,7 +167,7 @@
     "category": [
       "gaming"
     ],
-    "gamingOrder": 4,
+    "gamingOrder": 5,
     "educationalOrder": null,
     "genre": "FPS Tactical Sniper",
     "description": "A tactical FPS sniper game with realistic ballistics, wind mechanics, breath control, and immersive weapon customization. Features multiple campaign modes, zombie waves, competitive PvP, and an extensive weapon upgrade system with realistic recoil patterns.",
@@ -210,7 +253,7 @@
     "category": [
       "gaming"
     ],
-    "gamingOrder": 5,
+    "gamingOrder": 6,
     "educationalOrder": null,
     "genre": "Street Racing & Drifting",
     "description": "A high-octane underground street racing game featuring realistic drift physics, nitrous boost systems, car customization, and competitive online multiplayer. Includes story mode, time attacks, drift challenges, and extensive vehicle tuning options.",
@@ -240,7 +283,7 @@
     "category": [
       "gaming"
     ],
-    "gamingOrder": 6,
+    "gamingOrder": 7,
     "educationalOrder": null,
     "genre": "Survival Horror FPS",
     "description": "An intense survival horror FPS with wave-based zombie gameplay, diverse weapon arsenal, and immersive storyline. Features realistic gore systems, dynamic lighting, procedural horde behavior, and cooperative multiplayer modes.",

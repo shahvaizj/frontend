@@ -50,9 +50,9 @@
   will-change: transform;
 }
 
-/* Give cards a non-white background in light mode so white/light icons are visible */
+/* Give cards a solid background in light mode so light icons are visible */
 .App.light .skill-card {
-  background: #eef2ff;
+  background: #ffffff;
 }
 
 /* Skill card */
@@ -65,17 +65,16 @@
   padding: 1rem 0.85rem 0.8rem;
   min-width: 100px;
   background: var(--card-solid);
-  border: 1px solid var(--card-stroke);
-  border-radius: 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
   text-align: center;
   cursor: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
   flex-shrink: 0;
 }
 
 .skill-card:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 6px 20px var(--accent-glow);
+  border-color: var(--heading-color);
 }
 
 .skill-icon {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import ParticleBackground from './ParticleBackground';
 import './Home.css';
 
 const BUBBLE_MESSAGE = "Hey, Player 1! Welcome to my world. Feel free to explore!";
@@ -143,11 +142,21 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
   return (
     <section id="home" className="home-section" ref={sectionRef}>
       <div className="home-gradient-bg"></div>
-      <ParticleBackground theme={theme} />
       <div className="home-content">
         <div className="home-copy reveal revealed">
           <p className="home-kicker">Game Developer Portfolio</p>
-          <h1>{aboutData.name || 'Muhammad Shahvaiz Jahangeer'}</h1>
+          <h1 className="hero-name" aria-label={aboutData.name || 'Muhammad Shahvaiz Jahangeer'}>
+            {(aboutData.name || 'Muhammad Shahvaiz Jahangeer').split('').map((ch, i) => (
+              <span
+                key={i}
+                className="hero-letter"
+                aria-hidden="true"
+                style={{ animationDelay: `${0.12 + i * 0.028}s` }}
+              >
+                {ch === ' ' ? ' ' : ch}
+              </span>
+            ))}
+          </h1>
           <div className="animated-title-container">
             <h2>
               {displayText}
