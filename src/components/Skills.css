@@ -1,125 +1,37 @@
-.skills-section h2 {
-  text-align: left;
-  margin-bottom: 2rem;
+.skills-list {
+  display: grid;
+  gap: clamp(2.2rem, 4vw, 3.4rem);
 }
 
-.skills-categories {
-  display: flex;
-  flex-direction: column;
-  gap: 2.4rem;
-}
-
-.skills-category-header {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 1.1rem;
-  padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--card-stroke);
-}
-
-.skills-category-header h3 {
-  margin: 0;
-  font-size: clamp(1rem, 2.4vw, 1.25rem);
-  letter-spacing: -0.01em;
-}
-
-.category-icon {
-  font-size: 1.4rem;
-}
-
-/* Marquee row — clip overflow and fade edges */
-.skill-marquee-row {
-  overflow: hidden;
-  width: 100%;
-  cursor: grab;
-  user-select: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  mask-image:         linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-}
-
-.skill-marquee-row.dragging {
-  cursor: grabbing;
-}
-
-.skill-marquee-track {
-  display: flex;
-  gap: 0.75rem;
-  width: max-content;
-  padding: 0.3rem 0;
-  will-change: transform;
-}
-
-/* Give cards a solid background in light mode so light icons are visible */
-.App.light .skill-card {
-  background: #ffffff;
-}
-
-/* Skill card */
-.skill-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  padding: 1rem 0.85rem 0.8rem;
-  min-width: 100px;
-  background: var(--card-solid);
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
-  text-align: center;
-  cursor: inherit;
-  transition: border-color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.skill-card:hover {
-  border-color: var(--heading-color);
-}
-
-.skill-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-}
-
-.skill-icon i {
-  font-size: 2.8rem;
-}
-
-/* Non-colored devicons (black) become white in dark mode */
-.App.dark .skill-icon i:not([class*="colored"]) {
-  filter: brightness(0) invert(1);
-}
-
-.skill-icon-img {
-  width: 2.8rem;
-  height: 2.8rem;
-  object-fit: contain;
-}
-
-/* Unity (white img) gets a black outline in dark mode */
-.App.dark .skill-icon-img {
-  filter:
-    brightness(0) invert(1)
-    drop-shadow( 1px  0   0 #000)
-    drop-shadow(-1px  0   0 #000)
-    drop-shadow( 0    1px 0 #000)
-    drop-shadow( 0   -1px 0 #000);
-}
-
-.skill-icon .material-symbols-outlined {
-  font-size: 2.8rem;
-  color: var(--accent-color);
-}
-
-.skill-name {
+.skills-group-title {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 400;
+  color: var(--muted);
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.3rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.skills-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1.8rem;
+}
+
+.skills-items li {
+  font-size: 1rem;
   color: var(--text-color);
-  line-height: 1.35;
-  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.skills-items li:hover {
+  color: var(--heading-color);
 }
 
 @media (max-width: 768px) {
@@ -127,7 +39,7 @@
     text-align: center;
   }
 
-  .skills-category-header {
-    justify-content: center;
+  .skills-items {
+    gap: 0.6rem 1.2rem;
   }
 }

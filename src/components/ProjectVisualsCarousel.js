@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import './Projects.css';
-
-const AUTO_ADVANCE_MS = 5000;
 
 const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) => {
   const allVisuals = [];
@@ -16,8 +14,6 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalVisuals = allVisuals.length;
-  const pausedRef = useRef(false);
-  const timerRef = useRef(null);
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % totalVisuals);
@@ -29,45 +25,23 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
 
   const goToSlide = useCallback((index) => setCurrentIndex(index), []);
 
-  useEffect(() => {
-    if (totalVisuals < 2) return undefined;
-
-    const schedule = () => {
-      timerRef.current = setTimeout(() => {
-        if (!pausedRef.current) goNext();
-        schedule();
-      }, AUTO_ADVANCE_MS);
-    };
-
-    schedule();
-    return () => clearTimeout(timerRef.current);
-  }, [totalVisuals, goNext]);
-
-  const handleUserNav = useCallback((fn) => {
-    clearTimeout(timerRef.current);
-    fn();
-  }, []);
-
   if (totalVisuals === 0) return null;
 
   return (
-    <div
-      onMouseEnter={() => { pausedRef.current = true; }}
-      onMouseLeave={() => { pausedRef.current = false; }}
-    >
+    <div>
       <div className="project-visuals-carousel-main">
         {totalVisuals > 1 && (
           <>
             <button
               className="project-carousel-arrow left"
-              onClick={() => handleUserNav(goPrev)}
+              onClick={goPrev}
               aria-label="Previous visual"
             >
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
             <button
               className="project-carousel-arrow right"
-              onClick={() => handleUserNav(goNext)}
+              onClick={goNext}
               aria-label="Next visual"
             >
               <span className="material-symbols-outlined">chevron_right</span>
@@ -105,7 +79,7 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
               type="button"
               key={index}
               className={`carousel-thumbnail ${currentIndex === index ? 'active' : ''}`}
-              onClick={() => handleUserNav(() => goToSlide(index))}
+              onClick={() => goToSlide(index)}
             >
               {visual.type === 'youtube' ? (
                 <span className="carousel-thumbnail-video">

@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React from 'react';
 import './Projects.css';
 import ProjectVisualsCarousel from './ProjectVisualsCarousel';
 
@@ -125,11 +124,6 @@ const ProjectLinks = ({ project }) => {
 };
 
 const Projects = ({ projects, portfolioType = 'gaming' }) => {
-  const sliderRef = useRef(null);
-  const dragRef = useRef({ down: false, startX: 0, scrollLeft: 0, moved: false });
-  const autoRef = useRef({ dir: 1, paused: false, pos: 0 });
-  const [hoverPreview, setHoverPreview] = useState(null); // { project, rect } | null
-
   // Filter projects by category based on portfolioType
   const filteredProjects = projects.filter(project =>
     project.category && project.category.includes(portfolioType)
@@ -143,120 +137,7 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
     return orderA - orderB;
   });
 
-  const featuredProjects = sortedProjects.slice(0, 6);
-
-  // Get ALL projects that are not in featured (both gaming and educational)
-  const featuredIds = featuredProjects.map(p => p.name);
-  const otherProjects = projects.filter(project => !featuredIds.includes(project.name));
-
-  const handlePointerDown = (event) => {
-    const el = sliderRef.current;
-    if (!el) return;
-    dragRef.current = { down: true, startX: event.clientX, scrollLeft: el.scrollLeft, moved: false };
-    try { el.setPointerCapture(event.pointerId); } catch (e) { /* capture unsupported; drag still works */ }
-    el.classList.add('dragging');
-  };
-
-  const handlePointerMove = (event) => {
-    const state = dragRef.current;
-    if (!state.down) return;
-    const el = sliderRef.current;
-    const delta = event.clientX - state.startX;
-    if (Math.abs(delta) > 4) {
-      state.moved = true;
-      autoRef.current.paused = false;
-      setHoverPreview(null);
-    }
-    el.scrollLeft = state.scrollLeft - delta;
-  };
-
-  const handlePointerUp = (event) => {
-    const el = sliderRef.current;
-    if (el) {
-      try { el.releasePointerCapture(event.pointerId); } catch (e) { /* nothing to release */ }
-      el.classList.remove('dragging');
-      autoRef.current.pos = el.scrollLeft;
-    }
-    dragRef.current.down = false;
-  };
-
-  // Swallow the click that ends a drag so a card link doesn't fire mid-drag
-  const handleClickCapture = (event) => {
-    if (dragRef.current.moved) {
-      event.preventDefault();
-      event.stopPropagation();
-      dragRef.current.moved = false;
-    }
-  };
-
-  // Gently auto-scroll the "More Projects" strip, bouncing at each end.
-  // Pauses on hover/drag, and respects reduced-motion preferences.
-  useEffect(() => {
-    const el = sliderRef.current;
-    if (!el) return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-
-    const SPEED = 0.5;
-    let raf;
-    autoRef.current.pos = el.scrollLeft;
-    // Drive scroll from a float accumulator — the browser rounds scrollLeft to
-    // an integer, so sub-pixel increments would otherwise never accumulate.
-    const step = () => {
-      const auto = autoRef.current;
-      const max = el.scrollWidth - el.clientWidth;
-      if (max > 0 && !auto.paused && !dragRef.current.down) {
-        auto.pos += SPEED * auto.dir;
-        if (auto.pos >= max) { auto.pos = max; auto.dir = -1; }
-        else if (auto.pos <= 0) { auto.pos = 0; auto.dir = 1; }
-        el.scrollLeft = auto.pos;
-      }
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [otherProjects.length]);
-
-  const closeTimerRef = useRef(null);
-
-  const clearCloseTimer = () => {
-    if (closeTimerRef.current) {
-      clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  };
-
-  // Hover a card → freeze the auto-scroll at that point and pop a full-detail
-  // card anchored to it. A short close delay bridges card → preview so moving
-  // the pointer onto the expanded card doesn't dismiss it.
-  const openPreview = (project, event) => {
-    if (dragRef.current.down) return;
-    clearCloseTimer();
-    const rect = event.currentTarget.getBoundingClientRect();
-    autoRef.current.paused = true;
-    setHoverPreview({ project, rect });
-  };
-
-  const scheduleClose = () => {
-    clearCloseTimer();
-    closeTimerRef.current = setTimeout(() => {
-      autoRef.current.paused = false;
-      setHoverPreview(null);
-    }, 140);
-  };
-
-  const closeNow = () => {
-    clearCloseTimer();
-    autoRef.current.paused = false;
-    setHoverPreview(null);
-  };
-
-  // If the page scrolls while a preview is open its anchor goes stale — close it.
-  useEffect(() => {
-    if (!hoverPreview) return undefined;
-    const onScroll = () => closeNow();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [hoverPreview]); // eslint-disable-line react-hooks/exhaustive-deps
+  const featuredProjects = sortedProjects.slice(0, 4);
 
   return (
     <section id="projects" className="projects-section reveal">
@@ -292,69 +173,6 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
           </div>
         ))}
       </div>
-
-      {otherProjects.length > 0 && (
-        <div className="other-projects">
-          <div className="other-projects-head">
-            <h3 className="other-projects-heading">More Projects</h3>
-            <span className="other-projects-hint">Drag to explore &middot; hover for details</span>
-          </div>
-          <div
-            className="other-projects-slider"
-            ref={sliderRef}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerCancel={handlePointerUp}
-            onClickCapture={handleClickCapture}
-          >
-            {otherProjects.map((project, index) => (
-              <div
-                key={index}
-                className="other-project-card"
-                onMouseEnter={(event) => openPreview(project, event)}
-                onMouseLeave={scheduleClose}
-              >
-                <h4>{project.name}</h4>
-                <p className="other-project-genre">{project.genre}</p>
-                <div className="project-tech-tags">
-                  {project.techTags && project.techTags.slice(0, 3).map((tag, i) => (
-                    <span key={i} className="tech-tag">{tag}</span>
-                  ))}
-                </div>
-                <p className="other-project-role">{highlightKeywords(project.myRole)}</p>
-                <ProjectLinks project={project} />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {hoverPreview && createPortal(
-        <div
-          className="other-project-preview"
-          style={{
-            top: Math.max(12, hoverPreview.rect.top),
-            left: Math.min(
-              Math.max(hoverPreview.rect.left, 12),
-              window.innerWidth - 380 - 12
-            ),
-          }}
-          onMouseEnter={clearCloseTimer}
-          onMouseLeave={scheduleClose}
-        >
-          <h4>{hoverPreview.project.name}</h4>
-          <p className="other-project-genre">{hoverPreview.project.genre}</p>
-          <div className="project-tech-tags">
-            {hoverPreview.project.techTags && hoverPreview.project.techTags.map((tag, i) => (
-              <span key={i} className="tech-tag">{tag}</span>
-            ))}
-          </div>
-          <p className="other-project-role-full">{highlightKeywords(hoverPreview.project.myRole)}</p>
-          <ProjectLinks project={hoverPreview.project} />
-        </div>,
-        document.body
-      )}
     </section>
   );
 };

@@ -1,25 +1,14 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './Home.css';
 
-const BUBBLE_MESSAGE = "Hey, Player 1! Welcome to my world. Feel free to explore!";
-
-const Home = ({ about, funTitles, contactEmail, theme }) => {
+const Home = ({ about, funTitles, contactEmail }) => {
   const aboutData = about || {};
   const titleSeed = aboutData.title || 'Game Developer';
   const allTitles = useMemo(() => [titleSeed, ...(funTitles || [])], [titleSeed, funTitles]);
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const isHovering = useRef(false);
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [showBubble, setShowBubble] = useState(false);
-
-  const sectionRef = useRef(null);
-  const visualsRef = useRef(null);
-  const imgRef = useRef(null);
-  const pinnedRef = useRef(false);
-  const scrollProgressRef = useRef(0);
-  const isActiveRef = useRef(false);
 
   useEffect(() => {
     const blink = setInterval(() => setCursorVisible((v) => !v), 520);
@@ -31,9 +20,7 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
     let timeout;
 
     if (!isDeleting && displayText === currentTitle) {
-      timeout = setTimeout(() => {
-        if (!isHovering.current) setIsDeleting(true);
-      }, 2200);
+      timeout = setTimeout(() => setIsDeleting(true), 2200);
     } else if (isDeleting && displayText === '') {
       setIsDeleting(false);
       setCurrentIndex((prev) => (prev + 1) % allTitles.length);
@@ -45,77 +32,6 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentIndex, allTitles]);
-
-  const handleDotMouseEnter = useCallback((title, index) => {
-    isHovering.current = true;
-    setIsDeleting(false);
-    setCurrentIndex(index);
-    setDisplayText(title);
-  }, []);
-
-  const handleDotMouseLeave = useCallback(() => {
-    isHovering.current = false;
-  }, []);
-
-  const applyFilter = useCallback(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    const p = scrollProgressRef.current;
-    const active = isActiveRef.current;
-    const split = (p * 8).toFixed(1);
-    const splitA = (p * 0.85).toFixed(2);
-    const glowA = (0.5 + p * 0.4).toFixed(2);
-    const filters = [];
-    if (active) {
-      filters.push('sepia(0.6)', 'saturate(6)', 'hue-rotate(295deg)', 'brightness(1.12)');
-    }
-    filters.push(
-      `drop-shadow(${split}px 0 0 rgba(255,40,40,${splitA}))`,
-      `drop-shadow(-${split}px 0 0 rgba(0,220,220,${splitA}))`,
-      `drop-shadow(0 0 ${active ? 30 : 18}px rgba(${active ? '200,40,40' : '45,212,191'},${active ? 0.8 : glowA}))`,
-      'drop-shadow(0 28px 44px rgba(2,8,20,0.55))',
-    );
-    img.style.filter = filters.join(' ');
-  }, []);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const visuals = visualsRef.current;
-    if (!section || !visuals) return;
-
-    const onScroll = () => {
-      const { top, height } = section.getBoundingClientRect();
-      const p = Math.max(0, Math.min(1, -top / height));
-      scrollProgressRef.current = p;
-      visuals.style.transform = `translateY(${-(p * 90).toFixed(1)}px) rotate(${(p * 1.8).toFixed(2)}deg)`;
-      applyFilter();
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [applyFilter]);
-
-  const handleCharEnter = useCallback(() => {
-    isActiveRef.current = true;
-    setShowBubble(true);
-    applyFilter();
-  }, [applyFilter]);
-
-  const handleCharLeave = useCallback(() => {
-    if (!pinnedRef.current) {
-      isActiveRef.current = false;
-      setShowBubble(false);
-      applyFilter();
-    }
-  }, [applyFilter]);
-
-  const handleCharClick = useCallback(() => {
-    pinnedRef.current = !pinnedRef.current;
-    isActiveRef.current = pinnedRef.current;
-    setShowBubble(pinnedRef.current);
-    applyFilter();
-  }, [applyFilter]);
 
   const highlightKeywords = (text) => {
     const keywords = [
@@ -139,14 +55,16 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
     return result;
   };
 
+  const name = aboutData.name || 'Muhammad Shahvaiz Jahangeer';
+
   return (
-    <section id="home" className="home-section" ref={sectionRef}>
+    <section id="home" className="home-section">
       <div className="home-gradient-bg"></div>
       <div className="home-content">
-        <div className="home-copy reveal revealed">
+        <div className="home-copy">
           <p className="home-kicker">Game Developer Portfolio</p>
-          <h1 className="hero-name" aria-label={aboutData.name || 'Muhammad Shahvaiz Jahangeer'}>
-            {(aboutData.name || 'Muhammad Shahvaiz Jahangeer').split('').map((ch, i) => (
+          <h1 className="hero-name" aria-label={name}>
+            {name.split('').map((ch, i) => (
               <span
                 key={i}
                 className="hero-letter"
@@ -163,19 +81,6 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
               <span className={`typewriter-cursor ${cursorVisible ? '' : 'hidden'}`}>|</span>
             </h2>
           </div>
-
-          {funTitles && (
-            <div className="fun-titles-dots" aria-label="Role selector">
-              {allTitles.map((title, index) => (
-                <span
-                  key={index}
-                  className={`fun-title-dot ${currentIndex === index ? 'active' : ''}`}
-                  onMouseEnter={() => handleDotMouseEnter(title, index)}
-                  onMouseLeave={handleDotMouseLeave}
-                ></span>
-              ))}
-            </div>
-          )}
 
           <p
             className="home-bio"
@@ -195,34 +100,12 @@ const Home = ({ about, funTitles, contactEmail, theme }) => {
           </div>
         </div>
 
-        <div className="hero-visuals reveal reveal-delay-2" ref={visualsRef}>
-          {showBubble && (
-            <div className="character-bubble">
-              <span>{BUBBLE_MESSAGE}</span>
-            </div>
-          )}
-
-          <div className="floating-engine-icons">
-            <div className="engine-icon-badge unity-badge">
-              <img src="https://cdn.simpleicons.org/unity" alt="Unity3D" />
-            </div>
-            <div className="engine-icon-badge unreal-badge">
-              <i className="devicon-unrealengine-original"></i>
-            </div>
-            <div className="engine-icon-badge godot-badge">
-              <i className="devicon-godot-plain colored"></i>
-            </div>
-          </div>
-
+        <div className="hero-visuals">
           <img
-            ref={imgRef}
             src={`${process.env.PUBLIC_URL}/images/character.png`}
             alt="Character"
             className="hero-character-img"
             loading="lazy"
-            onMouseEnter={handleCharEnter}
-            onMouseLeave={handleCharLeave}
-            onClick={handleCharClick}
           />
         </div>
       </div>
