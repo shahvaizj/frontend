@@ -1,5 +1,6 @@
 {
-  "name": "Muhammad Shahvaiz Jahangeer",
+  "namePrefix": "Muhammad",
+  "name": "Shahvaiz Jahangeer",
   "title": "Game Developer",
   "experience": "9 years of professional game development experience",
   "bio": "Senior Game Developer with 9+ years of experience designing and architecting high-performance, multiplayer, and real-time game systems. Specialized in Unity3D, with expertise in scalable gameplay architecture and cross-platform deployment, and a proven track record of leading teams and shipping polished titles across multiple genres.",
@@ -8,6 +9,12 @@
   "email": "shahvaiz.jahangeer@gmail.com",
   "linkedin": "https://www.linkedin.com/in/shahvaiz-jahangeer/",
   "github": "https://github.com/shahvaiz-jahangeer",
+  "stats": [
+    { "value": "9+", "label": "Years Experience" },
+    { "value": "50+", "label": "Games Developed" },
+    { "value": "100,000+", "label": "Downloads on Games" },
+    { "value": "4", "label": "Published Unity Assets" }
+  ],
   "funTitles": [
     "Unity Sorcerer & Gameplay Architect",
     "9-Year Veteran of the Frame Rate Wars",

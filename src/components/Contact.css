@@ -1,7 +1,3 @@
-.contact-section h2 {
-  text-align: left;
-}
-
 .contact-container {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -15,12 +11,9 @@
 }
 
 .contact-form {
-  background: var(--card-solid);
-  border: 1px solid var(--card-stroke);
-  border-radius: 20px;
-  padding: 1rem;
   display: grid;
   gap: 0.7rem;
+  align-content: start;
 }
 
 .form-group input,
@@ -89,9 +82,7 @@
 
 .contact-email,
 .contact-socials {
-  border: 1px solid var(--card-stroke);
-  border-radius: 20px;
-  background: linear-gradient(145deg, rgba(96, 165, 250, 0.08), rgba(45, 212, 191, 0.08));
+  background: transparent;
 }
 
 .contact-email {
@@ -147,10 +138,6 @@
 }
 
 @media (max-width: 920px) {
-  .contact-section h2 {
-    text-align: center;
-  }
-
   .contact-container {
     grid-template-columns: 1fr;
   }

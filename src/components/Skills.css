@@ -1,5 +1,4 @@
 .skills-section h2 {
-  text-align: left;
   margin-bottom: 2rem;
 }
 
@@ -12,10 +11,11 @@
 .skills-category-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.55rem;
   margin-bottom: 1.1rem;
   padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--card-stroke);
+  border-bottom: 1px solid var(--section-border);
 }
 
 .skills-category-header h3 {
@@ -50,12 +50,7 @@
   will-change: transform;
 }
 
-/* Give cards a non-white background in light mode so white/light icons are visible */
-.App.light .skill-card {
-  background: #eef2ff;
-}
-
-/* Skill card */
+/* Skill card — sits directly on the page background, no panel */
 .skill-card {
   display: flex;
   flex-direction: column;
@@ -64,18 +59,17 @@
   gap: 0.5rem;
   padding: 1rem 0.85rem 0.8rem;
   min-width: 100px;
-  background: var(--card-solid);
-  border: 1px solid var(--card-stroke);
-  border-radius: 14px;
+  background: transparent;
   text-align: center;
   cursor: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
   flex-shrink: 0;
 }
 
 .skill-card:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 6px 20px var(--accent-glow);
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .skill-icon {
@@ -98,6 +92,11 @@
   width: 2.8rem;
   height: 2.8rem;
   object-fit: contain;
+}
+
+/* Without a card behind it, a light source icon needs forcing dark in light mode */
+.App.light .skill-icon-img {
+  filter: brightness(0);
 }
 
 /* Unity (white img) gets a black outline in dark mode */
@@ -123,12 +122,3 @@
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .skills-section h2 {
-    text-align: center;
-  }
-
-  .skills-category-header {
-    justify-content: center;
-  }
-}

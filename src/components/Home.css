@@ -1,8 +1,18 @@
+/* Full-bleed hero: breaks out of the section container and the sidebar indent so
+   the gradient/particle backdrop reaches the viewport edges instead of reading
+   as a floating panel. */
 .home-section {
-  min-height: calc(100vh - 2rem);
+  width: 100vw;
+  max-width: 100vw;
+  margin-top: -1.2rem;      /* cancels .main-content padding-top */
+  margin-left: -94px;       /* cancels .main-content margin-left (sidebar nav) */
+  margin-right: 0;
+  padding: 0 clamp(1.2rem, 5vw, 4rem);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .home-gradient-bg {
@@ -24,40 +34,56 @@
 .home-content {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2.4rem);
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .home-copy {
-  text-align: left;
+  text-align: center;
+  max-width: 900px;
 }
 
 .home-kicker {
   text-transform: uppercase;
   letter-spacing: 0.13em;
-  font-size: 0.75rem;
+  font-size: clamp(0.95rem, 1.7vw, 1.2rem);
   color: var(--accent-color);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.9rem;
   font-weight: 700;
 }
 
+/* Name always sits on a single line — the vw term shrinks it rather than wrapping. */
 .home-section h1 {
-  font-size: clamp(2.2rem, 5.8vw, 4.1rem);
+  font-size: clamp(1.15rem, 6vw, 4.1rem);
   line-height: 1.08;
   margin-bottom: 0.8rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+/* "Muhammad" sits above the name, 25% up from half its size. */
+.home-name-prefix {
+  display: block;
+  font-size: 0.625em;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+}
+
+.home-name-main {
+  display: block;
 }
 
 .animated-title-container {
-  min-height: 3rem;
+  min-height: 2.2rem;
   margin-bottom: 1rem;
 }
 
+/* 30% smaller than the previous 1.3/2.8/2 ramp. */
 .animated-title-container h2 {
   margin: 0;
-  font-size: clamp(1.3rem, 2.8vw, 2rem);
+  font-size: clamp(0.91rem, 1.96vw, 1.4rem);
   color: var(--accent-2);
 }
 
@@ -70,13 +96,9 @@
   opacity: 0;
 }
 
-.home-bio {
-  max-width: 72ch;
-  font-size: clamp(0.98rem, 2.1vw, 1.1rem);
-}
-
 .fun-titles-dots {
   display: flex;
+  justify-content: center;
   gap: 0.55rem;
   flex-wrap: wrap;
   margin: 0.9rem 0 1.2rem;
@@ -102,6 +124,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0.85rem;
 }
 
@@ -127,7 +150,6 @@
   padding: 0.7rem 1rem;
   border: 1px solid var(--card-stroke);
   color: var(--heading-color);
-  background: rgba(255, 255, 255, 0.05);
 }
 
 .home-primary-cta:hover,
@@ -135,216 +157,68 @@
   transform: translateY(-2px);
 }
 
-.highlight-years,
-.highlight-tech,
-.highlight-skills {
-  color: var(--heading-color);
-  font-weight: 700;
+/* ── Stats strip ───────────────────────────────────────────────────────── */
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 2.6rem 0 0;
+  padding-top: 1.9rem;
+  border-top: 1px solid var(--section-border);
 }
 
-.hero-visuals {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  will-change: transform;
+.home-stat {
+  padding: 0 0.6rem;
 }
 
-/* Soft aura blob behind the character */
-.hero-visuals::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 55%, rgba(45, 212, 191, 0.26) 0%, rgba(96, 165, 250, 0.13) 45%, transparent 70%);
-  animation: auraPulse 4s ease-in-out infinite;
-  pointer-events: none;
+/* Hairline separators between figures instead of boxes. */
+.home-stat + .home-stat {
+  border-left: 1px solid var(--section-border);
 }
 
-/* Ground energy ring at the character's feet */
-.hero-visuals::after {
-  content: '';
-  position: absolute;
-  bottom: 3%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 52%;
-  height: 16px;
-  background: radial-gradient(ellipse, rgba(45, 212, 191, 0.7) 0%, rgba(96, 165, 250, 0.28) 50%, transparent 75%);
-  border-radius: 50%;
-  filter: blur(5px);
-  animation: ringGlow 3s ease-in-out infinite;
-  pointer-events: none;
+.home-stat-value {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-
-.character-bubble {
-  position: absolute;
-  top: 6%;
-  left: 4%;
-  z-index: 10;
-  background: #ffffff;
-  color: #12182a;
-  padding: 0.75rem 1rem;
-  border-radius: 18px 18px 18px 4px;
-  max-width: 200px;
-  font-size: 0.86rem;
+.home-stat-label {
+  margin: 0.35rem 0 0;
+  font-size: clamp(0.68rem, 1.1vw, 0.8rem);
   font-weight: 600;
-  line-height: 1.5;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(200, 40, 40, 0.25);
-  animation: bubblePop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  line-height: 1.35;
+  opacity: 0.75;
 }
 
-.character-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 18px;
-  border: 7px solid transparent;
-  border-top-color: #ffffff;
-  border-bottom: none;
-}
-
-@keyframes bubblePop {
-  from { opacity: 0; transform: scale(0.5) translateY(6px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.hero-character-img {
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-  width: 100%;
-  max-height: 560px;
-  object-fit: contain;
-  animation: floatCharacter 6s ease-in-out infinite;
-  filter:
-    drop-shadow(0 0 18px rgba(45, 212, 191, 0.5))
-    drop-shadow(0 28px 44px rgba(2, 8, 20, 0.55));
-}
-
-@keyframes floatCharacter {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-
-@keyframes auraPulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-@keyframes ringGlow {
-  0%, 100% { opacity: 0.45; transform: translateX(-50%) scaleX(1); }
-  50% { opacity: 1; transform: translateX(-50%) scaleX(1.15); }
-}
-
-/* ── Floating engine icon badges ───────────────────────────────────────── */
-.floating-engine-icons {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.engine-icon-badge {
-  position: absolute;
-}
-
-.engine-icon-badge img,
-.engine-icon-badge i {
-  width: 52px;
-  height: 52px;
-  font-size: 3.2rem;
-  display: block;
-}
-
-.App.dark .engine-icon-badge i:not([class*="colored"]) {
-  filter: brightness(0) invert(1);
-}
-.App.dark .engine-icon-badge img {
-  filter: brightness(0) invert(1);
-}
-
-/* Individual positions */
-.unity-badge {
-  top: 8%;
-  right: 4%;
-  animation: floatUnity 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-.unreal-badge {
-  top: 38%;
-  left: 1%;
-  animation: floatUnreal 7.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-.godot-badge {
-  bottom: 18%;
-  right: 2%;
-  animation: floatGodot 4.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-/* Unity — smooth wide oval, teal glow peak */
-@keyframes floatUnity {
-  0%   { transform: translate(0px,   0px) scale(1)    rotate(-4deg);
-         filter: drop-shadow(0 6px 16px rgba(45,212,191,0.25)); }
-  25%  { transform: translate(10px, -24px) scale(1.14) rotate(3deg);
-         filter: drop-shadow(0 0 28px rgba(45,212,191,0.7)) drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
-  50%  { transform: translate(0px,  -36px) scale(1.18) rotate(-2deg);
-         filter: drop-shadow(0 0 36px rgba(45,212,191,0.9)) drop-shadow(0 10px 24px rgba(0,0,0,0.4)); }
-  75%  { transform: translate(-8px, -20px) scale(1.1)  rotate(5deg);
-         filter: drop-shadow(0 0 24px rgba(45,212,191,0.6)) drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
-  100% { transform: translate(0px,   0px) scale(1)    rotate(-4deg);
-         filter: drop-shadow(0 6px 16px rgba(45,212,191,0.25)); }
-}
-
-/* Unreal — slow dramatic rise, blue glow */
-@keyframes floatUnreal {
-  0%   { transform: translate(0px,   0px) scale(1)    rotate(2deg);
-         filter: drop-shadow(0 6px 16px rgba(96,165,250,0.25)); }
-  20%  { transform: translate(6px,  -18px) scale(1.08) rotate(-2deg);
-         filter: drop-shadow(0 0 22px rgba(96,165,250,0.55)); }
-  50%  { transform: translate(-10px, -40px) scale(1.22) rotate(-5deg);
-         filter: drop-shadow(0 0 40px rgba(96,165,250,0.95)) drop-shadow(0 12px 28px rgba(0,0,0,0.45)); }
-  80%  { transform: translate(5px,  -16px) scale(1.06) rotate(3deg);
-         filter: drop-shadow(0 0 18px rgba(96,165,250,0.45)); }
-  100% { transform: translate(0px,   0px) scale(1)    rotate(2deg);
-         filter: drop-shadow(0 6px 16px rgba(96,165,250,0.25)); }
-}
-
-/* Godot — bouncy, playful, purple glow */
-@keyframes floatGodot {
-  0%   { transform: translate(0px,   0px) scale(1)    rotate(3deg);
-         filter: drop-shadow(0 6px 16px rgba(168,85,247,0.3)); }
-  18%  { transform: translate(-8px, -28px) scale(1.16) rotate(-4deg);
-         filter: drop-shadow(0 0 32px rgba(168,85,247,0.85)) drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
-  36%  { transform: translate(6px,  -16px) scale(1.06) rotate(6deg);
-         filter: drop-shadow(0 0 18px rgba(168,85,247,0.5)); }
-  55%  { transform: translate(-4px, -34px) scale(1.2)  rotate(-3deg);
-         filter: drop-shadow(0 0 38px rgba(168,85,247,1))    drop-shadow(0 10px 24px rgba(0,0,0,0.45)); }
-  75%  { transform: translate(8px,  -10px) scale(1.04) rotate(5deg);
-         filter: drop-shadow(0 0 12px rgba(168,85,247,0.35)); }
-  100% { transform: translate(0px,   0px) scale(1)    rotate(3deg);
-         filter: drop-shadow(0 6px 16px rgba(168,85,247,0.3)); }
-}
-
-@media (max-width: 1024px) {
-  .home-content {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .home-stats {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1.5rem;
   }
 
-  .home-copy {
-    text-align: center;
+  /* With two columns only the odd items get a left rule. */
+  .home-stat + .home-stat {
+    border-left: 0;
   }
 
-  .home-cta-row,
-  .fun-titles-dots {
-    justify-content: center;
+  .home-stat:nth-child(even) {
+    border-left: 1px solid var(--section-border);
   }
+}
 
-  .hero-visuals {
-    width: min(480px, 100%);
-    margin: 0 auto;
+@media (max-width: 768px) {
+  /* Nav moves to a top bar below 768px — no sidebar indent to cancel, and the
+     hero must stay clear of it. */
+  .home-section {
+    margin-top: 0;
+    margin-left: 0;
   }
 }
 

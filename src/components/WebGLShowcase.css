@@ -3,26 +3,111 @@
   z-index: 1;
 }
 
-.webgl-frame-wrap {
-  border: 1px solid var(--card-stroke);
+.webgl-launch-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
+.webgl-launch-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 1.1rem 2.6rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-family: inherit;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 18px 34px var(--accent-glow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.webgl-launch-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px var(--accent-glow);
+}
+
+.webgl-launch-button .material-symbols-outlined {
+  font-size: 1.5em;
+}
+
+/* ── Game popup ────────────────────────────────────────────────────────── */
+.webgl-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 10, 24, 0.92);
+  backdrop-filter: blur(4px);
+  z-index: 5000;
+  overflow: hidden;
+  animation: webglOverlayIn 0.2s ease-out;
+}
+
+.webgl-modal-content {
+  width: min(1400px, calc(100% - 3rem));
+  height: min(88dvh, 900px);
+  margin: 2.6rem auto;
   border-radius: 16px;
   overflow: hidden;
-  background: var(--card-solid);
-  box-shadow: 0 18px 48px rgba(8, 14, 28, 0.25);
+  background: #000;
+  box-shadow: 0 28px 56px rgba(2, 8, 20, 0.45);
+  animation: webglModalIn 0.24s ease-out;
+}
+
+.webgl-modal-close {
+  position: fixed;
+  right: 0.9rem;
+  top: 0.75rem;
+  border: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 5002;
 }
 
 .webgl-frame {
   display: block;
   width: 100%;
-  height: min(72vh, 760px);
-  min-height: 500px;
+  height: 100%;
   border: 0;
   background: #000;
 }
 
+@keyframes webglOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes webglModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 768px) {
-  .webgl-frame {
-    height: min(64vh, 520px);
-    min-height: 360px;
+  .webgl-modal-content {
+    width: calc(100% - 1.2rem);
+    height: min(90dvh, 820px);
+    margin: 0.6rem auto;
+    border-radius: 12px;
+  }
+
+  .webgl-modal-close {
+    right: 0.6rem;
+    top: 0.6rem;
   }
 }
