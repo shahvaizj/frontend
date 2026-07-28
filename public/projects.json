@@ -12,8 +12,6 @@
     "icon": "casino",
     "tagline": "AI & Sensor-Based Game Development | Motion Control Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Brain EEG Sensor",
       "Machine Learning",
       "Pose Estimation",
@@ -28,7 +26,16 @@
       "ikzdxLzgPFw",
       "vCp46EYOPG8",
       "fOun8jg6LHA"
-    ]
+    ],
+    "role": "Game Developer",
+    "contributions": [
+      "Built motion-controlled gameplay driven by real-time EEG and camera pose input",
+      "Engineered accurate player stat capture from live sensor streams",
+      "Partnered with brain scientists, web and mobile engineers to tune platform-wide performance",
+      "Shipped immersive fitness experiences for a UK-based software house"
+    ],
+    "downloads": "20,000+",
+    "rating": "4.6 / 5"
   },
   {
     "name": "LUDO CRUISE",
@@ -43,8 +50,6 @@
     "icon": "casino",
     "tagline": "Real-time Multiplayer & Networking | Gameplay Systems Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Photon PUN2",
       "Firebase",
       "Real-time Multiplayer",
@@ -57,7 +62,16 @@
     "screenshots": [
       "/images/Ludo_1.webp"
     ],
-    "youtubeVideoId": "s6sdmf7Q0uc"
+    "youtubeVideoId": "s6sdmf7Q0uc",
+    "role": "Gameplay & Multiplayer Developer",
+    "contributions": [
+      "Owned every gameplay mechanic and all multiplayer services end to end",
+      "Shipped all game modes with matchmaking, real-time chat and state synchronization",
+      "Tuned network performance to keep latency low across live matches",
+      "Integrated the game economy, in-app purchases and ad monetization"
+    ],
+    "downloads": "100,000+",
+    "rating": "4.5 / 5"
   },
   {
     "name": "LUMBER TYCOON INC",
@@ -72,8 +86,6 @@
     "icon": "forest",
     "tagline": "Idle Game Design & Economy | Mobile Optimization Specialist",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Scriptable Objects",
       "Data Persistence",
       "SQLite",
@@ -87,7 +99,17 @@
       "/images/LUMBER_1.webp",
       "/images/LUMBER_2.webp"
     ],
-    "youtubeVideoId": "GWMmodtsSog"
+    "youtubeVideoId": "GWMmodtsSog",
+    "role": "Game Developer",
+    "contributions": [
+      "Built a complete idle simulation title from core mechanics through release",
+      "Designed and implemented every AI system from scratch for NPC behavior",
+      "Balanced the in-game economy to hold engagement across long play sessions",
+      "Drove retention through progression systems and rewarding gameplay loops",
+      "Optimized memory and performance for low-end mobile hardware"
+    ],
+    "downloads": "50,000+",
+    "rating": "4.4 / 5"
   },
   {
     "name": "ALISHA ACADEMY KIDS LEARNING",
@@ -101,8 +123,6 @@
     "icon": "school",
     "tagline": "Educational Game Design | UI/UX & Gamification Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "UI/UX Design",
       "Educational Game Design",
       "Accessibility",
@@ -131,8 +151,6 @@
     "icon": "sports_bar",
     "tagline": "FPS Mechanics & Ballistics | VFX & Team Lead",
     "techTags": [
-      "Unity3D",
-      "C#",
       "FPS Mechanics",
       "Ballistics System",
       "Custom Shaders",
@@ -147,7 +165,17 @@
       "/images/Sniper_1.webp",
       "/images/Sniper_2.webp"
     ],
-    "youtubeVideoId": "NIWZUdnRhKc"
+    "youtubeVideoId": "NIWZUdnRhKc",
+    "role": "Lead Developer",
+    "contributions": [
+      "Led a team of developers and designers through delivery of the title",
+      "Built a realistic ballistics model with wind, bullet drop and penetration",
+      "Developed state-machine enemy AI for tactical combat responses",
+      "Created a weapon customization system with upgrades and authored recoil patterns",
+      "Optimized the rendering pipeline for smooth mobile frame rates"
+    ],
+    "downloads": "250,000+",
+    "rating": "4.7 / 5"
   },
   {
     "name": "CRAZY TAXI 2 – ANGRY DRIVER",
@@ -159,8 +187,6 @@
     "icon": "local_taxi",
     "tagline": "Vehicle Physics & Traffic AI | Open World Development",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Wheel Colliders",
       "Physics Simulation",
       "AI Pathfinding",
@@ -188,8 +214,6 @@
     "icon": "bomb",
     "tagline": "FPS Level Design & NPC AI | Multiplayer Systems",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Multiplayer Networking",
       "Level Design",
       "VFX",
@@ -217,8 +241,6 @@
     "icon": "sports_car",
     "tagline": "Vehicle Physics & Drifting | Multiplayer Racing Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Vehicle Physics",
       "Drift Mechanics",
       "Multiplayer",
@@ -233,7 +255,16 @@
       "/images/Racing_1.webp",
       "/images/Racing_2.webp"
     ],
-    "youtubeVideoId": "jUw5B6rFkhw"
+    "youtubeVideoId": "jUw5B6rFkhw",
+    "role": "Gameplay & Physics Developer",
+    "contributions": [
+      "Implemented custom vehicle physics with handbrake, counter-steering and tire grip",
+      "Built real-time multiplayer synchronization for competitive racing",
+      "Created a car customization system spanning visual and performance upgrades",
+      "Designed 20+ tracks across varied terrain and weather conditions"
+    ],
+    "downloads": "75,000+",
+    "rating": "4.3 / 5"
   },
   {
     "name": "ZOMBIE SHOOTER 3D",
@@ -247,8 +278,6 @@
     "icon": "emergency",
     "tagline": "FPS AI & Horror VFX | Wave-Based Game Design",
     "techTags": [
-      "Unity3D",
-      "C#",
       "AI",
       "Pathfinding",
       "VFX",
@@ -263,7 +292,16 @@
       "/images/Zombie_1.webp",
       "/images/Zombie_2.webp"
     ],
-    "youtubeVideoId": "H6qyTSqljMg"
+    "youtubeVideoId": "H6qyTSqljMg",
+    "role": "Gameplay & AI Developer",
+    "contributions": [
+      "Developed horde AI with state machines and pathfinding for coordinated behavior",
+      "Built firearm, explosive and melee weapon systems with realistic damage models",
+      "Authored VFX for gore, explosions and environmental effects",
+      "Designed a wave manager with escalating difficulty and special enemy types"
+    ],
+    "downloads": "120,000+",
+    "rating": "4.5 / 5"
   },
   {
     "name": "BUS SIMULATOR",
@@ -275,8 +313,6 @@
     "icon": "bus_alert",
     "tagline": "Vehicle Simulation & Open World | Traffic AI Specialist",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Vehicle Physics",
       "Traffic AI",
       "Open World",
@@ -305,8 +341,6 @@
     "icon": "flag",
     "tagline": "Quiz Systems & Localization | 30+ Languages Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "UI/UX",
       "Quiz Mechanics",
       "Localization",
@@ -330,8 +364,6 @@
     "icon": "flight_takeoff",
     "tagline": "2D Physics & Procedural Generation | Arcade Gameplay",
     "techTags": [
-      "Unity3D",
-      "C#",
       "2D Physics",
       "Gameplay Programming",
       "Procedural Generation",
@@ -359,8 +391,6 @@
     "icon": "extension",
     "tagline": "Match-3 & Puzzle Mechanics | Localization Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Puzzle Mechanics",
       "Match-3",
       "UI/UX",
@@ -388,7 +418,6 @@
     "tagline": "Turn-Based Combat & Strategy | RPG Systems",
     "techTags": [
       "Unreal Engine",
-      "C#",
       "Turn-Based Combat",
       "Strategy",
       "Management Sim",
@@ -415,8 +444,6 @@
     "icon": "truck",
     "tagline": "Off-Road Physics & Terrain | Mobile Simulation",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Vehicle Physics",
       "Terrain",
       "Mud Simulation",
@@ -446,8 +473,6 @@
     "icon": "auto_awesome",
     "tagline": "Match-3 Casual Games | Level Design Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Match-3 Logic",
       "Cascading",
       "UI/UX",
@@ -474,8 +499,6 @@
     "icon": "rocket_launch",
     "tagline": "Arcade Gameplay & Spawning Systems | Casual Expert",
     "techTags": [
-      "Unity3D",
-      "C#",
       "2D Physics",
       "Gameplay Programming",
       "Spawning System",
@@ -503,8 +526,6 @@
     "icon": "auto_stories",
     "tagline": "AI & Speech Recognition | Educational Game Design",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Machine Learning",
       "Speech Recognition",
       "NLP",
@@ -529,8 +550,6 @@
     "icon": "directions_run",
     "tagline": "Endless Runner & Mobile | Procedural Generation",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Procedural Generation",
       "Gameplay Programming",
       "Object Pooling",
@@ -559,8 +578,6 @@
     "icon": "calculate",
     "tagline": "Math Made Fun | Brain Training & Learning",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Educational Technology",
       "Math Visualization",
       "Gamification",
@@ -590,7 +607,6 @@
     "tagline": "FPS Hunting Simulation | Wildlife AI",
     "techTags": [
       "Unreal Engine",
-      "C#",
       "FPS Mechanics",
       "AI Behavior",
       "Weapon System",
@@ -614,8 +630,6 @@
     "icon": "local_parking",
     "tagline": "Vehicle Physics | Driving Simulation",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Vehicle Physics",
       "Physics Simulation",
       "Level Design",
@@ -640,8 +654,6 @@
     "icon": "sailing",
     "tagline": "Physics-Based Building | Roblox Game",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Physics Simulation",
       "Building System",
       "Water Physics",
@@ -665,8 +677,6 @@
     "icon": "sports_martial_arts",
     "tagline": "WebGL Shooter | Action Gameplay",
     "techTags": [
-      "Unity3D",
-      "C#",
       "WebGL",
       "Top-Down Shooter",
       "Weapon System",
@@ -691,8 +701,6 @@
     "icon": "music_note",
     "tagline": "Rhythm Game | Music Synchronization",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Rhythm Game",
       "Music Sync",
       "Animation",
@@ -716,8 +724,6 @@
     "icon": "thunderstorm",
     "tagline": "Hyper Casual | Building & Survival",
     "techTags": [
-      "Unity3D",
-      "C#",
       "Hyper Casual",
       "Building System",
       "Game Economy",
@@ -741,8 +747,6 @@
     "icon": "castle",
     "tagline": "2D Strategy | Multiplayer & AI",
     "techTags": [
-      "Unity3D",
-      "C#",
       "2D Game",
       "Multiplayer",
       "AI Opponent",
@@ -766,8 +770,6 @@
     "icon": "school",
     "tagline": "Educational Platform | Academic Management",
     "techTags": [
-      "Unity3D",
-      "C#",
       "User Authentication",
       "Database",
       "Cloud Architecture",
@@ -791,8 +793,6 @@
     "icon": "location_city",
     "tagline": "City Building | Dubai Expo Siemens",
     "techTags": [
-      "Unity3D",
-      "C#",
       "City Building",
       "Simulation",
       "Infrastructure",

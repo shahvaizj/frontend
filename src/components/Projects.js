@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './Projects.css';
 import ProjectVisualsCarousel from './ProjectVisualsCarousel';
@@ -7,7 +7,7 @@ const highlightKeywords = (text) => {
   if (!text) return null;
   
   const keywords = [
-    'Unity3D', 'Unity', 'C#', 'JavaScript', 'TypeScript', 'React', 'Node.js',
+    'JavaScript', 'TypeScript', 'React', 'Node.js',
     'Firebase', 'Photon', 'PUN', 'PUN2', 'PlayFab', 'AWS', 'Docker',
     'AI', 'Machine Learning', 'NLP',
     'Multiplayer', 'Networking', 'Network Synchronization',
@@ -92,6 +92,148 @@ const highlightKeywords = (text) => {
   return <>{elements}</>;
 };
 
+/* Material Symbol shown inside each tech chip. Anything unmapped falls back to a
+   neutral glyph, so new tags never break the row. */
+const TAG_ICONS = {
+  'Brain EEG Sensor': 'neurology',
+  'Machine Learning': 'network_intelligence',
+  'Pose Estimation': 'accessibility_new',
+  'Firebase': 'local_fire_department',
+  'Cloud Architecture': 'cloud',
+  'RESTful APIs': 'api',
+  'Photon PUN2': 'hub',
+  'Real-time Multiplayer': 'groups',
+  'Multiplayer': 'groups',
+  'Network Synchronization': 'sync_alt',
+  'Game Economy': 'monetization_on',
+  'Game Economy Design': 'monetization_on',
+  'IAP': 'shopping_cart',
+  'Ad Integration': 'ads_click',
+  'UI/UX Design': 'dashboard',
+  'UI/UX': 'dashboard',
+  'Scriptable Objects': 'inventory_2',
+  'Data Persistence': 'save',
+  'SQLite': 'database',
+  'Mobile Optimization': 'speed',
+  'Memory Management': 'memory',
+  'Performance Tuning': 'tune',
+  'FPS Mechanics': 'target',
+  'FPS': 'target',
+  'Ballistics System': 'track_changes',
+  'Custom Shaders': 'gradient',
+  'Weapon System': 'swords',
+  'Weapon Systems': 'swords',
+  'AI Behavior Trees': 'account_tree',
+  'AI': 'psychology',
+  'Pathfinding': 'route',
+  'VFX': 'auto_awesome',
+  'Post-processing': 'filter_vintage',
+  'Lighting': 'lightbulb',
+  'Vehicle Physics': 'directions_car',
+  'Drift Mechanics': 'moving',
+  'Car Customization': 'build',
+  'Tuning System': 'settings',
+  'Leaderboards': 'leaderboard',
+  'Gore System': 'bloodtype',
+  'Wave Management': 'waves',
+};
+
+const iconForTag = (tag) => TAG_ICONS[tag] || 'chevron_right';
+
+/* The card header, meta tiles and media caption are all derived from fields the
+   project data already carries — no extra authoring needed per project. */
+const buildCardData = (project) => {
+  const tags = project.techTags || [];
+  const taglineParts = (project.tagline || '').split('|').map((s) => s.trim()).filter(Boolean);
+
+  /* Engine and language are deliberately absent — the chip row covers the
+     plugins and systems, these tiles cover the outcome. */
+  const meta = [
+    project.genre && { label: 'Game Genre', value: project.genre },
+    project.role && { label: 'My Role', value: project.role },
+    project.downloads && { label: 'Downloads', value: project.downloads },
+    project.rating && { label: 'Rating', value: project.rating },
+  ].filter(Boolean);
+
+  return { meta, focus: taglineParts[0] || null };
+};
+
+/* Types the bullets out one after another once the card scrolls into view, then
+   swaps in the keyword-highlighted version. A hidden copy of the finished list
+   holds the box height steady so the card never reflows mid-animation. */
+const TypewriterList = ({ items, speed = 8 }) => {
+  const ref = useRef(null);
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const text = items.join('');
+
+  useEffect(() => {
+    if (started) return undefined;
+
+    const node = ref.current;
+    if (!node) return undefined;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(text.length);
+      setStarted(true);
+      return undefined;
+    }
+
+    /* Plain rect checks on scroll rather than IntersectionObserver: the same
+       approach App.js already uses, and it cannot leave the text stuck empty
+       if the observer never fires. */
+    const check = () => {
+      const rect = node.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+        setStarted(true);
+      }
+    };
+
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+    };
+  }, [text, started]);
+
+  useEffect(() => {
+    if (!started || count >= text.length) return undefined;
+    const timer = setTimeout(() => setCount((c) => Math.min(c + 2, text.length)), speed);
+    return () => clearTimeout(timer);
+  }, [started, count, text, speed]);
+
+  const done = count >= text.length;
+
+  /* Walk the bullets, handing each one its share of the typed characters. */
+  let budget = count;
+  const revealed = items.map((item) => {
+    const shown = Math.max(0, Math.min(item.length, budget));
+    budget -= item.length;
+    return { full: item, shown };
+  });
+  const typingIndex = revealed.findIndex((r) => r.shown > 0 && r.shown < r.full.length);
+
+  return (
+    <div className="project-role-text typewriter" ref={ref}>
+      <ul className="contribution-list typewriter-sizer" aria-hidden="true">
+        {items.map((item, i) => <li key={i}>{item}</li>)}
+      </ul>
+      <ul className="contribution-list typewriter-live">
+        {revealed.map((entry, i) => (
+          entry.shown > 0 && (
+            <li key={i}>
+              {done ? highlightKeywords(entry.full) : entry.full.slice(0, entry.shown)}
+              {i === typingIndex && <span className="typewriter-caret">|</span>}
+            </li>
+          )
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 const Projects = ({ projects, portfolioType = 'gaming' }) => {
   const [showOtherProjects, setShowOtherProjects] = useState(false);
 
@@ -172,39 +314,65 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
     <section id="projects" className="projects-section reveal">
       <h2>Featured Projects</h2>
       <div className="projects-grid">
-        {featuredProjects.map((project, index) => (
-          <div key={index} className="project-card">
-            <div className="project-left-column">
-              <div className="project-header">
+        {featuredProjects.map((project, index) => {
+          const card = buildCardData(project);
+
+          return (
+            <article key={index} className="project-card">
+              <header className="project-card-head">
                 <h3 className="project-name">{project.name}</h3>
                 <p className="project-genre">{project.genre}</p>
+
                 <div className="project-tech-tags">
                   {project.techTags && project.techTags.map((tag, i) => (
-                    <span key={i} className="tech-tag">{tag}</span>
+                    <span key={i} className="tech-tag">
+                      <span className="material-symbols-outlined">{iconForTag(tag)}</span>
+                      {tag}
+                    </span>
                   ))}
                 </div>
-              </div>
-              <div className="project-role">
-                <h4>My Role:</h4>
-                <p>{highlightKeywords(project.myRole)}</p>
-                {project.link && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
-                    More Info
-                  </a>
-                )}
-              </div>
-            </div>
+              </header>
 
-            {/* Use the new ProjectVisualsCarousel component */}
-            <div className="project-visuals-wrapper"> {/* New wrapper for visuals and thumbnails */}
-              <ProjectVisualsCarousel
-                youtubeVideoIds={project.youtubeVideoIds || (project.youtubeVideoId ? [project.youtubeVideoId] : [])}
-                screenshots={project.screenshots}
-                projectName={project.name}
-              />
-            </div>
-          </div>
-        ))}
+              <div className="project-card-body">
+                {card.meta.length > 0 && (
+                  <div className="project-meta-grid">
+                    {card.meta.map((item, i) => (
+                      <div key={i} className="project-meta">
+                        <span className="project-meta-label">{item.label}</span>
+                        <span className="project-meta-value">{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <div className="project-media">
+                  <div className="project-visuals-wrapper">
+                    <ProjectVisualsCarousel
+                      youtubeVideoIds={project.youtubeVideoIds || (project.youtubeVideoId ? [project.youtubeVideoId] : [])}
+                      screenshots={project.screenshots}
+                      projectName={project.name}
+                    />
+                  </div>
+                </div>
+
+                <div className="project-role-panel">
+                  <h4 className="project-role-title">
+                    <span className="material-symbols-outlined">badge</span>
+                    Key Contribution
+                  </h4>
+                  <TypewriterList items={project.contributions || [project.myRole]} />
+
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">
+                      View Project
+                      <span className="material-symbols-outlined">arrow_outward</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       {otherProjects.length > 0 && (
