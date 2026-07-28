@@ -1,56 +1,22 @@
 .projects-section h2 {
-  text-align: left;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.projects-grid {
-  display: grid;
-  gap: clamp(1.6rem, 3vw, 2.8rem);
+.project-panel,
+.projects-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
 }
 
-.project-card {
+.project-panel-card {
   display: grid;
-  grid-template-columns: 0.88fr 1.12fr;
+  grid-template-columns: 1fr 1.2fr;
   align-items: center;
   gap: clamp(1.4rem, 3vw, 2.8rem);
-  background: none;
-  border: none;
-  padding: clamp(1rem, 2vw, 1.6rem) 0;
-  transition: transform 0.35s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-}
-
-/* Alternate text/media sides for a showcase rhythm */
-.project-card:nth-child(even) .project-left-column {
-  order: 2;
-}
-
-.project-card:nth-child(even) .project-visuals-wrapper {
-  order: 1;
-}
-
-/* First project = full-width cinematic hero */
-.project-card:first-child {
-  grid-template-columns: 1fr;
-  gap: clamp(1.2rem, 2.4vw, 2rem);
-  padding: clamp(1.2rem, 2.4vw, 2rem) 0;
-}
-
-.project-card:first-child .project-left-column,
-.project-card:first-child .project-visuals-wrapper {
-  order: 0;
-}
-
-.project-card:first-child .project-name {
-  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
-}
-
-.project-card:first-child .project-visuals-wrapper {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .project-left-column {
@@ -68,13 +34,12 @@
 }
 
 .project-genre {
-  margin-top: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent-2);
 }
 
 .project-tech-tags {
@@ -85,22 +50,19 @@
 }
 
 .tech-tag {
-  border-radius: 2px;
-  border: 1px solid var(--hairline);
-  background: transparent;
-  color: var(--text-color);
-  font-family: var(--font-mono);
-  padding: 0.32rem 0.6rem;
-  font-size: 0.66rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  border-radius: 999px;
+  border: 1px solid var(--card-stroke);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--heading-color);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
 }
 
 .tech-tag:hover {
-  border-color: var(--heading-color);
-  color: var(--heading-color);
+  transform: translateY(-1px);
+  border-color: var(--accent-color);
 }
 
 .project-role h4 {
@@ -131,20 +93,18 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border-radius: 0;
+  border-radius: 999px;
   background: var(--button-bg);
   color: var(--button-text);
-  padding: 0.7rem 1.1rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: background-color 0.25s ease;
+  padding: 0.62rem 1rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .more-info-button:hover {
-  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px var(--accent-glow);
 }
 
 .project-visuals-wrapper {
@@ -267,81 +227,54 @@
   color: #fff;
 }
 
-.other-projects {
-  margin-top: clamp(2.4rem, 4vw, 3.6rem);
+.other-projects-panel {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 4rem);
 }
 
-.other-projects-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.2rem;
+.other-projects-panel h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.other-projects-heading {
-  font-size: clamp(1.4rem, 2.6vw, 2rem);
-}
-
-.other-projects-hint {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.other-projects-slider {
-  display: flex;
-  gap: 1.15rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 1.4rem 0.3rem 1.6rem;
-  cursor: grab;
-  scroll-behavior: auto;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: pan-y;
+.other-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 0.5rem;
   scrollbar-width: thin;
   scrollbar-color: var(--card-stroke) transparent;
 }
 
-.other-projects-slider::-webkit-scrollbar {
-  height: 8px;
-}
-
-.other-projects-slider::-webkit-scrollbar-thumb {
-  background: var(--card-stroke);
-  border-radius: 999px;
-}
-
-.other-projects-slider.dragging {
-  cursor: grabbing;
-  scroll-behavior: auto;
-}
-
-.other-projects-slider.dragging .other-project-card {
-  pointer-events: none;
-}
-
 .other-project-card {
-  flex: 0 0 clamp(240px, 24vw, 300px);
   border: 1px solid var(--card-stroke);
   border-radius: 8px;
   padding: 0.7rem 0.9rem;
-  background: var(--card-solid);
+  background: rgba(255, 255, 255, 0.02);
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   will-change: transform;
+}
+
+/* Alternating tint so the strip reads as a rhythm, not a flat wall */
+.other-project-card:nth-child(odd) {
+  background: rgba(96, 165, 250, 0.06);
+}
+
+.other-project-card:nth-child(even) {
+  background: rgba(45, 212, 191, 0.06);
 }
 
 .other-project-card:hover {
   transform: translateY(-3px);
   border-color: var(--accent-color);
+  box-shadow: 0 16px 30px rgba(3, 10, 25, 0.32);
   z-index: 2;
 }
 
@@ -427,7 +360,7 @@
 }
 
 @media (max-width: 1100px) {
-  .project-card {
+  .project-panel-card {
     grid-template-columns: 1fr;
   }
 }
@@ -446,8 +379,9 @@
     height: 30px;
   }
 
-  .other-project-card {
-    flex-basis: 82%;
+  .other-projects-grid {
+    grid-template-columns: 1fr;
+    max-height: 60vh;
   }
 
   .other-project-card:hover {

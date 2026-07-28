@@ -41,7 +41,7 @@ const Contact = ({ contact }) => {
     <section id="contact" className="contact-section reveal">
       <h2>Get In Touch</h2>
       <div className="contact-container">
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form className="contact-form reveal reveal-left" onSubmit={handleSubmit}>
           <div className="form-group">
             <input
               type="text"
@@ -79,7 +79,7 @@ const Contact = ({ contact }) => {
           {status === 'error' && <p className="error-msg">Failed to send message. Please try again.</p>}
         </form>
 
-        <div className="contact-side-panel">
+        <div className="contact-side-panel reveal reveal-right">
           <div className="contact-email">
             <a href={`mailto:${email}`}>{email}</a>
           </div>

@@ -1,6 +1,19 @@
 .skills-section h2 {
-  text-align: left;
+  text-align: center;
   margin-bottom: 2rem;
+}
+
+.skill-category-panel {
+  text-align: center;
+}
+
+.skill-category-panel h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.skill-category-panel .skills-category-header {
+  justify-content: center;
 }
 
 .skills-categories {
@@ -50,9 +63,9 @@
   will-change: transform;
 }
 
-/* Give cards a solid background in light mode so light icons are visible */
+/* Give cards a non-white background in light mode so white/light icons are visible */
 .App.light .skill-card {
-  background: #ffffff;
+  background: #eef2ff;
 }
 
 /* Skill card */
@@ -65,16 +78,17 @@
   padding: 1rem 0.85rem 0.8rem;
   min-width: 100px;
   background: var(--card-solid);
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
+  border: 1px solid var(--card-stroke);
+  border-radius: 14px;
   text-align: center;
   cursor: inherit;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   flex-shrink: 0;
 }
 
 .skill-card:hover {
-  border-color: var(--heading-color);
+  border-color: var(--accent-color);
+  box-shadow: 0 6px 20px var(--accent-glow);
 }
 
 .skill-icon {

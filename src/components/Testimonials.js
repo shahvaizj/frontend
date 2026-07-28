@@ -40,7 +40,7 @@ const Testimonials = ({ testimonials }) => {
   return (
     <section id="testimonials" className="testimonials-section reveal">
       <h2>Testimonials</h2>
-      <div className="testimonials-carousel">
+      <div className="testimonials-carousel reveal-scale">
         <button className="testimonial-arrow left" onClick={goPrev} aria-label="Previous testimonial">
           <span className="material-symbols-outlined">chevron_left</span>
         </button>

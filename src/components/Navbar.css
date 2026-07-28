@@ -6,7 +6,9 @@
   border-radius: 999px;
   border: 1px solid var(--card-stroke);
   background: var(--navbar-bg);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(4, 10, 28, 0.4);
   z-index: 1050;
   padding: 0.5rem 0.6rem;
 }
@@ -48,6 +50,7 @@
 .nav-link.active {
   background: var(--button-bg);
   color: var(--button-text);
+  box-shadow: 0 10px 20px var(--accent-glow);
 }
 
 .nav-tooltip {
@@ -61,13 +64,10 @@
   background: var(--card-solid);
   border: 1px solid var(--card-stroke);
   color: var(--heading-color);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.76rem;
+  font-weight: 700;
   padding: 0.45rem 0.72rem;
-  border-radius: 2px;
+  border-radius: 999px;
   white-space: nowrap;
   transition: all 0.22s ease;
 }
@@ -98,6 +98,7 @@
     padding: 0.35rem 0.5rem 0.5rem;
     background: var(--navbar-bg);
     border-top: 1px solid var(--card-stroke);
+    backdrop-filter: blur(10px);
     z-index: 1100;
   }
 

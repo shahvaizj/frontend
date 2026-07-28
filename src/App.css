@@ -2,15 +2,13 @@
   min-height: 100vh;
   width: 100%;
   color: var(--text-color);
-  background: var(--bg-color);
-  overflow-x: hidden;
-  overflow-y: visible;
+  background: linear-gradient(180deg, transparent, rgba(12, 18, 34, 0.24));
 }
 
 .main-content {
   position: relative;
   z-index: 1;
-  padding: 1.4rem 0 7rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
 }
@@ -87,7 +85,6 @@
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
-    padding-top: 4.2rem;
     padding-bottom: 74px;
   }
 

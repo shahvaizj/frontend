@@ -178,28 +178,30 @@ const MarqueeRow = ({ items, speed = 0.35 }) => {
 };
 
 const Skills = ({ skills }) => (
-  <section id="skills" className="skills-section reveal">
-    <h2>Skills</h2>
-    <div className="skills-categories">
-      {skills.map((categoryData, i) => {
-        const meta = CATEGORY_META[categoryData.category] || { icon: 'star', color: 'var(--accent-color)' };
-        return (
-          <div key={i} className={`skills-category reveal reveal-delay-${i + 1}`}>
-            <div className="skills-category-header">
-              <span
-                className="material-symbols-outlined category-icon"
-                style={{ color: meta.color }}
-              >
-                {meta.icon}
-              </span>
-              <h3 style={{ color: meta.color }}>{categoryData.category}</h3>
-            </div>
-            <MarqueeRow items={categoryData.items} speed={SPEEDS[i] ?? 0.35} />
+  <>
+    {skills.map((categoryData, i) => {
+      const meta = CATEGORY_META[categoryData.category] || { icon: 'star', color: 'var(--accent-color)' };
+      return (
+        <section
+          key={i}
+          id={i === 0 ? 'skills' : undefined}
+          className={`skills-section skill-category-panel reveal ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`}
+        >
+          {i === 0 && <h2>Skills</h2>}
+          <div className="skills-category-header">
+            <span
+              className="material-symbols-outlined category-icon"
+              style={{ color: meta.color }}
+            >
+              {meta.icon}
+            </span>
+            <h3 style={{ color: meta.color }}>{categoryData.category}</h3>
           </div>
-        );
-      })}
-    </div>
-  </section>
+          <MarqueeRow items={categoryData.items} speed={SPEEDS[i] ?? 0.35} />
+        </section>
+      );
+    })}
+  </>
 );
 
 export default Skills;

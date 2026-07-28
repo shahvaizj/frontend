@@ -3,12 +3,12 @@ import './InDevTrailer.css';
 
 const InDevTrailer = () => (
   <section id="in-dev" className="indev-section reveal">
-    <div className="indev-header">
+    <div className="indev-header reveal reveal-delay-1">
       <span className="indev-badge">In Development</span>
       <h2 className="section-heading">Currently in the Forge</h2>
       <p className="indev-subtext">An early look at something being built right now.</p>
     </div>
-    <div className="indev-frame-wrap">
+    <div className="indev-frame-wrap reveal reveal-delay-2">
       <iframe
         title="In Development Project Trailer"
         src="https://www.youtube.com/embed/3IGaeBu36OA"

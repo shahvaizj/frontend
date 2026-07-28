@@ -1,27 +1,174 @@
+.webgl-showcase-section {
+  text-align: center;
+}
+
 .webgl-showcase-section > * {
   position: relative;
   z-index: 1;
 }
 
-.webgl-frame-wrap {
-  border: 1px solid var(--hairline);
-  border-radius: 2px;
+.webgl-launch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--card-stroke);
+  border-radius: 16px;
+  padding: clamp(1rem, 2.5vw, 1.45rem);
+  background: var(--card-solid);
+  box-shadow: 0 18px 48px rgba(8, 14, 28, 0.25);
+}
+
+.webgl-kicker {
+  margin: 0 0 0.35rem;
+  color: var(--accent-2);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.webgl-copy {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 0.98rem;
+}
+
+.webgl-play-button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 12px 22px var(--accent-glow);
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.webgl-play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px var(--accent-glow);
+}
+
+.webgl-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.55rem, 2vw, 1.25rem);
+}
+
+.webgl-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 8, 20, 0.86);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+.webgl-modal-panel {
+  position: relative;
+  width: min(1180px, 100%);
+  max-height: min(92dvh, 860px);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  background: #000;
+  border: 1px solid var(--card-stroke);
+  border-radius: 16px;
+  background: var(--card-solid);
+  box-shadow: 0 28px 60px rgba(2, 8, 20, 0.6);
+}
+
+.webgl-modal-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--card-stroke);
+}
+
+.webgl-modal-kicker {
+  margin: 0 0 0.18rem;
+  color: var(--accent-2);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.webgl-modal-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.webgl-modal-close {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  border: 1px solid var(--card-stroke);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--heading-color);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.webgl-modal-close:hover {
+  transform: scale(1.05);
+  border-color: var(--accent-color);
 }
 
 .webgl-frame {
   display: block;
   width: 100%;
-  height: min(72vh, 760px);
-  min-height: 500px;
+  height: min(78dvh, 760px);
+  min-height: 420px;
   border: 0;
   background: #000;
 }
 
 @media (max-width: 768px) {
+  .webgl-launch-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .webgl-play-button {
+    width: 100%;
+  }
+
+  .webgl-modal {
+    padding: 0.45rem;
+  }
+
+  .webgl-modal-panel {
+    width: 100%;
+    max-height: 94dvh;
+    border-radius: 12px;
+  }
+
+  .webgl-modal-header {
+    min-height: 58px;
+    padding: 0.7rem;
+  }
+
   .webgl-frame {
-    height: min(64vh, 520px);
-    min-height: 360px;
+    height: calc(94dvh - 58px);
+    min-height: 320px;
   }
 }
