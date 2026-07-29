@@ -2,10 +2,9 @@
   {
     "name": "Body Mirror",
     "category": [
-      "gaming",
       "educational"
     ],
-    "gamingOrder": 1,
+    "gamingOrder": null,
     "educationalOrder": 1,
     "genre": "Sensors Powered Fitness Games App",
     "description": "An innovative health platform that combines advanced AI, neuroscience, and immersive games to track and enhance brain and body health. Features real-time pose estimation, motion-controlled gaming experiences, and comprehensive health tracking powered by cutting-edge technology.",
@@ -35,7 +34,8 @@
       "Shipped immersive fitness experiences for a UK-based software house"
     ],
     "downloads": "20,000+",
-    "rating": "4.6 / 5"
+    "rating": "4.6",
+    "platform": "Android | iOS"
   },
   {
     "name": "LUDO CRUISE",
@@ -45,7 +45,7 @@
     ],
     "gamingOrder": 2,
     "educationalOrder": 4,
-    "genre": "Multiplayer Online Board Game",
+    "genre": "Online Multiplayer Board Game",
     "description": "A commercially successful multiplayer Ludo game with real-time online connectivity, multiple game modes, in-app purchases, and ads integration. Features cross-platform multiplayer, competitive rankings, seasonal events, and social features including chat and friend lists.",
     "icon": "casino",
     "tagline": "Real-time Multiplayer & Networking | Gameplay Systems Expert",
@@ -63,15 +63,27 @@
       "/images/Ludo_1.webp"
     ],
     "youtubeVideoId": "s6sdmf7Q0uc",
-    "role": "Gameplay & Multiplayer Developer",
+    "role": "Multiplayer Game Developer",
     "contributions": [
-      "Owned every gameplay mechanic and all multiplayer services end to end",
-      "Shipped all game modes with matchmaking, real-time chat and state synchronization",
-      "Tuned network performance to keep latency low across live matches",
-      "Integrated the game economy, in-app purchases and ad monetization"
+      "Online Multiplayer",
+      "Turn-Based Synchronization",
+      "Matchmaking & Private Rooms",
+      "Friend System",
+      "Live Events",
+      "Leaderboards"
     ],
-    "downloads": "100,000+",
-    "rating": "4.5 / 5"
+    "downloads": "1M+",
+    "rating": "4.5",
+    "platform": "Android | iOS",
+    "techStack": [
+      "Photon Fusion",
+      "PlayFab",
+      "Facebook SDK",
+      "DOTween",
+      "Unity Gaming Services",
+      "Cloud Code",
+      "Cloud Save"
+    ]
   },
   {
     "name": "LUMBER TYCOON INC",
@@ -81,7 +93,7 @@
     ],
     "gamingOrder": 3,
     "educationalOrder": null,
-    "genre": "Idle & Tycoon Simulation",
+    "genre": "Idle Tycoon & Resource Management",
     "description": "A hyper-casual idle simulation game with millions of downloads featuring incremental gameplay, unlockable upgrades, resource management, and offline progression. Built with scalable architecture supporting dynamic events, seasonal content, and live operations.",
     "icon": "forest",
     "tagline": "Idle Game Design & Economy | Mobile Optimization Specialist",
@@ -100,16 +112,27 @@
       "/images/LUMBER_2.webp"
     ],
     "youtubeVideoId": "GWMmodtsSog",
-    "role": "Game Developer",
+    "role": "Solo Game Developer",
     "contributions": [
-      "Built a complete idle simulation title from core mechanics through release",
-      "Designed and implemented every AI system from scratch for NPC behavior",
-      "Balanced the in-game economy to hold engagement across long play sessions",
-      "Drove retention through progression systems and rewarding gameplay loops",
-      "Optimized memory and performance for low-end mobile hardware"
+      "Built the complete gameplay experience in Unity",
+      "Designed progression, economy, and core systems",
+      "Published and maintained the live product",
+      "Performed ASO and optimized store listings",
+      "Managed user acquisition assets and marketing materials",
+      "Improved performance and monetization after launch"
     ],
     "downloads": "50,000+",
-    "rating": "4.4 / 5"
+    "rating": "4.4",
+    "platform": "Android | iOS",
+    "techStack": [
+      "DOTween",
+      "Firebase Analytics",
+      "Unity Addressables",
+      "Odin Inspector",
+      "Unity Localization",
+      "Remote Config",
+      "URP"
+    ]
   },
   {
     "name": "ALISHA ACADEMY KIDS LEARNING",
@@ -146,7 +169,7 @@
     ],
     "gamingOrder": 4,
     "educationalOrder": null,
-    "genre": "FPS Tactical Sniper",
+    "genre": "First Person Sniper Shooter",
     "description": "A tactical FPS sniper game with realistic ballistics, wind mechanics, breath control, and immersive weapon customization. Features multiple campaign modes, zombie waves, competitive PvP, and an extensive weapon upgrade system with realistic recoil patterns.",
     "icon": "sports_bar",
     "tagline": "FPS Mechanics & Ballistics | VFX & Team Lead",
@@ -166,23 +189,36 @@
       "/images/Sniper_2.webp"
     ],
     "youtubeVideoId": "NIWZUdnRhKc",
-    "role": "Lead Developer",
+    "role": "Game Developer",
     "contributions": [
-      "Led a team of developers and designers through delivery of the title",
-      "Built a realistic ballistics model with wind, bullet drop and penetration",
-      "Developed state-machine enemy AI for tactical combat responses",
-      "Created a weapon customization system with upgrades and authored recoil patterns",
-      "Optimized the rendering pipeline for smooth mobile frame rates"
+      "Precision Shooting Mechanics",
+      "Enemy AI & Patrol System",
+      "Mission Framework",
+      "Weapon Progression",
+      "Scope & Camera Effects",
+      "FPS Optimization"
     ],
-    "downloads": "250,000+",
-    "rating": "4.7 / 5"
+    "downloads": "100,000+",
+    "rating": "4.7",
+    "platform": "Android | iOS",
+    "techStack": [
+      "Cinemachine",
+      "Behavior Designer",
+      "Firebase Crashlytics",
+      "DOTween",
+      "Unity AI Navigation",
+      "Addressables",
+      "HDRP (or URP if mobile)"
+    ]
   },
   {
     "name": "CRAZY TAXI 2 – ANGRY DRIVER",
     "category": [
       "gaming"
     ],
-    "genre": "Open-World Driving Simulation",
+    "gamingOrder": 1,
+    "educationalOrder": null,
+    "genre": "Open World Taxi Driving Simulator",
     "description": "An open-world taxi driving game featuring realistic vehicle physics, dynamic traffic AI, mission-based gameplay, and an expansive city environment. Includes vehicle customization, upgrades, and challenging delivery missions across diverse weather conditions.",
     "icon": "local_taxi",
     "tagline": "Vehicle Physics & Traffic AI | Open World Development",
@@ -202,7 +238,27 @@
       "/images/CT_2.webp",
       "/images/CT_3.webp"
     ],
-    "youtubeVideoId": "hFqlt3YFg1c"
+    "youtubeVideoId": "hFqlt3YFg1c",
+    "role": "Solo Game Developer",
+    "contributions": [
+      "Designed, developed, and launched the complete game",
+      "Published on Google Play Store",
+      "Managed ASO and store optimization",
+      "Created promotional assets and marketing creatives",
+      "Integrated monetization and analytics",
+      "Delivered post-launch updates and feature improvements"
+    ],
+    "downloads": "100,000+",
+    "platform": "Android | iOS",
+    "techStack": [
+      "Unity URP",
+      "Realistic Car Controller (RCC)",
+      "DOTween",
+      "AdMob",
+      "Game Analytics",
+      "Cinemachine",
+      "Addressables"
+    ]
   },
   {
     "name": "MODERN WARFARE SHOOTER",
@@ -236,7 +292,7 @@
     ],
     "gamingOrder": 5,
     "educationalOrder": null,
-    "genre": "Street Racing & Drifting",
+    "genre": "Arcade Racing Experience",
     "description": "A high-octane underground street racing game featuring realistic drift physics, nitrous boost systems, car customization, and competitive online multiplayer. Includes story mode, time attacks, drift challenges, and extensive vehicle tuning options.",
     "icon": "sports_car",
     "tagline": "Vehicle Physics & Drifting | Multiplayer Racing Expert",
@@ -256,15 +312,27 @@
       "/images/Racing_2.webp"
     ],
     "youtubeVideoId": "jUw5B6rFkhw",
-    "role": "Gameplay & Physics Developer",
+    "role": "Senior Game Developer",
     "contributions": [
-      "Implemented custom vehicle physics with handbrake, counter-steering and tire grip",
-      "Built real-time multiplayer synchronization for competitive racing",
-      "Created a car customization system spanning visual and performance upgrades",
-      "Designed 20+ tracks across varied terrain and weather conditions"
+      "Arcade Vehicle Physics",
+      "Drift & Nitro Mechanics",
+      "AI Opponent Racing",
+      "Vehicle Customization",
+      "Race Progression",
+      "Mobile Optimization"
     ],
-    "downloads": "75,000+",
-    "rating": "4.3 / 5"
+    "downloads": "50,000+",
+    "rating": "4.3",
+    "platform": "Android | iOS",
+    "techStack": [
+      "Eddy's Vehicle Physics",
+      "DOTween",
+      "AppLovin MAX",
+      "GameAnalytics",
+      "Cinemachine",
+      "URP",
+      "Unity Input System"
+    ]
   },
   {
     "name": "ZOMBIE SHOOTER 3D",
@@ -273,7 +341,7 @@
     ],
     "gamingOrder": 6,
     "educationalOrder": null,
-    "genre": "Survival Horror FPS",
+    "genre": "First Person Survival Action",
     "description": "An intense survival horror FPS with wave-based zombie gameplay, diverse weapon arsenal, and immersive storyline. Features realistic gore systems, dynamic lighting, procedural horde behavior, and cooperative multiplayer modes.",
     "icon": "emergency",
     "tagline": "FPS AI & Horror VFX | Wave-Based Game Design",
@@ -293,15 +361,27 @@
       "/images/Zombie_2.webp"
     ],
     "youtubeVideoId": "H6qyTSqljMg",
-    "role": "Gameplay & AI Developer",
+    "role": "Game Developer",
     "contributions": [
-      "Developed horde AI with state machines and pathfinding for coordinated behavior",
-      "Built firearm, explosive and melee weapon systems with realistic damage models",
-      "Authored VFX for gore, explosions and environmental effects",
-      "Designed a wave manager with escalating difficulty and special enemy types"
+      "FPS Combat Framework",
+      "Zombie AI State Machines",
+      "Wave-Based Enemy Spawning",
+      "Inventory & Weapon System",
+      "Dynamic Audio & VFX",
+      "Object Pooling & Optimization"
     ],
-    "downloads": "120,000+",
-    "rating": "4.5 / 5"
+    "downloads": "100,000+",
+    "rating": "4.5",
+    "platform": "Android | iOS",
+    "techStack": [
+      "Opsive Ultimate Character Controller",
+      "AI Navigation",
+      "FMOD",
+      "DOTween",
+      "Facebook SDK",
+      "Unity Addressables",
+      "Firebase Remote Config"
+    ]
   },
   {
     "name": "BUS SIMULATOR",

@@ -15,22 +15,6 @@
   overflow: hidden;
 }
 
-.home-gradient-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(circle at 12% 25%, rgba(96, 165, 250, 0.22), transparent 34%),
-    radial-gradient(circle at 85% 10%, rgba(45, 212, 191, 0.24), transparent 37%),
-    radial-gradient(circle at 66% 88%, rgba(56, 189, 248, 0.2), transparent 30%);
-  animation: driftBg 12s ease-in-out infinite;
-}
-
-@keyframes driftBg {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-2%, -1%, 0) scale(1.04); }
-}
-
 .home-content {
   position: relative;
   z-index: 1;
@@ -53,9 +37,19 @@
   font-weight: 700;
 }
 
-/* Name always sits on a single line — the vw term shrinks it rather than wrapping. */
+/* Name always sits on a single line. 3.6vw = 3vw (the 50%-smaller size) + 20%.
+   Still well under the ~6.7vw ceiling where "Shahvaiz Jahangeer" would start
+   outrunning the viewport at narrow widths, so it's guaranteed to fit.
+   Broken out of home-copy's 900px cap (same full-bleed technique as
+   .home-section) so it can keep scaling with viewport width instead of
+   freezing at a fixed size past ~1090px like the original design did. */
 .home-section h1 {
-  font-size: clamp(1.15rem, 6vw, 4.1rem);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 clamp(1.2rem, 5vw, 4rem);
+  box-sizing: border-box;
+  font-size: clamp(0.69rem, 3.6vw, 7.2rem);
   line-height: 1.08;
   margin-bottom: 0.8rem;
   white-space: nowrap;
@@ -75,48 +69,48 @@
   display: block;
 }
 
-.animated-title-container {
-  min-height: 2.2rem;
-  margin-bottom: 1rem;
-}
-
-/* 30% smaller than the previous 1.3/2.8/2 ramp. */
-.animated-title-container h2 {
-  margin: 0;
-  font-size: clamp(0.91rem, 1.96vw, 1.4rem);
-  color: var(--accent-2);
-}
-
-.typewriter-cursor {
-  color: var(--accent-color);
-  margin-left: 2px;
-}
-
-.typewriter-cursor.hidden {
-  opacity: 0;
-}
-
-.fun-titles-dots {
+/* Static specialisation strip: icon + small label per item. */
+.home-specialisations {
+  list-style: none;
+  margin: 1.3rem 0 0;
+  padding: 0;
   display: flex;
-  justify-content: center;
-  gap: 0.55rem;
   flex-wrap: wrap;
-  margin: 0.9rem 0 1.2rem;
+  justify-content: center;
+  gap: 1.6rem clamp(1.3rem, 3vw, 2.4rem);
 }
 
-.fun-title-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(148, 163, 184, 0.45);
-  transition: transform 0.25s ease, background-color 0.25s ease;
-  cursor: pointer;
+.home-spec-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.fun-title-dot.active,
-.fun-title-dot:hover {
-  transform: scale(1.28);
-  background: var(--accent-color);
+/* Both icon sets are single-color font glyphs (devicon *-plain and Material
+   Symbols) that render in `currentColor` — setting color once here, with no
+   per-type override, is what makes them read as one consistent set instead
+   of two different styles. */
+.home-spec-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(1.9rem, 3.4vw, 2.4rem);
+  color: var(--accent-color);
+}
+
+.home-spec-icon i,
+.home-spec-icon .material-symbols-outlined {
+  font-size: clamp(1.9rem, 3.4vw, 2.4rem);
+}
+
+.home-spec-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  opacity: 0.75;
 }
 
 .home-cta-row {
@@ -158,9 +152,15 @@
 }
 
 /* ── Stats strip ───────────────────────────────────────────────────────── */
+/* Column count tracks however many stats about.json provides, via --stat-count
+   set inline on the element — the layout doesn't need to be touched to add
+   or remove a figure. */
 .home-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* minmax(0, 1fr), not bare 1fr: plain 1fr tracks size to each column's
+     intrinsic content first, which skews widths once labels wrap differently
+     per column. minmax(0, ...) forces a genuinely equal split. */
+  grid-template-columns: repeat(var(--stat-count, 4), minmax(0, 1fr));
   margin: 2.6rem 0 0;
   padding-top: 1.9rem;
   border-top: 1px solid var(--section-border);

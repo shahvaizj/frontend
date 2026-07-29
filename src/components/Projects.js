@@ -136,6 +136,39 @@ const TAG_ICONS = {
   'Leaderboards': 'leaderboard',
   'Gore System': 'bloodtype',
   'Wave Management': 'waves',
+
+  // — Tech Stack chips (tools/plugins) —
+  'Unity URP': 'texture',
+  'URP': 'texture',
+  'HDRP (or URP if mobile)': 'gradient',
+  "Realistic Car Controller (RCC)": 'directions_car',
+  "Eddy's Vehicle Physics": 'directions_car',
+  'DOTween': 'animation',
+  'AdMob': 'ads_click',
+  'AppLovin MAX': 'campaign',
+  'Game Analytics': 'analytics',
+  'GameAnalytics': 'analytics',
+  'Cinemachine': 'videocam',
+  'Addressables': 'inventory_2',
+  'Unity Addressables': 'inventory_2',
+  'Firebase Analytics': 'local_fire_department',
+  'Firebase Crashlytics': 'bug_report',
+  'Firebase Remote Config': 'tune',
+  'Remote Config': 'tune',
+  'Odin Inspector': 'construction',
+  'Unity Localization': 'translate',
+  'Photon Fusion': 'hub',
+  'PlayFab': 'cloud_sync',
+  'Facebook SDK': 'share',
+  'Unity Gaming Services': 'cloud',
+  'Cloud Code': 'code',
+  'Cloud Save': 'cloud_done',
+  'Unity Input System': 'sports_esports',
+  'Behavior Designer': 'account_tree',
+  'Unity AI Navigation': 'route',
+  'AI Navigation': 'route',
+  'Opsive Ultimate Character Controller': 'directions_walk',
+  'FMOD': 'graphic_eq',
 };
 
 const iconForTag = (tag) => TAG_ICONS[tag] || 'chevron_right';
@@ -143,19 +176,21 @@ const iconForTag = (tag) => TAG_ICONS[tag] || 'chevron_right';
 /* The card header, meta tiles and media caption are all derived from fields the
    project data already carries — no extra authoring needed per project. */
 const buildCardData = (project) => {
-  const tags = project.techTags || [];
   const taglineParts = (project.tagline || '').split('|').map((s) => s.trim()).filter(Boolean);
 
-  /* Engine and language are deliberately absent — the chip row covers the
-     plugins and systems, these tiles cover the outcome. */
-  const meta = [
-    project.genre && { label: 'Game Genre', value: project.genre },
+  /* Role, platform and downloads are all shown as large stacked tiles.
+     Genre is deliberately absent here — it's already the header subtitle.
+     Ownership only exists on solo-shipped titles (own-IP releases where the
+     work spans design through marketing, not just engineering), so it's an
+     optional fourth tile rather than something every project carries. */
+  const metaPrimary = [
     project.role && { label: 'My Role', value: project.role },
+    project.platform && { label: 'Platform', value: project.platform },
     project.downloads && { label: 'Downloads', value: project.downloads },
-    project.rating && { label: 'Rating', value: project.rating },
+    project.ownership && { label: 'Ownership', value: project.ownership, wide: true },
   ].filter(Boolean);
 
-  return { meta, focus: taglineParts[0] || null };
+  return { metaPrimary, focus: taglineParts[0] || null };
 };
 
 /* Types the bullets out one after another once the card scrolls into view, then
@@ -322,22 +357,13 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
               <header className="project-card-head">
                 <h3 className="project-name">{project.name}</h3>
                 <p className="project-genre">{project.genre}</p>
-
-                <div className="project-tech-tags">
-                  {project.techTags && project.techTags.map((tag, i) => (
-                    <span key={i} className="tech-tag">
-                      <span className="material-symbols-outlined">{iconForTag(tag)}</span>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </header>
 
               <div className="project-card-body">
-                {card.meta.length > 0 && (
+                {card.metaPrimary.length > 0 && (
                   <div className="project-meta-grid">
-                    {card.meta.map((item, i) => (
-                      <div key={i} className="project-meta">
+                    {card.metaPrimary.map((item, i) => (
+                      <div key={i} className={`project-meta project-meta--lg${item.wide ? ' project-meta--wide' : ''}`}>
                         <span className="project-meta-label">{item.label}</span>
                         <span className="project-meta-value">{item.value}</span>
                       </div>
@@ -361,6 +387,20 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
                     Key Contribution
                   </h4>
                   <TypewriterList items={project.contributions || [project.myRole]} />
+
+                  {project.techStack && project.techStack.length > 0 && (
+                    <div className="project-role-tech">
+                      <h5 className="project-role-tech-heading">Tech Stack</h5>
+                      <div className="project-tech-tags">
+                        {project.techStack.map((tag, i) => (
+                          <span key={i} className="tech-tag">
+                            <span className="material-symbols-outlined">{iconForTag(tag)}</span>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {project.link && (
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="more-info-button">

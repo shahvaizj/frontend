@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import WebGLShowcase from './components/WebGLShowcase';
-import Skills from './components/Skills';
+import OtherProjectsShowcase from './components/OtherProjectsShowcase';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
@@ -70,7 +70,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'projects', 'skills', 'testimonials', 'contact'];
+      const sections = ['home', 'projects', 'other-projects', 'testimonials', 'contact'];
       const scrollPosition = window.scrollY + 300;
       let foundSection = null;
 
@@ -116,14 +116,17 @@ function App() {
       <main className="main-content">
         <Home
           about={portfolioData.about}
-          funTitles={portfolioData.about?.funTitles}
           contactEmail={portfolioData.contact?.email}
           theme={theme}
         />
         <WebGLShowcase />
         <InDevTrailer />
         <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
-        <Skills skills={portfolioData.skills} />
+        {/* Skills section is temporarily hidden in favor of the Other Projects
+            showcase below — the component and its data fetch are preserved
+            (see src/components/Skills.js, Skills.css, public/skills.json) and
+            can be restored by swapping this back in. */}
+        <OtherProjectsShowcase projects={portfolioData.projects} portfolioType={portfolioType} />
         <Testimonials testimonials={portfolioData.testimonials} />
         <Contact contact={portfolioData.contact} />
       </main>

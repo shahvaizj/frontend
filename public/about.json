@@ -9,10 +9,19 @@
   "email": "shahvaiz.jahangeer@gmail.com",
   "linkedin": "https://www.linkedin.com/in/shahvaiz-jahangeer/",
   "github": "https://github.com/shahvaiz-jahangeer",
+  "specialisations": [
+    { "label": "C#", "type": "devicon", "class": "devicon-csharp-plain" },
+    { "label": "Unity", "type": "devicon", "class": "devicon-unity-plain" },
+    { "label": "C++", "type": "devicon", "class": "devicon-cplusplus-plain" },
+    { "label": "Unreal", "type": "devicon", "class": "devicon-unrealengine-original" },
+    { "label": "VR", "type": "material", "icon": "vrpano" },
+    { "label": "AR", "type": "material", "icon": "view_in_ar" },
+    { "label": "Web", "type": "material", "icon": "language" }
+  ],
   "stats": [
     { "value": "9+", "label": "Years Experience" },
     { "value": "50+", "label": "Games Developed" },
-    { "value": "100,000+", "label": "Downloads on Games" },
+    { "value": "100,000+", "label": "Downloads on Solo Published Games" },
     { "value": "4", "label": "Published Unity Assets" }
   ],
   "funTitles": [

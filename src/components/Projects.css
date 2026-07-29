@@ -105,9 +105,41 @@
   font-size: 1.25rem;
 }
 
+/* var(--heading-color) rather than a literal #fff: it's white in dark theme
+   (the look asked for) but stays dark in light theme, so the text doesn't
+   vanish against a light background. Keyword highlighting is switched off
+   here specifically — no accent-blue spans — while the shared
+   .highlighted-keyword class is left untouched for the Other Projects modal. */
 .project-role-text {
-  color: var(--text-color);
+  color: var(--heading-color);
   font-size: 0.94rem;
+}
+
+.project-role-text .highlighted-keyword {
+  color: inherit;
+}
+
+/* Tech Stack chips below Key Contribution — same .tech-tag pill style as the
+   row under the genre subtitle, just a second, more tool-specific list. */
+.project-role-tech {
+  margin-top: 1.3rem;
+}
+
+.project-role-tech-heading {
+  margin-bottom: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-color);
+  opacity: 0.55;
+}
+
+/* The header's .project-tech-tags centers (it sits under a centered title);
+   this one sits in a left-aligned column, so it stays left-aligned too. */
+.project-role-tech .project-tech-tags {
+  justify-content: flex-start;
+  margin-top: 0;
 }
 
 /* Key contribution bullets */
@@ -168,11 +200,11 @@
   font-weight: 700;
 }
 
-/* Stacked tiles of derived facts, each with an accent edge. */
+/* Role, platform and downloads: three large stacked tiles. */
 .project-meta-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 
 .project-meta {
@@ -197,6 +229,23 @@
   font-weight: 700;
   color: var(--heading-color);
   line-height: 1.3;
+}
+
+/* First two tiles: bigger, the headline facts. */
+.project-meta--lg .project-meta-label {
+  font-size: 0.68rem;
+}
+
+.project-meta--lg .project-meta-value {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+/* Ownership carries a full descriptive phrase, not a short stat — sized and
+   weighted like body text rather than the bold headline figures above it. */
+.project-meta--wide .project-meta-value {
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .more-info-button {
@@ -481,12 +530,6 @@
 
   .project-media {
     order: 0;
-  }
-}
-
-@media (max-width: 560px) {
-  .project-meta-grid {
-    grid-template-columns: 1fr;
   }
 }
 

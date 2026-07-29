@@ -5,7 +5,7 @@ const Navbar = ({ currentSection }) => {
   const navItems = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'projects', label: 'Projects', icon: 'sports_esports' },
-    { id: 'skills', label: 'Skills', icon: 'psychology' },
+    { id: 'other-projects', label: 'Other Projects', icon: 'grid_view' },
     { id: 'testimonials', label: 'Testimonials', icon: 'format_quote' },
     { id: 'contact', label: 'Contact', icon: 'email' },
   ];
