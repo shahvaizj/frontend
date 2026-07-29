@@ -2,186 +2,231 @@
   margin-bottom: 2rem;
 }
 
+/* Three static rows (round-robin split in JS, so each row mixes projects
+   rather than running through them in list order). No scroll/drag/animation
+   — each row just wraps like a grid if it runs out of width. */
 .other-projects-rows {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2.2rem;
 }
 
-/* Marquee row — clip overflow and fade edges, same treatment as Skills. */
-.other-project-marquee-row {
-  overflow: hidden;
-  width: 100%;
-  cursor: grab;
-  user-select: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  mask-image:         linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-}
-
-.other-project-marquee-row.dragging {
-  cursor: grabbing;
-}
-
-.other-project-marquee-track {
+.other-projects-row {
   display: flex;
-  gap: 0.75rem;
-  width: max-content;
-  padding: 0.3rem 0;
-  will-change: transform;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Extra horizontal + row gap than the icon size alone would need: magnified
+     icons grow up to ~1.5x and must not visually collide with neighbors or
+     the row above/below. */
+  gap: 2.6rem 1.6rem;
 }
 
+/* Tile is just the icon box plus its caption — no surrounding card, so the
+   icon reads as a real app icon rather than a small glyph in a bordered
+   panel. 25% smaller than the original 108px so the magnify effect (below)
+   has headroom to grow into without every icon already being at full size. */
 .other-project-tile {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   gap: 0.5rem;
-  padding: 1rem 0.85rem 0.8rem;
-  min-width: 130px;
-  background: var(--card-solid);
-  border: 1px solid var(--card-stroke);
-  border-radius: 14px;
-  text-align: center;
-  cursor: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 81px;
   flex-shrink: 0;
+  text-align: center;
 }
 
-.other-project-tile:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 6px 20px var(--accent-glow);
-}
-
+/* Base size + the magnify transform. transform-origin: bottom keeps the icon
+   anchored to its caption as it grows, matching how a dock icon grows upward
+   rather than from its own centre. The scale itself is applied inline via
+   JS (see useMagnify in OtherProjectsShowcase.js), driven by cursor distance
+   — this only owns the transition and the fixed base size. */
 .other-project-tile-icon {
+  width: 81px;
+  height: 81px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
+  border-radius: 18px;
+  transform-origin: 50% 100%;
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+  will-change: transform;
 }
 
-.other-project-tile-icon .material-symbols-outlined {
-  font-size: 2.8rem;
+.other-project-tile-icon:hover,
+.other-project-tile-icon:focus-visible {
+  box-shadow: 0 10px 26px var(--accent-glow);
+  cursor: pointer;
+  outline: none;
+}
+
+/* The Material Symbol fallback has no baked-in art, so it still needs a
+   card-like box to look like a deliberate icon rather than a stray glyph. */
+.other-project-tile-icon.is-fallback {
+  background: var(--card-solid);
+  border: 1px solid var(--card-stroke);
+}
+
+.other-project-tile-icon.is-fallback .material-symbols-outlined {
+  font-size: 2.4rem;
   color: var(--accent-color);
 }
 
+/* Icon art already fills a square with its own rounded corners baked in —
+   the box just clips to match. */
+.other-project-tile-icon.is-image {
+  overflow: hidden;
+}
+
+.other-project-tile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Clamped to 2 lines so a long name like "ALISHA ACADEMY KIDS LEARNING"
+   folds instead of growing one tile taller than its neighbors in the grid. */
 .other-project-tile-name {
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--text-color);
-  line-height: 1.35;
-  white-space: nowrap;
+  line-height: 1.3;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-}
-
-/* ── Info button ──────────────────────────────────────────────────────── */
-.other-project-info-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  z-index: 3;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(3, 10, 28, 0.55);
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: transform 0.18s ease, background-color 0.18s ease;
-}
-
-.other-project-info-btn:hover,
-.other-project-info-btn:focus-visible {
-  background: var(--accent-color);
-  transform: scale(1.12);
-  outline: none;
-}
-
-.other-project-info-btn .material-symbols-outlined {
-  font-size: 13px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ── Detail popup ─────────────────────────────────────────────────────────
-   Portal-rendered to document.body (see OtherProjectsShowcase.js) so it can
-   float free of the marquee row's overflow: hidden clipping — position is
-   fixed, anchored to the tile's on-screen rect captured at hover time, sitting
-   just above it with a small arrow pointing back down at the tile. */
+   Portal-rendered to document.body (see OtherProjectsShowcase.js) — a panel
+   this size would blow out the row's height if it lived inline in a cell.
+   Anchored to the tile's on-screen rect captured at hover time; flips to sit
+   below the tile instead of above when the tile is too close to the top of
+   the viewport for the popup to fit above it.
+   Mounts at scale(0.85)/opacity:0 and transitions to scale(1)/opacity:1 once
+   JS adds `.entered` on the next frame (see DetailPopup) — a deliberate
+   small-to-big animation rather than an instant appear, on top of the
+   built-in hover delay before the popup shows at all. */
 .other-project-popup {
   position: fixed;
   z-index: 4000;
-  transform: translate(-50%, -100%);
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  padding: 1rem 1.1rem;
+  gap: 0.5rem;
+  padding: 1.2rem 1.3rem;
   background: var(--card-solid);
   border: 1px solid var(--card-stroke);
-  border-radius: 14px;
-  box-shadow: 0 18px 40px rgba(2, 8, 20, 0.4);
-  pointer-events: none;
-  animation: otherProjectPopupIn 0.14s ease-out;
+  border-radius: 16px;
+  box-shadow: 0 20px 48px rgba(2, 8, 20, 0.45);
+  opacity: 0;
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
 }
 
-@keyframes otherProjectPopupIn {
-  from { opacity: 0; transform: translate(-50%, -94%) scale(0.96); }
-  to   { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+.other-project-popup.above {
+  transform: translate(-50%, -94%) scale(0.85);
+}
+
+.other-project-popup.below {
+  transform: translate(-50%, 6%) scale(0.85);
+}
+
+.other-project-popup.above.entered {
+  opacity: 1;
+  transform: translate(-50%, -100%) scale(1);
+}
+
+.other-project-popup.below.entered {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
 }
 
 .other-project-popup-arrow {
   position: absolute;
-  bottom: -6px;
   left: 50%;
   transform: translateX(-50%) rotate(45deg);
   width: 12px;
   height: 12px;
   background: var(--card-solid);
+}
+
+.other-project-popup.above .other-project-popup-arrow {
+  bottom: -6px;
   border-right: 1px solid var(--card-stroke);
   border-bottom: 1px solid var(--card-stroke);
 }
 
+.other-project-popup.below .other-project-popup-arrow {
+  top: -6px;
+  border-left: 1px solid var(--card-stroke);
+  border-top: 1px solid var(--card-stroke);
+}
+
 .other-project-popup-name {
-  font-size: 0.86rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--heading-color);
   line-height: 1.3;
 }
 
-.other-project-popup-genre {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.other-project-popup-desc {
-  font-size: 0.76rem;
+/* One condensed paragraph — genre and description/myRole joined into a
+   single sentence flow — replacing what used to be separate genre/tagline/
+   role/tag blocks. */
+.other-project-popup-summary {
+  font-size: 0.8rem;
   color: var(--text-color);
-  opacity: 0.85;
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  opacity: 0.9;
+  line-height: 1.5;
 }
 
 .other-project-popup-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-top: 0.2rem;
+  gap: 0.4rem;
+  margin-top: 0.1rem;
 }
 
 .other-project-popup-tag {
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  padding: 0.22rem 0.5rem;
+  padding: 0.28rem 0.6rem;
   border-radius: 999px;
   border: 1px solid var(--card-stroke);
   background: rgba(255, 255, 255, 0.04);
   color: var(--heading-color);
+}
+
+.other-project-popup-link {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  text-decoration: none;
+  border-radius: 999px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.other-project-popup-link .material-symbols-outlined {
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .other-projects-row {
+    gap: 2rem 1rem;
+  }
+
+  .other-project-tile,
+  .other-project-tile-icon {
+    width: 69px;
+  }
+
+  .other-project-tile-icon {
+    height: 69px;
+  }
 }

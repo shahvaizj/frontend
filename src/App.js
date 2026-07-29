@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
-import WebGLShowcase from './components/WebGLShowcase';
 import OtherProjectsShowcase from './components/OtherProjectsShowcase';
 import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
@@ -119,7 +118,9 @@ function App() {
           contactEmail={portfolioData.contact?.email}
           theme={theme}
         />
-        <WebGLShowcase />
+        {/* Game section hidden until the new WebGL build is ready — component
+            and public/portfolio-app/ build are untouched, swap this back in
+            when the new game is in. */}
         <InDevTrailer />
         <Projects projects={portfolioData.projects} portfolioType={portfolioType} />
         {/* Skills section is temporarily hidden in favor of the Other Projects

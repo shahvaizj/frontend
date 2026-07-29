@@ -19,7 +19,6 @@
       "RESTful APIs"
     ],
     "myRole": "Worked as a Game Developer with a UK-based software house, responsible for creating innovative games that use sensor tools to control movement and capture player stats. Collaborated with a multidisciplinary team including web developers, mobile application developers, brain scientists, and designers to achieve optimal game performance. Leveraged sensor technologies to create immersive, motion-controlled gaming experiences with accurate stat tracking.",
-    "link": "https://www.myelinz.com/",
     "screenshots": [],
     "youtubeVideoIds": [
       "ikzdxLzgPFw",
@@ -74,7 +73,7 @@
     ],
     "downloads": "1M+",
     "rating": "4.5",
-    "platform": "Android | iOS",
+    "platform": "Android | iOS | Web",
     "techStack": [
       "Photon Fusion",
       "PlayFab",
@@ -835,29 +834,6 @@
       "Turn-Based"
     ],
     "myRole": "Developed comprehensive 2D castle building system where players construct walls, towers, and defensive structures using collected resources. Created strategic combat system with unit deployment, projectile attacks, and siege warfare mechanics. Implemented intelligent AI opponent with multiple difficulty levels that makes tactical decisions. Built real-time multiplayer system allowing 2 players to battle simultaneously. Designed win condition system where last player with surviving castle wins. Implemented unit upgrade tree and special ability system for strategic depth.",
-    "screenshots": [],
-    "youtubeVideoId": ""
-  },
-  {
-    "name": "PRE SCHOOL ACADEMY",
-    "category": [
-      "educational"
-    ],
-    "gamingOrder": null,
-    "educationalOrder": null,
-    "genre": "Educational App",
-    "description": "A comprehensive pre-school educational app handling academic management from KG to 5th class. Features user authentication, database management, daily tasks, progress tracking, and interactive learning activities.",
-    "icon": "school",
-    "tagline": "Educational Platform | Academic Management",
-    "techTags": [
-      "User Authentication",
-      "Database",
-      "Cloud Architecture",
-      "Progress Tracking",
-      "Educational Content",
-      "Multi-User"
-    ],
-    "myRole": "Developed complete user authentication and login system with role-based access. Implemented database architecture for managing student data, academic records, and progress tracking. Created daily task system where students complete interactive learning activities. Handled backend integration and data synchronization.",
     "screenshots": [],
     "youtubeVideoId": ""
   },

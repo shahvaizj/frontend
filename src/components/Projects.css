@@ -1,3 +1,9 @@
+/* Extra breathing room below the section heading before the first card —
+   the global h2 margin-bottom (1.4rem) reads as too tight here specifically. */
+.projects-section h2 {
+  margin-bottom: 3.4rem;
+}
+
 .projects-grid {
   display: grid;
   gap: 5.5rem;
@@ -207,13 +213,17 @@
   gap: 1.1rem;
 }
 
+/* Right-aligned, with the accent marker moved to the trailing (right) edge
+   to sit beside the text it's marking instead of on the opposite side. */
 .project-meta {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 0.22rem;
-  border-left: 2px solid var(--accent-color);
-  padding: 0.15rem 0 0.15rem 0.75rem;
+  border-right: 2px solid var(--accent-color);
+  padding: 0.15rem 0.75rem 0.15rem 0;
   min-width: 0;
+  text-align: right;
 }
 
 .project-meta-label {

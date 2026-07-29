@@ -69,48 +69,108 @@
   display: block;
 }
 
-/* Static specialisation strip: icon + small label per item. */
+/* Static specialisation strip — a single line. flex-wrap: nowrap plus an
+   overflow-x scroll fallback is deliberate: forcing everything onto one row
+   at every desktop width is the whole point of this layout, but a very
+   narrow screen still needs *some* way to reach the last items instead of
+   silently clipping them. */
 .home-specialisations {
-  list-style: none;
   margin: 1.3rem 0 0;
-  padding: 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1.6rem clamp(1.3rem, 3vw, 2.4rem);
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.home-spec-row {
+  list-style: none;
+  margin: 0;
+  padding: 0.2rem 0.1rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.85rem;
 }
 
 .home-spec-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  padding-left: 0.85rem;
+}
+
+/* Hairline divider between every item except the first — but not at the two
+   section boundaries (see --section-start below), which get open space
+   instead of a line so the strip reads as three separate groups rather than
+   one continuous list. */
+.home-spec-item:not(:first-child):not(.home-spec-item--section-start)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1.7rem;
+  background: var(--card-stroke);
+}
+
+/* Marks the start of a new section (Unity, and C# after the engine pair) —
+   extra breathing room instead of the standard hairline gap, so Engines
+   reads as its own group between Specialisations and Languages.
+   margin-left, not padding: padding only shifts this item's own content
+   inward without moving its box relative to the previous flex item, so it
+   has no visible effect on spacing between items — margin actually adds
+   space in the flex layout. */
+.home-spec-item--section-start {
+  margin-left: 3rem;
 }
 
 /* Both icon sets are single-color font glyphs (devicon *-plain and Material
    Symbols) that render in `currentColor` — setting color once here, with no
    per-type override, is what makes them read as one consistent set instead
-   of two different styles. */
+   of two different styles. This is the default (30% smaller than the old
+   single-size baseline of clamp(1.9rem, 3.4vw, 2.4rem)); Unity/Unreal get
+   the larger --emphasis size below instead. */
 .home-spec-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: clamp(1.9rem, 3.4vw, 2.4rem);
+  height: clamp(1.33rem, 2.38vw, 1.68rem);
   color: var(--accent-color);
 }
 
 .home-spec-icon i,
 .home-spec-icon .material-symbols-outlined {
-  font-size: clamp(1.9rem, 3.4vw, 2.4rem);
+  font-size: clamp(1.33rem, 2.38vw, 1.68rem);
+}
+
+/* Unity/Unreal: the two items meant to stand out, sized above the old
+   baseline rather than just reverting to it. Colour is var(--heading-color)
+   rather than a literal white — it resolves to white in dark theme (the look
+   asked for) but stays dark in light theme, so the icons don't disappear
+   against the light background there. */
+.home-spec-item--emphasis .home-spec-icon {
+  height: clamp(2.3rem, 4vw, 2.9rem);
+  color: var(--heading-color);
+}
+
+.home-spec-item--emphasis .home-spec-icon i,
+.home-spec-item--emphasis .home-spec-icon .material-symbols-outlined {
+  font-size: clamp(2.3rem, 4vw, 2.9rem);
 }
 
 .home-spec-label {
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-color);
   opacity: 0.75;
+  white-space: nowrap;
 }
 
 .home-cta-row {

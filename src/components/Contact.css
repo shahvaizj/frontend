@@ -1,19 +1,69 @@
-.contact-container {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 1rem;
-  align-items: stretch;
+.contact-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.contact-side-panel {
+.contact-top-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-email {
+  background: transparent;
+}
+
+.contact-email a {
+  color: var(--heading-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.contact-email a:hover {
+  color: var(--accent-color);
+}
+
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.contact-social-link {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   display: grid;
-  gap: 1rem;
+  place-items: center;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-social-link:hover {
+  transform: translateY(-2px);
+}
+
+.linkedin {
+  background: linear-gradient(145deg, #0077b5, #005582);
+}
+
+.discord {
+  background: linear-gradient(145deg, #5865f2, #3f49b4);
+}
+
+.whatsapp {
+  background: linear-gradient(145deg, #25d366, #1fa356);
 }
 
 .contact-form {
   display: grid;
   gap: 0.7rem;
-  align-content: start;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .form-group input,
@@ -71,74 +121,8 @@
 .error-msg {
   font-size: 0.88rem;
   margin-top: 0.15rem;
+  text-align: center;
 }
 
 .success-msg { color: #22c55e; }
 .error-msg { color: #ef4444; }
-
-.contact-divider {
-  display: none;
-}
-
-.contact-email,
-.contact-socials {
-  background: transparent;
-}
-
-.contact-email {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.1rem;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.contact-email a {
-  color: var(--heading-color);
-  text-decoration: none;
-}
-
-.contact-email a:hover {
-  color: var(--accent-color);
-}
-
-.contact-socials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.7rem;
-  padding: 1rem;
-}
-
-.contact-social-link {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-social-link:hover {
-  transform: translateY(-2px);
-}
-
-.linkedin {
-  background: linear-gradient(145deg, #0077b5, #005582);
-}
-
-.discord {
-  background: linear-gradient(145deg, #5865f2, #3f49b4);
-}
-
-.whatsapp {
-  background: linear-gradient(145deg, #25d366, #1fa356);
-}
-
-@media (max-width: 920px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-}

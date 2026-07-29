@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Testimonials.css';
 
 const Testimonials = ({ testimonials }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const pausedRef = useRef(false);
 
   useEffect(() => {
     if (!testimonials || testimonials.length < 2) {
@@ -10,6 +11,7 @@ const Testimonials = ({ testimonials }) => {
     }
 
     const timer = setInterval(() => {
+      if (pausedRef.current) return;
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
@@ -40,7 +42,11 @@ const Testimonials = ({ testimonials }) => {
   return (
     <section id="testimonials" className="testimonials-section reveal">
       <h2>Testimonials</h2>
-      <div className="testimonials-carousel">
+      <div
+        className="testimonials-carousel"
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
+      >
         <button className="testimonial-arrow left" onClick={goPrev} aria-label="Previous testimonial">
           <span className="material-symbols-outlined">chevron_left</span>
         </button>

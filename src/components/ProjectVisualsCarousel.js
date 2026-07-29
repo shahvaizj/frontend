@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import './Projects.css';
 
 const AUTO_ADVANCE_MS = 5000;
 
 const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) => {
-  const allVisuals = [];
-
-  if (youtubeVideoIds && youtubeVideoIds.length > 0) {
-    youtubeVideoIds.forEach((id) => allVisuals.push({ type: 'youtube', id }));
-  }
-
-  if (screenshots && screenshots.length > 0) {
-    screenshots.forEach((screenshot) => allVisuals.push({ type: 'screenshot', url: screenshot }));
-  }
+  const allVisuals = useMemo(() => {
+    const list = [];
+    if (youtubeVideoIds && youtubeVideoIds.length > 0) {
+      youtubeVideoIds.forEach((id) => list.push({ type: 'youtube', id }));
+    }
+    if (screenshots && screenshots.length > 0) {
+      screenshots.forEach((screenshot) => list.push({ type: 'screenshot', url: screenshot }));
+    }
+    return list;
+  }, [youtubeVideoIds, screenshots]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalVisuals = allVisuals.length;
@@ -29,19 +30,32 @@ const ProjectVisualsCarousel = ({ youtubeVideoIds, screenshots, projectName }) =
 
   const goToSlide = useCallback((index) => setCurrentIndex(index), []);
 
+  /* Auto-advance skips video slides — a video shouldn't start autoplaying
+     into view unattended. Manual navigation (arrows, thumbnails) is
+     untouched and can still land on a video normally. */
+  const autoAdvance = useCallback(() => {
+    setCurrentIndex((prev) => {
+      for (let step = 1; step <= totalVisuals; step++) {
+        const next = (prev + step) % totalVisuals;
+        if (allVisuals[next].type !== 'youtube') return next;
+      }
+      return prev;
+    });
+  }, [totalVisuals, allVisuals]);
+
   useEffect(() => {
     if (totalVisuals < 2) return undefined;
 
     const schedule = () => {
       timerRef.current = setTimeout(() => {
-        if (!pausedRef.current) goNext();
+        if (!pausedRef.current) autoAdvance();
         schedule();
       }, AUTO_ADVANCE_MS);
     };
 
     schedule();
     return () => clearTimeout(timerRef.current);
-  }, [totalVisuals, goNext]);
+  }, [totalVisuals, autoAdvance]);
 
   const handleUserNav = useCallback((fn) => {
     clearTimeout(timerRef.current);
