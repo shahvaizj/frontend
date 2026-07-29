@@ -80,6 +80,12 @@ const useMagnifyEffect = (containerRef) => {
    don't always match (the folder shortens "Alisha Academy Kids Learning", and
    uses "4x4" where the project name uses "4×4"), so this stays an explicit
    lookup rather than name-derived guessing.
+   Includes the 6 gaming-featured projects (Crazy Taxi, Ludo Cruise, Lumber
+   Tycoon, Sniper Fury, Underground Racing, Zombie Shooter) even though they
+   never show up in the gaming portfolio's Other Projects list — on the
+   educational portfolio, whose top-6 is a different cut (by educationalOrder),
+   5 of those 6 land in this "other" list instead, and without an entry here
+   they fell back to a generic Material Symbol despite real art existing.
    Pre School Academy has no artwork supplied yet, so it falls through to its
    Material Symbol `icon` field. Drop a matching file in the folder and add a
    line here to give it a real icon. */
@@ -108,6 +114,12 @@ const PROJECT_ICONS = {
   'CASTLE BATTLE': 'Castle Battle.webp',
   'FLAG MASTER': 'Flag Master.webp',
   'SIEMENS CITY BUILDER': 'Siemens City Builder.webp',
+  'LUMBER TYCOON INC': 'Lumber Empire.webp',
+  'SNIPER FURY': 'Sniper Fury.webp',
+  'UNDERGROUND RACING': 'Underground Racing.webp',
+  'CRAZY TAXI 2 – ANGRY DRIVER': 'Crazy Taxi.webp',
+  'ZOMBIE SHOOTER 3D': 'Zombie Shooter.webp',
+  'LUDO CRUISE': 'Ludo Cruise.webp',
 };
 
 const iconFor = (project) => {

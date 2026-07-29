@@ -15,15 +15,29 @@
   background: transparent;
 }
 
-.contact-email a {
+/* Same pill treatment as the hero's secondary CTA (.home-secondary-cta in
+   Home.css) — icon + email in a bordered pill, so the two match. */
+.contact-email-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--card-stroke);
+  border-radius: 999px;
   color: var(--heading-color);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 700;
+  transition: transform 0.25s ease;
 }
 
-.contact-email a:hover {
+.contact-email-link:hover {
+  transform: translateY(-2px);
   color: var(--accent-color);
+}
+
+.contact-email-link .material-symbols-outlined {
+  font-size: 1.15rem;
 }
 
 .contact-socials {

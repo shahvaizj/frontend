@@ -32,9 +32,15 @@
       "Partnered with brain scientists, web and mobile engineers to tune platform-wide performance",
       "Shipped immersive fitness experiences for a UK-based software house"
     ],
-    "downloads": "20,000+",
     "rating": "4.6",
-    "platform": "Android | iOS"
+    "platform": "Android | iOS",
+    "techStack": [
+      "Firebase",
+      "TensorFlow Lite",
+      "Cloud Functions",
+      "RESTful APIs",
+      "Push Notifications"
+    ]
   },
   {
     "name": "LUDO CRUISE",
@@ -159,6 +165,22 @@
       "/images/ALISHA_2.webp",
       "/images/ALISHA_3.webp",
       "/images/ALISHA_4.webp"
+    ],
+    "role": "Game Developer",
+    "platform": "Android | iOS",
+    "downloads": "100,000+",
+    "contributions": [
+      "Designed interactive educational mini-games with progressive difficulty",
+      "Built adaptive learning algorithms that adjust content to player performance",
+      "Implemented accessibility features including high-contrast mode and adjustable difficulty",
+      "Built a parental dashboard with detailed progress reporting"
+    ],
+    "techStack": [
+      "DOTween",
+      "Firebase",
+      "Unity Localization",
+      "Accessibility Toolkit",
+      "Analytics SDK"
     ]
   },
   {
@@ -566,7 +588,23 @@
       "/images/Fruit_2.webp",
       "/images/Fruit_1.webp"
     ],
-    "youtubeVideoId": "qZtPC61g6aE"
+    "youtubeVideoId": "qZtPC61g6aE",
+    "role": "Game Developer",
+    "platform": "Android | iOS",
+    "downloads": "50,000+",
+    "contributions": [
+      "Built core match-3 logic with matching detection and cascade effects",
+      "Created power-up systems including bombs, rockets, and color blasters",
+      "Designed 500+ levels with increasing difficulty and special objectives",
+      "Implemented a live events system with daily reward mechanics"
+    ],
+    "techStack": [
+      "DOTween",
+      "Unity Ads",
+      "GameAnalytics",
+      "Firebase Remote Config",
+      "Unity IAP"
+    ]
   },
   {
     "name": "RAINING ROCKETS",
@@ -617,7 +655,22 @@
     "screenshots": [
       "/images/Genius_1.webp"
     ],
-    "youtubeVideoId": "PqzTEa85EYo"
+    "youtubeVideoId": "PqzTEa85EYo",
+    "role": "Lead Developer",
+    "platform": "Android | iOS",
+    "contributions": [
+      "Built a full parent-child account system with task assignment and tracking",
+      "Designed a parent dashboard surfacing performance, completed tasks, and analytics",
+      "Implemented adaptive learning algorithms that personalize content to each child's progress",
+      "Delivered detailed progress reports and analytics for parents"
+    ],
+    "techStack": [
+      "Firebase",
+      "TensorFlow Lite",
+      "Cloud Functions",
+      "Push Notifications",
+      "Google Analytics"
+    ]
   },
   {
     "name": "TOP-DOWN RUNNER",
@@ -671,7 +724,22 @@
       "/images/ST_2.webp",
       "/images/ST_3.webp"
     ],
-    "youtubeVideoId": "jfOQ0l7XJ48"
+    "youtubeVideoId": "jfOQ0l7XJ48",
+    "role": "Lead Developer",
+    "platform": "Web",
+    "contributions": [
+      "Led development of an interactive math and brain-training platform for US schools",
+      "Built GUI-based tools to visualize and solve complex mathematical problems",
+      "Designed brain-training exercises to strengthen cognitive and problem-solving skills",
+      "Simplified discrete structure concepts into engaging, age-appropriate interactions"
+    ],
+    "techStack": [
+      "Unity WebGL",
+      "Interactive UI Toolkit",
+      "Data Visualization",
+      "Adaptive Learning Engine",
+      "Analytics"
+    ]
   },
   {
     "name": "HUNTING GAME",

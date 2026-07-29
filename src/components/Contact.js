@@ -42,7 +42,10 @@ const Contact = ({ contact }) => {
       <h2>Get In Touch</h2>
       <div className="contact-top-bar">
         <div className="contact-email">
-          <a href={`mailto:${email}`}>{email}</a>
+          <a href={`mailto:${email}`} className="contact-email-link">
+            <span className="material-symbols-outlined">mail</span>
+            {email}
+          </a>
         </div>
         <div className="contact-socials">
           {linkedin && (
