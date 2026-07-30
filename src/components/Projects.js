@@ -292,7 +292,7 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
           const card = buildCardData(project);
 
           return (
-            <article key={index} className="project-card">
+            <article key={index} className={`project-card reveal reveal-delay-${(index % 5) + 1}`}>
               <header className="project-card-head">
                 <h3 className="project-name">{project.name}</h3>
                 <p className="project-genre">{project.genre}</p>
@@ -302,7 +302,7 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
                 {card.metaPrimary.length > 0 && (
                   <div className="project-meta-grid">
                     {card.metaPrimary.map((item, i) => (
-                      <div key={i} className={`project-meta project-meta--lg${item.wide ? ' project-meta--wide' : ''}`}>
+                      <div key={i} className={`project-meta project-meta--lg${item.wide ? ' project-meta--wide' : ''}`} style={{ '--i': i }}>
                         <span className="project-meta-label">{item.label}</span>
                         <span className="project-meta-value">{item.value}</span>
                       </div>
@@ -332,7 +332,7 @@ const Projects = ({ projects, portfolioType = 'gaming' }) => {
                       <h5 className="project-role-tech-heading">Tech Stack</h5>
                       <div className="project-tech-tags">
                         {project.techStack.map((tag, i) => (
-                          <span key={i} className="tech-tag">
+                          <span key={i} className="tech-tag" style={{ '--i': i }}>
                             <span className="material-symbols-outlined">{iconForTag(tag)}</span>
                             {tag}
                           </span>

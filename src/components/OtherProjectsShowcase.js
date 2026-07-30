@@ -227,7 +227,7 @@ const DetailPopup = ({ project, anchorRect }) => {
   );
 };
 
-const ProjectTile = ({ project, onDetailEnter, onDetailLeave }) => {
+const ProjectTile = ({ project, onDetailEnter, onDetailLeave, delay = 1 }) => {
   const tileRef = useRef(null);
   const hoverTimerRef = useRef(null);
   const icon = iconFor(project);
@@ -248,7 +248,7 @@ const ProjectTile = ({ project, onDetailEnter, onDetailLeave }) => {
   useEffect(() => () => clearTimeout(hoverTimerRef.current), []);
 
   return (
-    <div className="other-project-tile" ref={tileRef}>
+    <div className={`other-project-tile reveal reveal-delay-${delay}`} ref={tileRef}>
       <div
         className={`other-project-tile-icon ${icon.type === 'img' ? 'is-image' : 'is-fallback'}`}
         role="button"
@@ -304,7 +304,7 @@ const OtherProjectsShowcase = ({ projects, portfolioType = 'gaming' }) => {
         {rows.map((row, r) => (
           <div key={r} className="other-projects-row">
             {row.map((project, i) => (
-              <ProjectTile key={i} project={project} onDetailEnter={showDetail} onDetailLeave={hideDetail} />
+              <ProjectTile key={i} project={project} onDetailEnter={showDetail} onDetailLeave={hideDetail} delay={(i % 5) + 1} />
             ))}
           </div>
         ))}

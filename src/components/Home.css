@@ -26,6 +26,8 @@
 .home-copy {
   text-align: center;
   max-width: 900px;
+  min-width: 0;
+  width: 100%;
 }
 
 .home-kicker {
@@ -74,10 +76,22 @@
    at every desktop width is the whole point of this layout, but a very
    narrow screen still needs *some* way to reach the last items instead of
    silently clipping them. */
+/* Three logical groups (specialisations / engines / languages) are separate
+   <ul> rows in the data. A 3-column grid — not a centered flex row — is
+   what puts Unity/Unreal (the middle group) exactly on the page's centre
+   line below the name: the two outer 1fr columns absorb whatever width
+   difference exists between the Gameplay and Language groups, so the
+   middle `auto` column never drifts off-centre the way it would if the
+   whole row were centred as one block. `gap` is the space between groups,
+   replacing the old per-item section-start margin now that each group is
+   its own grid child. */
 .home-specialisations {
   margin: 1.3rem 0 0;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: flex-end;
+  justify-items: center;
+  gap: 2.4rem;
   max-width: 100%;
   overflow-x: auto;
 }
@@ -118,16 +132,12 @@
   background: var(--card-stroke);
 }
 
-/* Marks the start of a new section (Unity, and C# after the engine pair) —
-   extra breathing room instead of the standard hairline gap, so Engines
-   reads as its own group between Specialisations and Languages.
-   margin-left, not padding: padding only shifts this item's own content
-   inward without moving its box relative to the previous flex item, so it
-   has no visible effect on spacing between items — margin actually adds
-   space in the flex layout. */
-.home-spec-item--section-start {
-  margin-left: 3rem;
-}
+/* Unity and C# mark the start of a new section, but each is now literally
+   the first child of its own group <ul> — `.home-specialisations`'s `gap`
+   already provides the breathing room between groups, and :first-child
+   already excludes them from the hairline above, so this class needs no
+   rule of its own. Kept as a marker in the data/markup in case a future
+   layout needs to target group-starts specifically. */
 
 /* Both icon sets are single-color font glyphs (devicon *-plain and Material
    Symbols) that render in `currentColor` — setting color once here, with no
@@ -149,10 +159,7 @@
 }
 
 /* Unity/Unreal: the two items meant to stand out, sized above the old
-   baseline rather than just reverting to it. Colour is var(--heading-color)
-   rather than a literal white — it resolves to white in dark theme (the look
-   asked for) but stays dark in light theme, so the icons don't disappear
-   against the light background there. */
+   baseline rather than just reverting to it. */
 .home-spec-item--emphasis .home-spec-icon {
   height: clamp(2.3rem, 4vw, 2.9rem);
   color: var(--heading-color);
@@ -191,10 +198,13 @@
 }
 
 .home-primary-cta {
+  position: relative;
+  overflow: hidden;
   background: var(--button-bg);
   color: var(--button-text);
   padding: 0.8rem 1.3rem;
   box-shadow: 0 14px 25px var(--accent-glow);
+  animation: ctaGlowPulse 2.6s ease-in-out infinite;
 }
 
 .home-secondary-cta {
@@ -295,5 +305,83 @@
   .home-secondary-cta {
     width: 100%;
     justify-content: center;
+  }
+
+  /* The desktop clamp keeps "SHAHVAIZ JAHANGEER" on one nowrap line at
+     exactly the container width, which caps how large it can get. Letting
+     it wrap to two lines here removes that ceiling, so the name can read
+     as a proper hero headline on small screens. */
+  .home-section h1 {
+    white-space: normal;
+    font-size: clamp(2.2rem, 13vw, 3.6rem);
+  }
+
+  /* Groups (specialisations / engines / languages) stack as three short
+     lines instead of sitting in the 3-column grid. Engines goes first per
+     the requested order — .home-spec-row is the same DOM node at every
+     width, so `order` only reorders it visually here. */
+  .home-specialisations {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.9rem;
+    overflow-x: visible;
+  }
+
+  .home-spec-row:nth-of-type(2) {
+    order: -1;
+  }
+}
+
+/* ── Hero intro choreography ──────────────────────────────────────────────
+   Plays once on mount (the hero is always above the fold, so it isn't
+   scroll-gated like the rest of the site): the name and the two engine
+   logos pop first, then every other spec icon cascades in one by one via
+   the --i index set inline in Home.js, then the CTAs, then the stats. */
+@keyframes heroPopIn {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.home-name {
+  animation: heroPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.home-spec-item--emphasis {
+  animation: heroPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.home-spec-item--emphasis:nth-child(1) { animation-delay: 0.1s; }
+.home-spec-item--emphasis:nth-child(2) { animation-delay: 0.2s; }
+
+.home-spec-item:not(.home-spec-item--emphasis) {
+  animation: heroPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: calc(0.5s + var(--i, 0) * 0.12s);
+}
+
+.home-secondary-cta {
+  animation: heroPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) calc(1.6s + var(--i, 0) * 0.15s) both;
+}
+
+.home-primary-cta {
+  animation-name: heroPopIn, ctaGlowPulse;
+  animation-duration: 0.5s, 2.6s;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1), ease-in-out;
+  animation-delay: calc(1.6s + var(--i, 0) * 0.15s), 0s;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: both, none;
+}
+
+.home-stat {
+  animation: heroPopIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) calc(2.05s + var(--i, 0) * 0.15s) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* .home-primary-cta is already fully disabled (including its glow pulse)
+     by the shared reduced-motion rule in index.css. */
+  .home-name,
+  .home-spec-item,
+  .home-secondary-cta,
+  .home-stat {
+    animation: none;
   }
 }

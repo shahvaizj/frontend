@@ -83,24 +83,17 @@
   font-size: 2.8rem;
 }
 
-/* Non-colored devicons (black) become white in dark mode */
-.App.dark .skill-icon i:not([class*="colored"]) {
+/* Non-colored devicons (black) need inverting to white against the dark bg. */
+.skill-icon i:not([class*="colored"]) {
   filter: brightness(0) invert(1);
 }
 
+/* Unity's icon ships as a black PNG — inverted to white with a black outline
+   so it stays legible against the dark bg without a card behind it. */
 .skill-icon-img {
   width: 2.8rem;
   height: 2.8rem;
   object-fit: contain;
-}
-
-/* Without a card behind it, a light source icon needs forcing dark in light mode */
-.App.light .skill-icon-img {
-  filter: brightness(0);
-}
-
-/* Unity (white img) gets a black outline in dark mode */
-.App.dark .skill-icon-img {
   filter:
     brightness(0) invert(1)
     drop-shadow( 1px  0   0 #000)

@@ -14,9 +14,13 @@
       { "label": "Gameplay", "type": "material", "icon": "sports_esports" },
       { "label": "Multiplayer", "type": "material", "icon": "groups" },
       { "label": "Mobile", "type": "material", "icon": "smartphone" },
-      { "label": "VR/AR", "type": "material", "icon": "vrpano" },
+      { "label": "VR/AR", "type": "material", "icon": "vrpano" }
+    ],
+    [
       { "label": "Unity", "type": "devicon", "class": "devicon-unity-plain", "emphasis": true, "sectionStart": true },
-      { "label": "Unreal", "type": "devicon", "class": "devicon-unrealengine-original", "emphasis": true },
+      { "label": "Unreal", "type": "devicon", "class": "devicon-unrealengine-original", "emphasis": true }
+    ],
+    [
       { "label": "C#", "type": "devicon", "class": "devicon-csharp-plain", "sectionStart": true },
       { "label": "C++", "type": "devicon", "class": "devicon-cplusplus-plain" },
       { "label": "Python", "type": "devicon", "class": "devicon-python-plain" },

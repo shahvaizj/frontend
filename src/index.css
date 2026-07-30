@@ -9,43 +9,23 @@ html {
 }
 
 :root {
-  --bg-color: #0b1020;
-  --bg-soft: #121a31;
+  --bg-color: #0b0d12;
+  --bg-soft: #14171f;
   --text-color: #d8e4ff;
   --heading-color: #ffffff;
   --accent-color: #2dd4bf;
   --accent-2: #60a5fa;
   --accent-glow: rgba(45, 212, 191, 0.35);
-  --navbar-bg: rgba(10, 16, 30, 0.7);
+  --navbar-bg: rgba(10, 12, 18, 0.7);
   --navbar-link-color: #c7d7ff;
   --navbar-link-hover-bg: rgba(96, 165, 250, 0.2);
   --section-border: rgba(148, 163, 184, 0.2);
-  --card-bg: rgba(14, 22, 42, 0.68);
-  --card-solid: #131c36;
+  --card-bg: rgba(20, 22, 30, 0.68);
+  --card-solid: #15171f;
   --card-stroke: rgba(148, 163, 184, 0.24);
   --button-bg: linear-gradient(135deg, #2dd4bf, #60a5fa);
   --button-text: #071320;
   --button-hover-bg: linear-gradient(135deg, #99f6e4, #93c5fd);
-}
-
-.App.light {
-  --bg-color: #f6f8ff;
-  --bg-soft: #edf2ff;
-  --text-color: #20253a;
-  --heading-color: #12182a;
-  --accent-color: #0d9488;
-  --accent-2: #2563eb;
-  --accent-glow: rgba(13, 148, 136, 0.2);
-  --navbar-bg: rgba(255, 255, 255, 0.72);
-  --navbar-link-color: #1f2a44;
-  --navbar-link-hover-bg: rgba(37, 99, 235, 0.12);
-  --section-border: rgba(99, 115, 160, 0.2);
-  --card-bg: rgba(255, 255, 255, 0.75);
-  --card-solid: #ffffff;
-  --card-stroke: rgba(99, 115, 160, 0.25);
-  --button-bg: linear-gradient(135deg, #14b8a6, #3b82f6);
-  --button-text: #f8fbff;
-  --button-hover-bg: linear-gradient(135deg, #0f766e, #1d4ed8);
 }
 
 html, body, #root {
@@ -100,9 +80,9 @@ section h2 {
 }
 
 .reveal {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(52px) scale(0.94);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.revealed {
@@ -110,17 +90,90 @@ section h2 {
   transform: none;
 }
 
-.reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
-.reveal-delay-4 { transition-delay: 0.32s; }
-.reveal-delay-5 { transition-delay: 0.4s; }
+.reveal-delay-1 { transition-delay: 0.1s;  animation-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s;  animation-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s;  animation-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s;  animation-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s;  animation-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Slow gradient shimmer — background-size stretches the gradient past the
+   text so the loop can pan across it instead of snapping. */
+@keyframes headingShimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
 
 .section-heading {
-  background: linear-gradient(135deg, var(--accent-color), var(--accent-2));
+  background: linear-gradient(120deg, var(--accent-color), var(--accent-2), var(--accent-color));
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: headingShimmer 5s linear infinite;
+}
+
+/* Diagonal light-sweep + idle glow pulse, shared by every pill CTA across
+   the site. Each button opts in with position:relative + overflow:hidden
+   (set alongside its own rules) so the sweep clips to its own shape. */
+@keyframes buttonShineSweep {
+  from { transform: translateX(-160%) skewX(-20deg); }
+  to   { transform: translateX(160%) skewX(-20deg); }
+}
+
+@keyframes ctaGlowPulse {
+  0%, 100% { box-shadow: 0 14px 25px var(--accent-glow); }
+  50%      { box-shadow: 0 20px 44px var(--accent-glow); }
+}
+
+.home-primary-cta::after,
+.more-info-button::after,
+.view-more-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-160%) skewX(-20deg);
+  pointer-events: none;
+}
+
+.home-primary-cta:hover::after,
+.more-info-button:hover::after,
+.view-more-button:hover::after {
+  animation: buttonShineSweep 0.75s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-heading {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  .home-primary-cta,
+  .nav-link.active {
+    animation: none !important;
+  }
+
+  .home-primary-cta::after,
+  .more-info-button::after,
+  .view-more-button::after {
+    display: none;
+  }
+
+  .nav-link,
+  .nav-link .nav-icon {
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
 }
 
 @media (max-width: 768px) {

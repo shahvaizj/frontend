@@ -6,31 +6,21 @@ const COLOR_LERP   = 0.04;
 
 // High-saturation, maximum-contrast hues — each section should look clearly different
 const SECTION_COLORS = {
-  dark: {
-    home:         [0,   255, 220],   // bright cyan
-    projects:     [160,  40, 255],   // vivid purple
-    skills:       [255,  40, 140],   // hot pink
-    testimonials: [255, 200,   0],   // bright gold
-    contact:      [0,   220,  90],   // vivid green
-  },
-  light: {
-    home:         [0,   180, 160],
-    projects:     [110,  20, 200],
-    skills:       [210,  10, 100],
-    testimonials: [200, 130,   0],
-    contact:      [0,   160,  70],
-  },
+  home:         [0,   255, 220],   // bright cyan
+  projects:     [160,  40, 255],   // vivid purple
+  skills:       [255,  40, 140],   // hot pink
+  testimonials: [255, 200,   0],   // bright gold
+  contact:      [0,   220,  90],   // vivid green
 };
 
-export default function BackgroundCanvas({ theme, currentSection }) {
+export default function BackgroundCanvas({ currentSection }) {
   const canvasRef = useRef(null);
   const targetRef = useRef([0, 255, 220]);
   const colorRef  = useRef([0, 255, 220]);
 
   useEffect(() => {
-    const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
-    targetRef.current = [...(map[currentSection] ?? map.home)];
-  }, [currentSection, theme]);
+    targetRef.current = [...(SECTION_COLORS[currentSection] ?? SECTION_COLORS.home)];
+  }, [currentSection]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -38,8 +28,7 @@ export default function BackgroundCanvas({ theme, currentSection }) {
     const mouse  = { x: -9999, y: -9999 };
     let raf;
 
-    const map = theme === 'light' ? SECTION_COLORS.light : SECTION_COLORS.dark;
-    colorRef.current  = [...(map[currentSection] ?? map.home)];
+    colorRef.current  = [...(SECTION_COLORS[currentSection] ?? SECTION_COLORS.home)];
     targetRef.current = [...colorRef.current];
 
     const COUNT = window.innerWidth < 768 ? 45 : 80;
@@ -200,7 +189,7 @@ export default function BackgroundCanvas({ theme, currentSection }) {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseleave', onLeave);
     };
-  }, [theme]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <canvas

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const ParticleBackground = ({ theme }) => {
+const ParticleBackground = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const ParticleBackground = ({ theme }) => {
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const color = theme === 'dark' ? '97, 218, 251' : '0, 123, 255';
+      const color = '97, 218, 251';
 
       particles.forEach((p, i) => {
         p.x += p.vx;
@@ -80,7 +80,7 @@ const ParticleBackground = ({ theme }) => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [theme]);
+  }, []);
 
   return (
     <canvas

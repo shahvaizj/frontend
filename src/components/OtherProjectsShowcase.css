@@ -36,6 +36,35 @@
   text-align: center;
 }
 
+/* Overrides the generic .reveal fade with a bouncier scale-from-zero pop —
+   still driven by the same scroll-observer .revealed toggle and the shared
+   .reveal-delay-N stagger classes (those also carry animation-delay). */
+@keyframes otherProjectTilePop {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.other-project-tile.reveal {
+  opacity: 0;
+  transform: scale(0);
+  transition: none;
+}
+
+.other-project-tile.revealed {
+  animation: otherProjectTilePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .other-project-tile.reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .other-project-tile.revealed {
+    animation: none;
+  }
+}
+
 /* Base size + the magnify transform. transform-origin: bottom keeps the icon
    anchored to its caption as it grows, matching how a dock icon grows upward
    rather than from its own centre. The scale itself is applied inline via

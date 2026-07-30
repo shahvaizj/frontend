@@ -26,28 +26,6 @@
   background: var(--bg-color);
 }
 
-.theme-toggle-fixed {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--card-stroke);
-  border-radius: 999px;
-  background: var(--navbar-bg);
-  color: var(--heading-color);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  z-index: 1100;
-  box-shadow: 0 10px 26px rgba(3, 10, 25, 0.25);
-  transition: transform 0.25s ease, background-color 0.25s ease;
-}
-
-.theme-toggle-fixed:hover {
-  transform: translateY(-2px) scale(1.04);
-}
-
 .portfolio-toggle {
   position: fixed;
   top: 1rem;
@@ -101,12 +79,5 @@
   .portfolio-toggle .toggle-btn {
     padding: 0.5rem 0.8rem;
     font-size: 0.78rem;
-  }
-
-  .theme-toggle-fixed {
-    top: 0.7rem;
-    right: 0.7rem;
-    width: 42px;
-    height: 42px;
   }
 }

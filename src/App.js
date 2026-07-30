@@ -14,10 +14,6 @@ import BackgroundCanvas from './components/BackgroundCanvas';
 
 function App() {
   const location = useLocation();
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme : 'light';
-  });
   const [portfolioData, setPortfolioData] = useState({
     about: null,
     skills: null,
@@ -30,14 +26,6 @@ function App() {
   const [currentSection, setCurrentSection] = useState('home');
 
   const portfolioType = location.pathname.includes('/2') ? 'educational' : 'gaming';
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
-  };
-
-  useEffect(() => {
-    localStorage.setItem('theme', theme);
-  }, [theme]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,19 +92,13 @@ function App() {
   if (error) return <div className="error-state">Error: {error.message}</div>;
 
   return (
-    <div className={`App ${theme}`}>
-      <BackgroundCanvas theme={theme} currentSection={currentSection} />
+    <div className="App">
+      <BackgroundCanvas currentSection={currentSection} />
       <Navbar currentSection={currentSection} />
-      <button onClick={toggleTheme} className="theme-toggle-fixed">
-        <span className="material-symbols-outlined">
-          {theme === 'dark' ? 'light_mode' : 'dark_mode'}
-        </span>
-      </button>
       <main className="main-content">
         <Home
           about={portfolioData.about}
           contactEmail={portfolioData.contact?.email}
-          theme={theme}
         />
         {/* Game section hidden until the new WebGL build is ready — component
             and public/portfolio-app/ build are untouched, swap this back in

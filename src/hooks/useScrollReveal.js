@@ -30,7 +30,13 @@ const useScrollReveal = (trigger) => {
     );
 
     elements.forEach((el) => observer.observe(el));
-    const fallbackTimer = window.setTimeout(revealAll, 1800);
+    /* True last resort — IntersectionObserver is what should reveal each
+       element the moment it's actually scrolled to (each one unobserves
+       itself once triggered, so this timer only ever touches elements the
+       observer hasn't caught yet). It must stay long enough that no normal
+       visit ever reaches it before real scrolling does; it exists purely to
+       guard against the observer failing outright, not to pace reveals. */
+    const fallbackTimer = window.setTimeout(revealAll, 15000);
 
     return () => {
       window.clearTimeout(fallbackTimer);
